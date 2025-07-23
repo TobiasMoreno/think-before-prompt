@@ -1,0 +1,27 @@
+<div class="flex flex-col items-center my-8 ">
+  <h1 class="text-2xl font-bold mb-8">Roadmap de Misiones: ¡Gana logros en tu viaje IA!</h1>
+  <div class="flex flex-wrap gap-8 justify-center text-black">
+    @for (mission of missions; track mission.title; let i = $index) {
+      <div class="w-72 bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center border-2 border-blue-200 ">
+        <span class="text-4xl mb-2">{{ mission.icon }}</span>
+        <h2 class="text-lg font-semibold mb-2">{{ mission.title }}</h2>
+        <p class="text-gray-700 text-center mb-4">{{ mission.description }}</p>
+        <button (click)="toggleComplete(i)" class="px-4 py-2 rounded-lg font-semibold text-white transition-colors duration-200"
+        [class.bg-green-500]="completed[i]"
+        [class.bg-blue-500]="!completed[i]"
+        [class.hover:bg-green-600]="completed[i]"
+        [class.hover:bg-blue-600]="!completed[i]"
+        >
+          {{ completed[i] ? '¡Completado!' : 'Marcar como completado' }}
+        </button>
+        @if (completed[i]) {
+        <div class="mt-4 flex flex-col items-center animate-fade-in">
+          <span class="text-3xl mb-1">{{ mission.badge }}</span>
+          <span class="text-green-700 font-bold">¡Logro desbloqueado!</span>
+          <span class="text-sm text-blue-700 mt-1">Tip: {{ mission.tip }}</span>
+        </div>
+        }
+    </div>
+    }
+  </div>
+</div>

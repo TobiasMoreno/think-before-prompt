@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
@@ -13,8 +13,7 @@ export class NavbarComponent {
     { path: '/', label: 'Inicio' },
     { path: '/que-es-ia', label: '¿Qué es la IA?' },
     { path: '/ventajas', label: 'Ventajas' },
-    { path: '/malos-usos', label: 'Malos usos' },
-    { path: '/buenos-usos', label: 'Buenos usos' },
+    { path: '/comparativa-ia', label: 'Casos de uso' },
     { path: '/rgas', label: 'RGAs' },
     { path: '/mcps', label: 'MCPs' },
     { path: '/ia-web', label: 'IA en web' },

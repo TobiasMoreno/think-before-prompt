@@ -1,1 +1,10 @@
-
+.active-link {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-color: #22d3ee; /* cyan-400 */
+  background-color: rgba(30, 41, 59, 0.6); /* bg-blue-900/60 */
+  color: #67e8f9 !important; /* cyan-300 */
+  box-shadow: 0 2px 8px 0 rgba(30, 41, 59, 0.15);
+  transition: all 0.2s;
+}

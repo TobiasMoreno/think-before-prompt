@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RoadmapComponent } from '../../ui/roadmap/roadmap.component';
 
 @Component({
     selector: 'app-home',
-    imports: [CommonModule],
+    standalone: true,
+    imports: [RoadmapComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })
