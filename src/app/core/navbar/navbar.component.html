@@ -1,0 +1,27 @@
+<nav class="w-full flex items-center justify-between py-4 px-6 bg-blue-700 shadow-md sticky top-0 z-50" role="navigation" aria-label="Main navigation">
+  <h4 class="font-bold text-lg text-white">
+    Think Before Prompt
+  </h4>
+  <!-- Botón hamburguesa solo en móvil -->
+  <button class="md:hidden flex items-center px-3 py-2 border rounded text-white border-cyan-400 focus:outline-none" aria-label="Abrir menú" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen">
+    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
+  <!-- Menú de links -->
+  <ul
+    class="flex flex-col md:flex-row md:items-center gap-4 fixed md:static top-16 right-0 left-0 bg-blue-700 shadow-lg md:shadow-none w-full md:w-auto h-auto md:h-auto transition-all duration-300 ease-in-out z-40 md:z-auto md:ml-8 md:justify-center"
+    [class.hidden]="menuOpen"
+    [class.flex]="!menuOpen"
+    [class.md\:flex]="true"
+    tabindex="-1"
+  >
+    @for (link of links; track link.path) {
+      <li>
+        <a routerLink="{{link.path}}"
+           routerLinkActive="font-semibold underline text-cyan-400"
+           class="block px-4 py-2 text-white hover:text-purple-400 focus:outline-none rounded transition-colors duration-200 whitespace-nowrap">{{link.label}}</a>
+      </li>
+    }
+  </ul>
+</nav> 
