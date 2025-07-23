@@ -17,46 +17,46 @@ interface Mission {
 export class RoadmapComponent {
   missions: Mission[] = [
     {
-      title: 'Descubre la IA',
-      description: 'Investiga qué es la inteligencia artificial y por qué es relevante.',
-      tip: 'Lee un artículo introductorio sobre IA.',
-      icon: '🔍',
+      title: '¿Qué es la IA?',
+      description: 'Entiende qué significa "inteligencia artificial", para qué sirve y qué no es.',
+      tip: 'Lee sobre la diferencia entre IA tradicional y generativa.',
+      icon: '🟦',
       badge: '🎓'
     },
     {
-      title: 'Identifica riesgos',
-      description: 'Reflexiona sobre los posibles riesgos y malos usos de la IA.',
-      tip: 'Piensa en un ejemplo real de mal uso de IA.',
-      icon: '⚠️',
-      badge: '🛡️'
+      title: 'IA Generativa y LLMs',
+      description: 'Comprende cómo funcionan herramientas como ChatGPT, Gemini o Copilot.',
+      tip: 'Investiga qué son los tokens, contexto y entrenamiento.',
+      icon: '🟨',
+      badge: '🧠'
     },
     {
-      title: 'Practica buenas acciones',
-      description: 'Aplica una buena práctica ética en el uso de IA.',
-      tip: 'Consulta una guía de ética en IA.',
-      icon: '✅',
-      badge: '🏅'
+      title: 'Prompt Engineering',
+      description: 'Aprende a escribir mejores instrucciones para obtener mejores respuestas.',
+      tip: 'Practica con diferentes tipos de prompts.',
+      icon: '🟩',
+      badge: '🎯'
     },
     {
-      title: 'Aplica en un caso real',
-      description: 'Implementa IA en un pequeño proyecto o simulación.',
-      tip: 'Automatiza una tarea simple usando IA.',
-      icon: '🛠️',
+      title: 'Aplicaciones Reales',
+      description: 'Usa IA para tareas reales, especialmente como desarrollador.',
+      tip: 'Genera código, crea tests o analiza contenido.',
+      icon: '🟧',
       badge: '🚀'
     },
     {
-      title: 'Únete a la comunidad',
-      description: 'Participa en un foro o grupo sobre IA.',
-      tip: 'Comparte una duda o experiencia en una comunidad.',
-      icon: '🤝',
-      badge: '🌐'
+      title: 'Pensamiento Crítico',
+      description: 'Usa la IA con criterio, sabiendo cuándo confiar y cuándo revisar.',
+      tip: 'Aprende sobre alucinaciones y uso responsable.',
+      icon: '🟥',
+      badge: '🛡️'
     },
     {
-      title: 'Mantente actualizado',
-      description: 'Busca una noticia o avance reciente en IA.',
-      tip: 'Sigue una fuente confiable de noticias de IA.',
-      icon: '📈',
-      badge: '📰'
+      title: 'Explora Herramientas',
+      description: 'Prueba diferentes herramientas de IA para encontrar las que mejor te sirvan.',
+      tip: 'Experimenta con ChatGPT, Cursor, Claude y otras.',
+      icon: '🛠️',
+      badge: '⚡'
     }
   ];
   completed: boolean[] = Array(this.missions.length).fill(false);

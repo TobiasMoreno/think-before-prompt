@@ -1,6 +1,53 @@
-<section class="text-center">
-  <h1 class="text-3xl font-bold mb-4">Bienvenido a Think Before Prompt</h1>
-  <p class="text-lg">Un análisis didáctico sobre el uso responsable de la inteligencia artificial en desarrollo web.</p>
-</section>
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Header principal -->
+  <section class="text-center mb-12">
+    <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      Think Before Prompt
+    </h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+      Tu guía completa para aprender a usar la inteligencia artificial de manera responsable y efectiva
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="/que-es-ia" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
+        Comenzar Aprendizaje
+      </a>
+      <a href="/prompt-engineering" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors duration-200">
+        Prompt Engineering
+      </a>
+    </div>
+  </section>
 
-<app-roadmap></app-roadmap> 
+            <!-- Secciones principales -->
+          <section class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+      <div class="text-3xl mb-4">🟦</div>
+      <h3 class="text-xl font-bold text-gray-900 mb-2">¿Qué es la IA?</h3>
+      <p class="text-gray-600 mb-4">Entiende los fundamentos de la inteligencia artificial y cómo funciona.</p>
+      <a href="/que-es-ia" class="text-blue-600 hover:text-blue-700 font-medium">Explorar →</a>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+      <div class="text-3xl mb-4">🟩</div>
+      <h3 class="text-xl font-bold text-gray-900 mb-2">Prompt Engineering</h3>
+      <p class="text-gray-600 mb-4">Aprende a escribir mejores instrucciones para obtener mejores resultados.</p>
+      <a href="/prompt-engineering" class="text-blue-600 hover:text-blue-700 font-medium">Explorar →</a>
+    </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+              <div class="text-3xl mb-4">🛠️</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Herramientas</h3>
+              <p class="text-gray-600 mb-4">Descubre las mejores herramientas de IA para potenciar tu trabajo.</p>
+              <a href="/herramientas" class="text-blue-600 hover:text-blue-700 font-medium">Explorar →</a>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+              <div class="text-3xl mb-4">🧠</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">LLMs y Angular 20</h3>
+              <p class="text-gray-600 mb-4">Descubre cómo los LLMs están transformando el desarrollo con Angular 20.</p>
+              <a href="/llms" class="text-blue-600 hover:text-blue-700 font-medium">Explorar →</a>
+            </div>
+  </section>
+
+  <!-- Roadmap -->
+  <app-roadmap></app-roadmap>
+</div> 

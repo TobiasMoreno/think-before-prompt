@@ -1,0 +1,80 @@
+/* Estilos específicos para el componente de Herramientas */
+
+/* Animaciones para las cards de herramientas */
+.bg-white {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.bg-white:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los botones de filtro */
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Estilos para las estadísticas */
+.grid > div {
+  transition: all 0.3s ease-in-out;
+}
+
+.grid > div:hover {
+  transform: scale(1.02);
+}
+
+/* Estilos para los badges */
+.bg-green-100, .bg-orange-100, .bg-blue-50 {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Estilos para los enlaces */
+a {
+  transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+  transform: translateY(-1px);
+}
+
+/* Animación para el gradiente de fondo */
+.bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradient 20s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Estilos para las características */
+ul li {
+  transition: all 0.2s ease-in-out;
+}
+
+ul li:hover {
+  transform: translateX(4px);
+}
+
+/* Estilos para los tags de casos de uso */
+span.bg-blue-50 {
+  transition: all 0.2s ease-in-out;
+}
+
+span.bg-blue-50:hover {
+  background-color: #dbeafe;
+  transform: scale(1.05);
+} 

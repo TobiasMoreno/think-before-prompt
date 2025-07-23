@@ -1,0 +1,120 @@
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-white mb-4">🎯 Prompt Engineering</h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      Aprende a escribir mejores instrucciones para obtener respuestas más útiles de la IA
+    </p>
+  </div>
+
+  <!-- Filtros -->
+  <div class="mb-8">
+    <div class="flex flex-wrap gap-2 justify-center">
+      @for (category of categories; track category) {
+        <button 
+          (click)="selectedCategory = category"
+          class="px-4 py-2 rounded-lg font-medium transition-colors duration-200"
+          [class.bg-blue-600]="selectedCategory === category"
+          [class.text-white]="selectedCategory === category"
+          [class.bg-gray-200]="selectedCategory !== category"
+          [class.text-gray-700]="selectedCategory !== category"
+          [class.hover:bg-blue-700]="selectedCategory === category"
+          [class.hover:bg-gray-300]="selectedCategory !== category"
+        >
+          {{ category === 'todos' ? 'Todos' : category }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Ejemplos de Prompts -->
+  <div class="mb-12">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">📝 Ejemplos: Malos vs Buenos Prompts</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+      @for (example of filteredExamples; track example.title) {
+        <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">{{ example.title }}</h3>
+          
+          <div class="grid gap-4 md:grid-cols-2">
+            <!-- Prompt Malo -->
+            <div class="bg-red-50 border-2 border-red-200 rounded-lg p-4">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-2xl">❌</span>
+                <h4 class="font-semibold text-red-800">Prompt Malo</h4>
+              </div>
+              <p class="text-sm text-red-700 font-mono bg-red-100 p-3 rounded">{{ example.badPrompt }}</p>
+            </div>
+
+            <!-- Prompt Bueno -->
+            <div class="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-2xl">✅</span>
+                <h4 class="font-semibold text-green-800">Prompt Bueno</h4>
+              </div>
+              <p class="text-sm text-green-700 font-mono bg-green-100 p-3 rounded">{{ example.goodPrompt }}</p>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+            <h5 class="font-semibold text-blue-800 mb-2">💡 ¿Por qué es mejor?</h5>
+            <p class="text-sm text-blue-700">{{ example.explanation }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Templates de Prompts -->
+  <div class="mb-12">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">📋 Templates Reutilizables</h2>
+    <div class="grid gap-6 md:grid-cols-2">
+      @for (template of promptTemplates; track template.name) {
+        <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ template.name }}</h3>
+          <p class="text-gray-600 mb-3">{{ template.description }}</p>
+          
+          <div class="mb-4">
+            <h4 class="font-semibold text-gray-800 mb-2">📝 Template:</h4>
+            <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto font-mono text-black">{{ template.template }}</pre>
+          </div>
+          
+          <div class="bg-purple-50 p-3 rounded-lg">
+            <h4 class="font-semibold text-purple-800 mb-1">🎯 Casos de uso:</h4>
+            <p class="text-sm text-purple-700">{{ template.useCase }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Consejos -->
+  <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">💡 Consejos para Mejores Prompts</h2>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">🎯 Sé Específico</h3>
+        <p class="text-sm text-gray-600">Define claramente qué quieres, para quién y con qué formato.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">📏 Define Límites</h3>
+        <p class="text-sm text-gray-600">Especifica longitud, tono, nivel técnico y elementos requeridos.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">🔧 Proporciona Contexto</h3>
+        <p class="text-sm text-gray-600">Incluye información relevante sobre el proyecto o situación.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">📋 Usa Ejemplos</h3>
+        <p class="text-sm text-gray-600">Muestra el formato o estilo que esperas en la respuesta.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">🔄 Itera y Mejora</h3>
+        <p class="text-sm text-gray-600">Refina tus prompts basándote en las respuestas obtenidas.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">⚡ Mantén la Claridad</h3>
+        <p class="text-sm text-gray-600">Usa lenguaje claro y evita ambigüedades en tus instrucciones.</p>
+      </div>
+    </div>
+  </div>
+</div> 

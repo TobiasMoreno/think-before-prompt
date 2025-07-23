@@ -1,0 +1,132 @@
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-white mb-4">🛠️ Herramientas de IA</h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      Descubre las mejores herramientas de inteligencia artificial para potenciar tu trabajo
+    </p>
+  </div>
+
+  <!-- Estadísticas por tipo -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 text-center">
+      <div class="text-3xl font-bold text-blue-600 mb-2">{{ assistantsCount }}</div>
+      <div class="text-blue-800 font-semibold">Asistentes Generales</div>
+    </div>
+    <div class="bg-green-50 border-2 border-green-200 rounded-xl p-6 text-center">
+      <div class="text-3xl font-bold text-green-600 mb-2">{{ codeToolsCount }}</div>
+      <div class="text-green-800 font-semibold">Herramientas de Código</div>
+    </div>
+    <div class="bg-purple-50 border-2 border-purple-200 rounded-xl p-6 text-center">
+      <div class="text-3xl font-bold text-purple-600 mb-2">{{ multiModelCount }}</div>
+      <div class="text-purple-800 font-semibold">Multimodelo</div>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="mb-8">
+    <div class="flex flex-wrap gap-2 justify-center">
+      @for (category of categories; track category) {
+        <button 
+          (click)="selectedCategory = category"
+          class="px-6 py-3 rounded-lg font-medium transition-colors duration-200"
+          [class.bg-blue-600]="selectedCategory === category"
+          [class.text-white]="selectedCategory === category"
+          [class.bg-gray-200]="selectedCategory !== category"
+          [class.text-gray-700]="selectedCategory !== category"
+          [class.hover:bg-blue-700]="selectedCategory === category"
+          [class.hover:bg-gray-300]="selectedCategory !== category"
+        >
+          {{ category === 'todos' ? 'Todas' : category }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Grid de Herramientas -->
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    @for (tool of filteredTools; track tool.name) {
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <!-- Header de la herramienta -->
+        <div class="p-6 border-b border-gray-100">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-3xl">{{ tool.icon }}</span>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">{{ tool.name }}</h3>
+              <p class="text-sm text-gray-600">{{ tool.type }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="p-6">
+          <p class="text-gray-700 mb-4">{{ tool.description }}</p>
+          
+          <!-- Características -->
+          <div class="mb-4">
+            <h4 class="font-semibold text-gray-900 mb-2">✨ Características:</h4>
+            <ul class="text-sm text-gray-600 space-y-1">
+              @for (feature of tool.features; track feature) {
+                <li class="flex items-center gap-2">
+                  <span class="text-blue-500">•</span>
+                  {{ feature }}
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Mejor para -->
+          <div class="mb-4">
+            <h4 class="font-semibold text-gray-900 mb-2">🎯 Ideal para:</h4>
+            <div class="flex flex-wrap gap-1">
+              @for (useCase of tool.bestFor; track useCase) {
+                <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">{{ useCase }}</span>
+              }
+            </div>
+          </div>
+
+          <!-- Botón de enlace -->
+          <a 
+            [href]="tool.link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="block w-full bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200"
+          >
+            Visitar {{ tool.name }}
+          </a>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Consejos de uso -->
+  <div class="mt-12 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">💡 Consejos para elegir tu herramienta</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">🎯 Define tu objetivo</h3>
+        <p class="text-sm text-gray-600">¿Qué quieres lograr? Generar código, analizar texto, crear contenido...</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">🔧 Considera tu flujo de trabajo</h3>
+        <p class="text-sm text-gray-600">Elige herramientas que se integren bien con tus herramientas actuales.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">🔄 Experimenta</h3>
+        <p class="text-sm text-gray-600">Prueba diferentes herramientas para encontrar la que mejor se adapte a tu flujo de trabajo.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">📚 Aprende las mejores prácticas</h3>
+        <p class="text-sm text-gray-600">Cada herramienta tiene sus particularidades. Dedica tiempo a aprender a usarla bien.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">🔒 Verifica la seguridad</h3>
+        <p class="text-sm text-gray-600">Asegúrate de no compartir información sensible con herramientas de IA.</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">📈 Mantente actualizado</h3>
+        <p class="text-sm text-gray-600">Las herramientas de IA evolucionan rápidamente. Sigue las novedades.</p>
+      </div>
+    </div>
+  </div>
+</div> 

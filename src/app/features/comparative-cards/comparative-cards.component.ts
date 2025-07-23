@@ -37,6 +37,30 @@ export class ComparativeCardsComponent {
       badUsage: 'Permitir que la IA tome decisiones críticas (como rechazar solicitudes de empleo) sin supervisión humana.',
       goodUsage: 'Utilizar la IA como herramienta de apoyo, pero mantener la revisión y decisión final en manos de personas responsables.',
       example: 'Situación: Un sistema de IA rechaza automáticamente candidatos sin revisión humana.'
+    },
+    {
+      title: 'Escribir prompts vagos o poco específicos',
+      badUsage: 'Usar prompts genéricos como "hazme un resumen" o "escribe código" sin especificar contexto, formato o requisitos.',
+      goodUsage: 'Escribir prompts detallados que incluyan contexto, formato esperado, público objetivo y requisitos específicos.',
+      example: `❌ Mal: "hazme un resumen"\n✅ Bueno: "Resumí este texto en 3 puntos clave como si fuera para un alumno de secundaria"`
+    },
+    {
+      title: 'No verificar alucinaciones de la IA',
+      badUsage: 'Confiar en información factual proporcionada por la IA sin verificar su veracidad, especialmente en temas técnicos o científicos.',
+      goodUsage: 'Siempre verificar información factual, fechas, estadísticas y referencias proporcionadas por la IA consultando fuentes confiables.',
+      example: 'Situación: Usar estadísticas o datos históricos de la IA sin verificar en fuentes oficiales.'
+    },
+    {
+      title: 'Compartir información sensible con IA',
+      badUsage: 'Enviar datos personales, contraseñas, información financiera o código propietario a herramientas de IA públicas.',
+      goodUsage: 'Usar datos de ejemplo o información genérica, y nunca compartir información sensible o confidencial.',
+      example: '❌ Mal: "Revisa este código que contiene credenciales de base de datos"\n✅ Bueno: "Revisa este patrón de código usando datos de ejemplo"'
+    },
+    {
+      title: 'Depender exclusivamente de la IA para decisiones',
+      badUsage: 'Usar la IA como única fuente de verdad y tomar decisiones importantes basándose únicamente en sus respuestas.',
+      goodUsage: 'Usar la IA como una herramienta de apoyo que complementa el juicio humano y la experiencia personal.',
+      example: 'Situación: Elegir una tecnología solo porque la IA la recomendó, sin investigar alternativas.'
     }
   ];
 }

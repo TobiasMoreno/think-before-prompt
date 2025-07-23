@@ -9,18 +9,27 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavbarComponent {
   menuOpen = false;
-  links = [
-    { path: '/', label: 'Inicio' },
-    { path: '/que-es-ia', label: '¿Qué es la IA?' },
+  
+  leftLinks = [
     { path: '/ventajas', label: 'Ventajas' },
+    { path: '/prompt-engineering', label: 'Prompt Engineering' },
+    { path: '/herramientas', label: 'Herramientas' },
     { path: '/comparativa-ia', label: 'Casos de uso' },
-    { path: '/rgas', label: 'RGAs' },
-    { path: '/mcps', label: 'MCPs' },
+  ];
+  
+  rightLinks = [
     { path: '/ia-web', label: 'IA en web' },
-    { path: '/etica', label: 'Ética' },
-    { path: '/recursos', label: 'Recursos' },
+    { path: '/llms', label: 'LLMs' },
+    { path: '/mcps', label: 'MCPs' },
     { path: '/sobre-el-proyecto', label: 'Sobre el proyecto' },
   ];
+  
+  allLinks = [
+    ...this.leftLinks,
+    { path: '/que-es-ia', label: '¿Qué es la IA?' },
+    ...this.rightLinks,
+  ];
+  
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }

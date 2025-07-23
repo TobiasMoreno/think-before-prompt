@@ -1,0 +1,54 @@
+/* Estilos específicos para el componente de Prompt Engineering */
+
+/* Animaciones para las cards */
+.bg-white {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.bg-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los botones de filtro */
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Estilos para los templates */
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+/* Animación para las cards de consejos */
+.grid > div {
+  transition: all 0.3s ease-in-out;
+}
+
+.grid > div:hover {
+  transform: scale(1.02);
+}
+
+/* Estilos para el gradiente de fondo */
+.bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} 
