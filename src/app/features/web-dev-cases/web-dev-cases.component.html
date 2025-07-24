@@ -1,4 +1,493 @@
-<section>
-  <h2 class="text-2xl font-semibold mb-2">IA en desarrollo web (casos prácticos)</h2>
-  <p>Contenido próximamente...</p>
-</section> 
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Barra de progreso de navegación -->
+   @if (showNavigationBar) {
+  <div class="fixed top-0 left-0 w-full bg-white shadow-sm z-50 transition-all duration-300 ease-in-out">
+    <div class="max-w-7xl mx-auto px-4 py-2">
+      <div class="flex items-center justify-between text-sm">
+        <span class="text-gray-600 hidden md:block">Sección actual: <strong class="text-blue-600">{{ getCurrentSectionTitle() }}</strong></span>
+        <div class="flex flex-wrap gap-1 md:gap-2">
+          @for (section of sections; track section.id) {
+            <button 
+              (click)="scrollToSection(section.id)"
+              [class]="isSectionActive(section.id) ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'"
+              class="px-2 md:px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 hover:scale-105">
+                <span class="hidden sm:inline">{{ section.icon }}</span>
+                <span class="sm:hidden">{{ section.icon }}</span>
+                <span class="hidden md:inline ml-1">{{ section.title }}</span>
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+  <!-- Header principal -->
+  <section class="text-center mb-12 mt-16">
+    <h1 class="text-4xl font-bold mb-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      IA en Desarrollo Web
+    </h1>
+    <p class="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
+      Descubre cómo la inteligencia artificial está revolucionando el desarrollo web moderno. 
+      Desde la generación de código hasta la optimización de performance, la IA se ha convertido 
+      en una herramienta indispensable para desarrolladores.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <button (click)="scrollToSection('generacion-codigo')" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
+        💻 Generación de Código
+      </button>
+      <button (click)="scrollToSection('debugging')" class="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors duration-200">
+        🐛 Debugging IA
+      </button>
+      <button (click)="scrollToSection('testing')" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors duration-200">
+        🧪 Testing Automatizado
+      </button>
+    </div>
+  </section>
+
+  <!-- Navegación rápida -->
+  <nav class="mb-12 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-6">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">📋 Navegación Rápida</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <button (click)="scrollToSection('generacion-codigo')" class="flex items-center p-3 bg-white rounded-lg shadow hover:shadow-md transition-shadow w-full text-left">
+        <span class="text-2xl mr-3">💻</span>
+        <div>
+          <h3 class="font-semibold text-gray-900">Generación de Código</h3>
+          <p class="text-sm text-gray-600">GitHub Copilot, Cursor, CodeWhisperer</p>
+        </div>
+      </button>
+      <button (click)="scrollToSection('debugging')" class="flex items-center p-3 bg-white rounded-lg shadow hover:shadow-md transition-shadow w-full text-left">
+        <span class="text-2xl mr-3">🐛</span>
+        <div>
+          <h3 class="font-semibold text-gray-900">Debugging IA</h3>
+          <p class="text-sm text-gray-600">Resolución automática de errores</p>
+        </div>
+      </button>
+      <button (click)="scrollToSection('testing')" class="flex items-center p-3 bg-white rounded-lg shadow hover:shadow-md transition-shadow w-full text-left">
+        <span class="text-2xl mr-3">🧪</span>
+        <div>
+          <h3 class="font-semibold text-gray-900">Testing Automatizado</h3>
+          <p class="text-sm text-gray-600">Tests unitarios y de integración</p>
+        </div>
+      </button>
+      <button (click)="scrollToSection('ux-ui')" class="flex items-center p-3 bg-white rounded-lg shadow hover:shadow-md transition-shadow w-full text-left">
+        <span class="text-2xl mr-3">🎨</span>
+        <div>
+          <h3 class="font-semibold text-gray-900">UX/UI Optimización</h3>
+          <p class="text-sm text-gray-600">Componentes y accesibilidad</p>
+        </div>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Sección 1: Generación de Código -->
+  <section id="generacion-codigo" class="mb-16">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-4xl mr-4">💻</span>
+        Generación de Código con IA
+      </h2>
+      
+      <div class="grid lg:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">🛠️ Herramientas Principales</h3>
+          <div class="space-y-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">GitHub Copilot</h4>
+              <p class="text-blue-800 text-sm">Sugerencias de código en tiempo real, autocompletado inteligente y generación de funciones completas.</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Cursor AI</h4>
+              <p class="text-green-800 text-sm">Editor de código con IA integrada, chat contextual y refactoring automático.</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">Amazon CodeWhisperer</h4>
+              <p class="text-purple-800 text-sm">Generación de código específica para AWS, con énfasis en seguridad y mejores prácticas.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">📝 Prompts Efectivos</h3>
+          <div class="space-y-4">
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-gray-900 mb-2">Para Angular Components</h4>
+              <code class="text-sm bg-gray-100 p-2 rounded block text-black">
+                "Crea un componente Angular que muestre una lista de usuarios con paginación, filtros y búsqueda"
+              </code>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-gray-900 mb-2">Para TypeScript Services</h4>
+              <code class="text-sm bg-gray-100 p-2 rounded block text-black">
+                "Genera un servicio HTTP con interceptors para manejar tokens de autenticación"
+              </code>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-gray-900 mb-2">Para CSS/SCSS</h4>
+              <code class="text-sm bg-gray-100 p-2 rounded block text-black">
+                "Crea estilos responsive para un dashboard con grid layout y dark mode"
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">🚀 Caso Práctico: Componente Angular</h3>
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h4 class="font-semibold text-gray-900 mb-2">Prompt:</h4>
+          <p class="text-gray-700 mb-4">"Crea un componente Angular para un formulario de contacto con validaciones, manejo de errores y envío a API"</p>
+          
+          <h4 class="font-semibold text-gray-900 mb-2">Resultado esperado:</h4>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li>• Componente con ReactiveFormsModule</li>
+            <li>• Validaciones personalizadas</li>
+            <li>• Manejo de estados de carga</li>
+            <li>• Mensajes de error dinámicos</li>
+            <li>• Integración con servicio HTTP</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 2: Debugging con IA -->
+  <section id="debugging" class="mb-16">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-4xl mr-4">🐛</span>
+        Debugging Asistido por IA
+      </h2>
+
+      <div class="grid lg:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">🔍 Análisis de Errores</h3>
+          <div class="space-y-4">
+            <div class="bg-red-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-red-900 mb-2">Stack Traces Inteligentes</h4>
+              <p class="text-red-800 text-sm">La IA puede analizar logs complejos y identificar la causa raíz de errores.</p>
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-yellow-900 mb-2">Sugerencias de Solución</h4>
+              <p class="text-yellow-800 text-sm">Propone soluciones específicas basadas en el contexto del error.</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Prevención de Errores</h4>
+              <p class="text-green-800 text-sm">Identifica patrones que pueden causar problemas futuros.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">🛠️ Herramientas de Debugging</h3>
+          <div class="space-y-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">ChatGPT Debugging</h4>
+              <p class="text-blue-800 text-sm">Pega tu error y obtén explicaciones detalladas y soluciones.</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">GitHub Copilot Chat</h4>
+              <p class="text-purple-800 text-sm">Debugging contextual directamente en tu editor.</p>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-orange-900 mb-2">Stack Overflow AI</h4>
+              <p class="text-orange-800 text-sm">Búsqueda inteligente de soluciones similares.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-lg">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">🔧 Ejemplo: Debugging de Error Angular</h3>
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h4 class="font-semibold text-gray-900 mb-2">Error común:</h4>
+          <code class="text-sm bg-red-100 p-2 rounded block text-red-800">
+            Error: Can't bind to 'ngModel' since it isn't a known property of 'input'
+          </code>
+          
+          <h4 class="font-semibold text-gray-900 mb-2 mt-4">Solución con IA:</h4>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li>• Verificar importación de FormsModule</li>
+            <li>• Revisar declaraciones en el módulo</li>
+            <li>• Confirmar sintaxis de two-way binding</li>
+            <li>• Validar versión de Angular</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 3: Testing Automatizado -->
+  <section id="testing" class="mb-16">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-4xl mr-4">🧪</span>
+        Testing Automatizado con IA
+      </h2>
+
+      <div class="grid lg:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">🎯 Tipos de Tests</h3>
+          <div class="space-y-4">
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Unit Tests</h4>
+              <p class="text-green-800 text-sm">Generación automática de tests para funciones y componentes individuales.</p>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">Integration Tests</h4>
+              <p class="text-blue-800 text-sm">Tests que verifican la interacción entre múltiples componentes.</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">E2E Tests</h4>
+              <p class="text-purple-800 text-sm">Tests de flujos completos de usuario con Cypress o Playwright.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">🛠️ Herramientas de Testing</h3>
+          <div class="space-y-4">
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-yellow-900 mb-2">Jest + AI</h4>
+              <p class="text-yellow-800 text-sm">Generación automática de mocks y test cases.</p>
+            </div>
+            <div class="bg-red-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-red-900 mb-2">Cypress AI</h4>
+              <p class="text-red-800 text-sm">Generación de tests E2E basados en especificaciones.</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">TestCafe AI</h4>
+              <p class="text-green-800 text-sm">Tests automatizados con análisis de comportamiento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-lg">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">📝 Ejemplo: Test de Componente Angular</h3>
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h4 class="font-semibold text-gray-900 mb-2">Prompt para IA:</h4>
+          <code class="text-sm bg-gray-100 p-2 rounded block text-black">
+            "Genera tests unitarios para un componente Angular que maneja un formulario de login"
+          </code>
+          
+          <h4 class="font-semibold text-gray-900 mb-2 mt-4">Tests generados incluirían:</h4>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li>• Validación de campos requeridos</li>
+            <li>• Test de envío exitoso del formulario</li>
+            <li>• Test de manejo de errores de API</li>
+            <li>• Test de navegación tras login exitoso</li>
+            <li>• Test de limpieza de formulario</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 4: UX/UI Optimización -->
+  <section id="ux-ui" class="mb-16">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-4xl mr-4">🎨</span>
+        Optimización UX/UI con IA
+      </h2>
+
+      <div class="grid lg:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">🎯 Generación de Componentes</h3>
+          <div class="space-y-4">
+            <div class="bg-pink-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-pink-900 mb-2">UI Components</h4>
+              <p class="text-pink-800 text-sm">Generación automática de botones, cards, modales y otros elementos UI.</p>
+            </div>
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-indigo-900 mb-2">Layouts Responsive</h4>
+              <p class="text-indigo-800 text-sm">Creación de layouts adaptativos para diferentes dispositivos.</p>
+            </div>
+            <div class="bg-teal-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-teal-900 mb-2">Animaciones</h4>
+              <p class="text-teal-800 text-sm">Generación de transiciones y animaciones CSS/JS.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">♿ Accesibilidad</h3>
+          <div class="space-y-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">ARIA Labels</h4>
+              <p class="text-blue-800 text-sm">Generación automática de atributos de accesibilidad.</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Contraste de Colores</h4>
+              <p class="text-green-800 text-sm">Análisis y sugerencias de paletas accesibles.</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">Navegación por Teclado</h4>
+              <p class="text-purple-800 text-sm">Implementación de navegación accesible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-pink-50 to-indigo-50 p-6 rounded-lg">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">🎨 Caso Práctico: Dashboard Moderno</h3>
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h4 class="font-semibold text-gray-900 mb-2">Prompt para IA:</h4>
+          <code class="text-sm bg-gray-100 p-2 rounded block text-black">
+            "Crea un dashboard moderno con cards, gráficos, filtros y modo oscuro usando Angular Material"
+          </code>
+          
+          <h4 class="font-semibold text-gray-900 mb-2 mt-4">Componentes generados:</h4>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li>• Header con navegación y toggle de tema</li>
+            <li>• Cards de métricas con animaciones</li>
+            <li>• Gráficos interactivos con Chart.js</li>
+            <li>• Filtros dinámicos con chips</li>
+            <li>• Tabla de datos con paginación</li>
+            <li>• Sidebar con navegación</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 5: DevOps y CI/CD -->
+  <section id="devops" class="mb-16">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-4xl mr-4">🚀</span>
+        DevOps y CI/CD con IA
+      </h2>
+
+      <div class="grid lg:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">🔧 Automatización</h3>
+          <div class="space-y-4">
+            <div class="bg-orange-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-orange-900 mb-2">Build Optimization</h4>
+              <p class="text-orange-800 text-sm">Análisis y optimización automática de procesos de build.</p>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">Deployment Automation</h4>
+              <p class="text-blue-800 text-sm">Despliegues inteligentes con rollback automático.</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Monitoring</h4>
+              <p class="text-green-800 text-sm">Monitoreo proactivo con alertas inteligentes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">🛡️ Seguridad</h3>
+          <div class="space-y-4">
+            <div class="bg-red-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-red-900 mb-2">Code Scanning</h4>
+              <p class="text-red-800 text-sm">Detección automática de vulnerabilidades de seguridad.</p>
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-yellow-900 mb-2">Dependency Analysis</h4>
+              <p class="text-yellow-800 text-sm">Análisis de dependencias y actualizaciones de seguridad.</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">Compliance</h4>
+              <p class="text-purple-800 text-sm">Verificación automática de cumplimiento normativo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-orange-50 to-blue-50 p-6 rounded-lg">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">🔧 Pipeline CI/CD Inteligente</h3>
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h4 class="font-semibold text-gray-900 mb-2">Etapas automatizadas:</h4>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li>• Análisis de código estático con SonarQube</li>
+            <li>• Tests unitarios y de integración</li>
+            <li>• Análisis de seguridad con Snyk</li>
+            <li>• Build optimizado con cache inteligente</li>
+            <li>• Deploy automático con health checks</li>
+            <li>• Monitoreo post-deploy con alertas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 6: Mejores Prácticas -->
+  <section id="mejores-practicas" class="mb-16">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-4xl mr-4">⭐</span>
+        Mejores Prácticas
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">✅ Qué Hacer</h3>
+          <div class="space-y-4">
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">Revisar Código Generado</h4>
+              <p class="text-green-800 text-sm">Siempre revisa y entiende el código que genera la IA antes de usarlo.</p>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-900 mb-2">Usar Prompts Específicos</h4>
+              <p class="text-blue-800 text-sm">Sé específico en tus prompts para obtener resultados más precisos.</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-purple-900 mb-2">Mantener Control de Versiones</h4>
+              <p class="text-purple-800 text-sm">Usa Git para mantener un historial de cambios y poder revertir si es necesario.</p>
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-yellow-900 mb-2">Documentar Decisiones</h4>
+              <p class="text-yellow-800 text-sm">Documenta por qué elegiste ciertas soluciones generadas por IA.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">❌ Qué Evitar</h3>
+          <div class="space-y-4">
+            <div class="bg-red-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-red-900 mb-2">Confiar Ciegamente</h4>
+              <p class="text-red-800 text-sm">No uses código generado sin entenderlo o sin probarlo.</p>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-orange-900 mb-2">Prompts Vagos</h4>
+              <p class="text-orange-800 text-sm">Evita prompts genéricos que pueden generar código inadecuado.</p>
+            </div>
+            <div class="bg-pink-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-pink-900 mb-2">Ignorar Seguridad</h4>
+              <p class="text-pink-800 text-sm">No ignores las implicaciones de seguridad del código generado.</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-gray-900 mb-2">Depender Exclusivamente</h4>
+              <p class="text-gray-800 text-sm">No dependas exclusivamente de la IA; mantén tus habilidades de programación.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white">
+    <h2 class="text-3xl font-bold mb-4">🚀 ¿Listo para Empezar?</h2>
+    <p class="text-xl mb-6 opacity-90">
+      Comienza a integrar la IA en tu flujo de desarrollo web y descubre cómo puede 
+      potenciar tu productividad y la calidad de tu código.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a routerLink="/herramientas" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200">
+        🛠️ Explorar Herramientas
+      </a>
+      <a routerLink="/prompt-engineering" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200">
+        📝 Aprender Prompt Engineering
+      </a>
+      <a routerLink="/llms" class="bg-white text-green-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200">
+        🧠 Más sobre LLMs
+      </a>
+    </div>
+  </section>
+</div> 

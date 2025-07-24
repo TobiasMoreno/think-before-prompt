@@ -1,1 +1,217 @@
-/* Estilos adicionales para la sección si se requieren */ 
+/* Estilos para la página de IA en Desarrollo Web */
+
+/* Smooth scrolling para navegación interna */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animaciones para las cards */
+.bg-white {
+  transition: all 0.3s ease;
+}
+
+.bg-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los enlaces de navegación */
+a[href^="#"] {
+  scroll-margin-top: 100px;
+}
+
+/* Efectos hover para las cards de navegación */
+.flex.items-center.p-3.bg-white.rounded-lg.shadow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos para los bloques de código */
+code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Animaciones para los gradientes */
+.bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Estilos para las secciones con bordes */
+.border.border-gray-200 {
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* Mejoras para los botones de call-to-action */
+.bg-blue-600, .bg-green-600, .bg-purple-600 {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-blue-600::before, .bg-green-600::before, .bg-purple-600::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.bg-blue-600:hover::before, .bg-green-600:hover::before, .bg-purple-600:hover::before {
+  left: 100%;
+}
+
+/* Estilos para los iconos */
+.text-4xl {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .text-4xl {
+    font-size: 2rem;
+  }
+  
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+  
+  .grid.md\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos para las listas */
+ul li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+/* Mejoras para los bloques de información */
+.bg-blue-50, .bg-green-50, .bg-purple-50, .bg-red-50, .bg-yellow-50, .bg-pink-50, .bg-indigo-50, .bg-teal-50, .bg-orange-50 {
+  border-left: 4px solid;
+}
+
+.bg-blue-50 { border-left-color: #3b82f6; }
+.bg-green-50 { border-left-color: #10b981; }
+.bg-purple-50 { border-left-color: #8b5cf6; }
+.bg-red-50 { border-left-color: #ef4444; }
+.bg-yellow-50 { border-left-color: #f59e0b; }
+.bg-pink-50 { border-left-color: #ec4899; }
+.bg-indigo-50 { border-left-color: #6366f1; }
+.bg-teal-50 { border-left-color: #14b8a6; }
+.bg-orange-50 { border-left-color: #f97316; }
+
+/* Estilos para el scroll suave en navegación */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Mejoras para los gradientes de fondo */
+.bg-gradient-to-r.from-blue-50.to-purple-50,
+.bg-gradient-to-r.from-red-50.to-orange-50,
+.bg-gradient-to-r.from-green-50.to-blue-50,
+.bg-gradient-to-r.from-pink-50.to-indigo-50,
+.bg-gradient-to-r.from-orange-50.to-blue-50 {
+  background-attachment: fixed;
+}
+
+/* Estilos para los botones de navegación */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Estilos para los enlaces de navegación rápida */
+nav button {
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: none;
+}
+
+nav button:hover {
+  text-decoration: none;
+}
+
+/* Estilos para el call-to-action final */
+.bg-gradient-to-r.from-blue-600.to-purple-600 {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-gradient-to-r.from-blue-600.to-purple-600::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Estilos para la barra de navegación fija */
+.fixed.top-0 {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-100%);
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Animaciones para los botones de navegación */
+button.hover\\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Estilos para botones activos */
+.bg-blue-600.text-white.shadow-md {
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Mejoras para dispositivos móviles */
+@media (max-width: 640px) {
+  .fixed.top-0 .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+} 
