@@ -1,0 +1,14 @@
+# Redirects para Angular SPA
+# Redirige todas las rutas a index.html para que Angular maneje el routing
+/*    /index.html   200
+
+# Redirecciones específicas si las necesitas
+# /home    /index.html   200
+# /about   /index.html   200
+
+# Headers de seguridad (opcional)
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin 
