@@ -18,5 +18,7 @@ export const routes: Routes = [
       { path: 'comparativa-ia', loadComponent: () => import('./features/comparative-cards/comparative-cards.component').then(m => m.ComparativeCardsComponent) },
     ]
   },
+  { path: 'hero', loadComponent: () => import('./features/hero/hero.component').then(m => m.HeroComponent) },
+
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

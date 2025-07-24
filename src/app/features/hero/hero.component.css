@@ -1,0 +1,190 @@
+.glow-text {
+  background: linear-gradient(45deg, #fff, #e0e7ff, #c7d2fe, #a5b4fc);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradiente de texto para subtítulos */
+.text-gradient {
+  background: linear-gradient(45deg, #e0e7ff, #c7d2fe, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cometas animadas */
+.comet {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #fff, 0 0 20px #fff, 0 0 30px #fff;
+}
+
+.comet::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, white, transparent);
+  transform: translate(-50%, -50%);
+}
+
+.comet-1 {
+  top: 10%;
+  left: 10%;
+  animation: comet1 8s linear infinite;
+}
+
+.comet-2 {
+  top: 20%;
+  left: 80%;
+  animation: comet2 12s linear infinite;
+}
+
+.comet-3 {
+  top: 60%;
+  left: 20%;
+  animation: comet3 10s linear infinite;
+}
+
+.comet-4 {
+  top: 80%;
+  left: 70%;
+  animation: comet4 15s linear infinite;
+}
+
+@keyframes comet1 {
+  0% { transform: translateX(-100px) translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 100px)) translateY(100px); opacity: 0; }
+}
+
+@keyframes comet2 {
+  0% { transform: translateX(100px) translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(calc(-100vw - 100px)) translateY(-100px); opacity: 0; }
+}
+
+@keyframes comet3 {
+  0% { transform: translateX(-100px) translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 100px)) translateY(-50px); opacity: 0; }
+}
+
+@keyframes comet4 {
+  0% { transform: translateX(100px) translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(calc(-100vw - 100px)) translateY(50px); opacity: 0; }
+}
+
+/* Estrellas parpadeantes */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.twinkling {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 50px 50px, #fff, transparent),
+    radial-gradient(1px 1px at 100px 100px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 150px 150px, #fff, transparent),
+    radial-gradient(1px 1px at 200px 200px, rgba(255,255,255,0.6), transparent);
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  animation: twinkle 3s ease-in-out infinite reverse;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Fondo dark siempre presente */
+.hero-scroll-area {
+  background: linear-gradient(135deg, #0f172a 0%, #6d28d9 50%, #0f172a 100%);
+}
+
+/* Animación: aparecer desde la izquierda */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+}
+
+.fade-in-left {
+  animation: fadeInLeft 1s cubic-bezier(0.4,0,0.2,1) both;
+}
+.fade-out-left {
+  animation: fadeOutLeft 1s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+/* Animación: zoom desde el fondo (lejos) */
+@keyframes zoomInFar {
+  from {
+    opacity: 0;
+    transform: scale(0.3) translateZ(-500px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+}
+
+@keyframes zoomOutThrough {
+  from {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5) translateZ(500px);
+  }
+}
+
+.zoom-in-far {
+  animation: zoomInFar 1.2s cubic-bezier(0.4,0,0.2,1) both;
+}
+.zoom-out-through {
+  animation: zoomOutThrough 1.2s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+
