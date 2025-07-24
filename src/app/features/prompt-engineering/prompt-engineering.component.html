@@ -156,4 +156,20 @@
       <span>→</span>
     </a>
   </div>
+
+  <!-- Demo de mejora de prompt -->
+  <div class="my-12">
+    <h2 class="text-2xl font-bold text-blue-700 mb-4 text-center">🔄 Demo: Mejorá tu Prompt</h2>
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200 max-w-xl mx-auto flex flex-col gap-4">
+      <label for="userPrompt" class="font-semibold text-gray-800">Escribí tu prompt:</label>
+      <input id="userPrompt" type="text" [(ngModel)]="userPrompt" class="border border-gray-300 text-black rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Ej: Resumí este texto...">
+      <button (click)="improvePrompt()" class="bg-blue-600 px-4 py-2 rounded font-medium hover:bg-blue-700 transition-colors duration-200">Mejorar Prompt</button>
+      @if (improvedPrompt) {
+      <div class="mt-4 p-4 bg-green-50 border border-green-200 rounded">
+        <span class="font-semibold text-green-800">Prompt mejorado:</span>
+        <p class="text-green-700 mt-2">{{ improvedPrompt }}</p>
+      </div>
+      }
+    </div>
+  </div>
 </div> 

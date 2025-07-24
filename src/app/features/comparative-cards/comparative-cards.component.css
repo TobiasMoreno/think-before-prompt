@@ -1,1 +1,20 @@
+.comparative-card-enter {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  animation: cardFadeIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
 
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.comparative-card-hover {
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s;
+}
+.comparative-card-hover:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.15);
+}

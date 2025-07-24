@@ -174,7 +174,7 @@ export class UserProfileComponent {
       ],
       setup: 'Configura el servidor MCP en tu IDE para obtener asistencia de IA integrada con Angular CLI.',
       icon: '⚡',
-      link: 'https://angular.dev/ai/develop-with-ai#angular-cli-mcp-server-setup'
+      link: 'https://angular.dev/ai/develop-with-ai#angular-cli-mcp-server-setup',
     },
     {
       name: 'llms.txt',
@@ -187,7 +187,7 @@ export class UserProfileComponent {
       ],
       setup: 'Incluye llms.txt en tu proyecto para proporcionar contexto específico de Angular a los LLMs.',
       icon: '📄',
-      link: 'https://angular.dev/ai/develop-with-ai#providing-context-with-llmstxt'
+      link: 'https://angular.dev/ai/develop-with-ai#providing-context-with-llmstxt',
     },
     {
       name: 'Custom Prompts y System Instructions',
@@ -200,7 +200,7 @@ export class UserProfileComponent {
       ],
       setup: 'Usa los archivos de instrucciones personalizadas en tu IDE para mejorar la generación de código.',
       icon: '🎯',
-      link: 'https://angular.dev/ai/develop-with-ai#custom-prompts-and-system-instructions'
+      link: 'https://angular.dev/ai/develop-with-ai#custom-prompts-and-system-instructions',
     },
     {
       name: 'Rules Files para IDEs',
@@ -213,7 +213,7 @@ export class UserProfileComponent {
       ],
       setup: 'Configura los archivos de reglas apropiados para tu IDE según la documentación oficial.',
       icon: '🔧',
-      link: 'https://angular.dev/ai/develop-with-ai#rules-files'
+      link: 'https://angular.dev/ai/develop-with-ai#rules-files', 
     }
   ];
 

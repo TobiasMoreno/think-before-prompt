@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProgressBarComponent } from '../../ui/progress-bar/progress-bar.component';
 import { BreadcrumbComponent, BreadcrumbItem } from '../../ui/breadcrumb/breadcrumb.component';
+import { FormsModule } from '@angular/forms';
 
 export interface PromptExample {
   title: string;
@@ -20,7 +21,8 @@ export interface PromptTemplate {
 
 @Component({
   selector: 'app-prompt-engineering',
-  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent],
+  standalone: true,
+  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent],
   templateUrl: './prompt-engineering.component.html',
   styleUrls: ['./prompt-engineering.component.css']
 })
@@ -91,6 +93,17 @@ export class PromptEngineeringComponent {
 
   selectedCategory: string = 'todos';
   categories = ['todos', 'Desarrollo', 'Análisis', 'Debugging', 'Contenido'];
+
+  userPrompt = '';
+  improvedPrompt = '';
+
+  improvePrompt() {
+    if (!this.userPrompt.trim()) {
+      this.improvedPrompt = '';
+      return;
+    }
+    this.improvedPrompt = `Por favor, ${this.userPrompt.trim()} (agregá contexto, formato y público objetivo para mejores resultados).`;
+  }
 
   get filteredExamples() {
     if (this.selectedCategory === 'todos') {
