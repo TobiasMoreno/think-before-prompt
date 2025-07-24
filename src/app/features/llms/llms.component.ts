@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { ProgressBarComponent } from '../../ui/progress-bar/progress-bar.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../../ui/breadcrumb/breadcrumb.component';
 
 export interface LLMExample {
   title: string;
@@ -28,10 +31,19 @@ export interface ImplementationExample {
 
 @Component({
   selector: 'app-llms',
+  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent],
   templateUrl: './llms.component.html',
   styleUrls: ['./llms.component.css']
 })
 export class LLMsComponent {
+  breadcrumbItems: BreadcrumbItem[] = [
+    { label: 'Inicio', path: '/' },
+    { label: '¿Qué es la IA?', path: '/que-es-ia' },
+    { label: 'Prompt Engineering', path: '/prompt-engineering' },
+    { label: 'Herramientas', path: '/herramientas' },
+    { label: 'LLMs y Angular 20' }
+  ];
+
   llmExamples: LLMExample[] = [
     {
       title: '¿Qué son los LLMs?',
@@ -63,7 +75,7 @@ ng generate component --ai "user-profile"
   \`
 })
 export class UserProfileComponent {
-  @Input() user: User = { name: '', email: '' };
+  user = input<User>({ name: '', email: '' });
 }`,
       explanation: 'Angular 20 revolucionó el desarrollo al ser el primer framework en integrar IA nativamente.',
       icon: '🏆'
@@ -143,7 +155,7 @@ describe('UserComponent', () => {
   \`
 })
 export class UserProfileComponent {
-  @Input() user: User;
+  user = input<User>({ name: '', email: '' });
 }`,
       explanation: 'Los LLMs generan documentación clara y contextual para el código Angular.',
       icon: '📚'
@@ -235,7 +247,7 @@ ng generate component --ai "product-card"
   \`]
 })
 export class ProductCardComponent {
-  @Input() product: Product = { name: '', price: 0, image: '' };
+  product = input<Product>({ name: '', price: 0, image: '' });
   
   addToCart() {
     // Lógica para agregar al carrito

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { ProgressBarComponent } from '../../ui/progress-bar/progress-bar.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../../ui/breadcrumb/breadcrumb.component';
 
 export interface PromptExample {
   title: string;
@@ -17,10 +20,17 @@ export interface PromptTemplate {
 
 @Component({
   selector: 'app-prompt-engineering',
+  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent],
   templateUrl: './prompt-engineering.component.html',
   styleUrls: ['./prompt-engineering.component.css']
 })
 export class PromptEngineeringComponent {
+  breadcrumbItems: BreadcrumbItem[] = [
+    { label: 'Inicio', path: '/' },
+    { label: '¿Qué es la IA?', path: '/que-es-ia' },
+    { label: 'Prompt Engineering' }
+  ];
+
   promptExamples: PromptExample[] = [
     {
       title: 'Generar código',

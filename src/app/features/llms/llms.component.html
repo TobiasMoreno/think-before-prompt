@@ -1,7 +1,13 @@
 <div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Indicador de progreso -->
+  <app-progress-bar [currentStep]="4" [totalSteps]="7"></app-progress-bar>
+
+  <!-- Breadcrumb -->
+  <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+
   <!-- Header principal -->
   <div class="text-center mb-12">
-    <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+    <h1 class="text-4xl font-bold mb-4 pb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
       LLMs y Angular 20
     </h1>
     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -187,19 +193,36 @@
     </div>
   </div>
 
-  <!-- Call to action -->
-  <div class="text-center bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl p-8 text-white">
-    <h2 class="text-2xl font-bold mb-4">¿Listo para el futuro del desarrollo?</h2>
-    <p class="text-lg mb-6 opacity-90">
-      Angular 20 con LLMs está transformando la forma en que desarrollamos aplicaciones web.
-    </p>
-    <div class="flex flex-wrap gap-4 justify-center">
-      <a href="/prompt-engineering" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200">
-        Aprender Prompt Engineering
-      </a>
-      <a href="/herramientas" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-purple-600 transition-colors duration-200">
-        Explorar Herramientas
-      </a>
+  <!-- Navegación entre secciones -->
+  <div class="mt-12 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6">
+    <h3 class="text-xl font-bold text-gray-900 mb-4">🚀 ¿Qué sigue en tu aprendizaje?</h3>
+    <div class="grid gap-4 md:grid-cols-2">
+      <div class="bg-white rounded-lg p-4 shadow">
+        <h4 class="font-semibold text-gray-900 mb-2">🎛️ MCPs (Model Context Protocol)</h4>
+        <p class="text-sm text-gray-600 mb-3">Aprende técnicas avanzadas para controlar y optimizar las respuestas de IA.</p>
+        <a routerLink="/mcps" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+          Continuar →
+        </a>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow">
+        <h4 class="font-semibold text-gray-900 mb-2">📊 Casos de Uso Comparativos</h4>
+        <p class="text-sm text-gray-600 mb-3">Compara diferentes IAs y sus aplicaciones en desarrollo.</p>
+        <a routerLink="/comparativa-ia" class="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+          Explorar →
+        </a>
+      </div>
     </div>
+  </div>
+
+  <!-- Botones de navegación -->
+  <div class="flex justify-between mt-8">
+    <a routerLink="/herramientas" class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
+      <span>←</span>
+      <span>Anterior: Herramientas</span>
+    </a>
+    <a routerLink="/mcps" class="flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors">
+      <span>Siguiente: MCPs</span>
+      <span>→</span>
+    </a>
   </div>
 </div> 

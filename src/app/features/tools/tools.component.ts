@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { ProgressBarComponent } from '../../ui/progress-bar/progress-bar.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../../ui/breadcrumb/breadcrumb.component';
 
 export interface Tool {
   name: string;
@@ -12,10 +15,18 @@ export interface Tool {
 
 @Component({
   selector: 'app-tools',
+  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent],
   templateUrl: './tools.component.html',
   styleUrls: ['./tools.component.css']
 })
 export class ToolsComponent {
+  breadcrumbItems: BreadcrumbItem[] = [
+    { label: 'Inicio', path: '/' },
+    { label: '¿Qué es la IA?', path: '/que-es-ia' },
+    { label: 'Prompt Engineering', path: '/prompt-engineering' },
+    { label: 'Herramientas' }
+  ];
+
   tools: Tool[] = [
     {
       name: 'ChatGPT',

@@ -24,18 +24,32 @@ export class RoadmapComponent {
       badge: '🎓'
     },
     {
-      title: 'IA Generativa y LLMs',
-      description: 'Comprende cómo funcionan herramientas como ChatGPT, Gemini o Copilot.',
-      tip: 'Investiga qué son los tokens, contexto y entrenamiento.',
-      icon: '🟨',
-      badge: '🧠'
-    },
-    {
       title: 'Prompt Engineering',
       description: 'Aprende a escribir mejores instrucciones para obtener mejores respuestas.',
       tip: 'Practica con diferentes tipos de prompts.',
       icon: '🟩',
       badge: '🎯'
+    },
+    {
+      title: 'Herramientas de IA',
+      description: 'Descubre las mejores herramientas para potenciar tu trabajo con IA.',
+      tip: 'Experimenta con diferentes herramientas según tus necesidades.',
+      icon: '🛠️',
+      badge: '⚡'
+    },
+    {
+      title: 'LLMs y Angular 20',
+      description: 'Comprende cómo los LLMs están transformando el desarrollo con Angular 20.',
+      tip: 'Investiga la integración nativa de IA en frameworks modernos.',
+      icon: '🧠',
+      badge: '🚀'
+    },
+    {
+      title: 'MCPs (Model Context Protocol)',
+      description: 'Aprende técnicas avanzadas para controlar y optimizar las respuestas de IA.',
+      tip: 'Practica con técnicas de control de prompting para resultados más precisos.',
+      icon: '🎛️',
+      badge: '🎛️'
     },
     {
       title: 'Aplicaciones Reales',
@@ -50,13 +64,6 @@ export class RoadmapComponent {
       tip: 'Aprende sobre alucinaciones y uso responsable.',
       icon: '🟥',
       badge: '🛡️'
-    },
-    {
-      title: 'Explora Herramientas',
-      description: 'Prueba diferentes herramientas de IA para encontrar las que mejor te sirvan.',
-      tip: 'Experimenta con ChatGPT, Cursor, Claude y otras.',
-      icon: '🛠️',
-      badge: '⚡'
     }
   ];
   completed: boolean[] = Array(this.missions.length).fill(false);

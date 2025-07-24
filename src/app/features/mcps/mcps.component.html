@@ -1,28 +1,406 @@
-<section class="max-w-3xl mx-auto p-6">
-  <h2 class="text-3xl font-bold mb-4 text-green-800">Modelos de Control de Prompting (MCPs)</h2>
-  <p class="mb-4 text-lg">
-    Los <strong>Modelos de Control de Prompting</strong> (MCPs) son técnicas y herramientas que permiten guiar y controlar la salida de modelos generativos como GPT. El objetivo es obtener respuestas más precisas, seguras y alineadas con la intención del usuario.
-  </p>
-  <h3 class="text-2xl font-semibold mt-6 mb-2 text-green-700">¿Cómo se controla un modelo generativo?</h3>
-  <ul class="list-disc pl-6 mb-4">
-    <li><strong>Prompt engineering:</strong> Redactar instrucciones claras y específicas.</li>
-    <li><strong>Few-shot learning:</strong> Dar ejemplos en el prompt para guiar la respuesta.</li>
-    <li><strong>Chain-of-thought:</strong> Pedir razonamiento paso a paso.</li>
-    <li><strong>Restricciones y formato:</strong> Especificar el formato de salida (JSON, tabla, etc.).</li>
-  </ul>
-  <h3 class="text-xl font-semibold mt-8 mb-2 text-green-700">Ejemplo práctico</h3>
-  <div class="bg-green-50 p-4 rounded shadow mb-4 text-black">
-    <p class="font-bold">Prompt:</p>
-    <p class="italic">"Resume el siguiente texto en 3 puntos clave y responde en formato de lista."</p>
-    <p class="font-bold mt-2">Respuesta del modelo:</p>
-    <ul class="list-disc pl-6">
-      <li>Punto clave 1...</li>
-      <li>Punto clave 2...</li>
-      <li>Punto clave 3...</li>
-    </ul>
+<div class="max-w-6xl mx-auto px-6 py-8">
+  <app-progress-bar [currentStep]="5" [totalSteps]="7"></app-progress-bar>
+  <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+</div>
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-3xl">
+  <!-- Header Principal -->
+  <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 rounded-t-3xl">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center">
+        <h1 class="text-5xl font-bold mb-4 gradient-text">Modelos de Control de Prompting (MCPs)</h1>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+          Técnicas avanzadas para controlar y optimizar las respuestas de modelos generativos de IA
+        </p>
+        
+        <!-- Barra de Progreso -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm">Progreso: {{ currentStep }}/{{ totalSteps }}</span>
+            <span class="text-sm">{{ progressPercentage | number:'1.0-0' }}% Completado</span>
+          </div>
+          <div class="w-full bg-white/20 rounded-full h-3">
+            <div class="bg-green-400 h-3 rounded-full transition-all duration-500" 
+                 [style.width.%]="progressPercentage"></div>
+          </div>
+        </div>
+
+        <!-- Botón para mostrar/ocultar progreso detallado -->
+        <button 
+          (click)="toggleProgress()"
+          class="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3 text-sm hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          {{ showProgress ? 'Ocultar' : 'Mostrar' }} Guía Paso a Paso
+        </button>
+      </div>
+    </div>
   </div>
-  <h3 class="text-xl font-semibold mt-8 mb-2 text-green-700">¿Por qué es importante?</h3>
-  <p class="mb-4 text-lg">
-    El control de prompting es esencial para evitar respuestas erróneas, sesgadas o peligrosas, y para adaptar la IA a necesidades específicas en educación, salud, negocios y más.
-  </p>
-</section>
+
+  <!-- Guía Paso a Paso -->
+  @if (showProgress) {
+    <div class="max-w-6xl mx-auto px-6 py-8">
+      <div class="bg-white rounded-3xl shadow-xl p-8 mb-8 border border-gray-100">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">🎯 Guía de Aprendizaje Paso a Paso</h2>
+        
+        <!-- Pasos de Aprendizaje -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          @for (step of learningSteps; track step.id) {
+            <div 
+              class="relative p-6 rounded-2xl border-2 transition-all duration-300 cursor-pointer hover:shadow-lg hover:scale-105"
+              [class]="step.status === 'completed' ? 'border-green-500 bg-green-50' :
+                       step.status === 'current' ? 'border-blue-500 bg-blue-50' :
+                       'border-gray-200 bg-gray-50'"
+              (click)="goToStep(step.id)"
+            >
+              <!-- Estado del paso -->
+              <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg"
+                   [class]="step.status === 'completed' ? 'bg-green-500' :
+                            step.status === 'current' ? 'bg-blue-500' :
+                            'bg-gray-400'">
+                @if (step.status === 'completed') {
+                  ✓
+                } @else {
+                  {{ step.id }}
+                }
+              </div>
+
+              <!-- Contenido del paso -->
+              <div class="text-center">
+                <div class="text-3xl mb-3">{{ step.icon }}</div>
+                <h3 class="font-bold text-lg mb-2" 
+                    [class]="step.status === 'current' ? 'text-blue-700' : 'text-gray-700'">
+                  {{ step.title }}
+                </h3>
+                <p class="text-sm text-gray-600 mb-3">{{ step.description }}</p>
+                
+                <!-- Acción y tiempo estimado -->
+                <div class="text-xs text-gray-500">
+                  <div class="font-medium">{{ step.action }}</div>
+                  <div>⏱️ {{ step.estimatedTime }}</div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Navegación -->
+        <div class="flex justify-between items-center">
+          <button 
+            (click)="previousStep()"
+            [disabled]="currentStep === 1"
+            class="px-6 py-3 bg-gray-500 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600 transition-all duration-300 shadow-md hover:shadow-lg"
+          >
+            ← Anterior
+          </button>
+          
+          <div class="text-center">
+            <div class="text-lg font-bold text-gray-700">
+              Paso {{ currentStep }} de {{ totalSteps }}
+            </div>
+            <div class="text-sm text-gray-500">
+              {{ currentLearningStep.title }}
+            </div>
+          </div>
+          
+          <button 
+            (click)="nextStep()"
+            [disabled]="currentStep === totalSteps"
+            class="px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg"
+          >
+            Siguiente →
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Contenido Principal -->
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    
+    <!-- Paso 1: Introducción -->
+    @if (currentStep === 1) {
+      <div class="bg-white rounded-3xl shadow-xl p-8 mb-12 border border-gray-100">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">¿Qué son los MCPs?</h2>
+            <p class="text-lg text-gray-700 mb-6">
+              Los <strong>Modelos de Control de Prompting</strong> son técnicas y estrategias que permiten 
+              guiar y controlar la salida de modelos generativos como GPT, Claude o Gemini. 
+              El objetivo es obtener respuestas más precisas, seguras y alineadas con la intención del usuario.
+            </p>
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-2xl">
+              <p class="text-blue-800 font-medium">
+                💡 <strong>Importante:</strong> Los MCPs son esenciales para evitar respuestas erróneas, 
+                sesgadas o peligrosas, y para adaptar la IA a necesidades específicas.
+              </p>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg">
+            <h3 class="text-xl font-bold mb-4">Beneficios Clave</h3>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-2">
+                <span class="text-green-300">✓</span>
+                Respuestas más precisas y relevantes
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-300">✓</span>
+                Control total sobre el formato de salida
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-300">✓</span>
+                Reducción de alucinaciones y errores
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-green-300">✓</span>
+                Adaptación a contextos específicos
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Call to Action para continuar -->
+        <div class="text-center mt-8">
+          <button 
+            (click)="nextStep()"
+            class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 shadow-md"
+          >
+            Continuar al Paso 2: Prompt Engineering →
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Paso 2-6: Técnicas y Ejemplos -->
+    @if (currentStep >= 2) {
+      <!-- Técnicas MCP -->
+      <div class="mb-12">
+        <h2 class="text-3xl font-bold text-black mb-8 text-center">🎯 Técnicas de Control de Prompting</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          @for (technique of availableTechniques; track technique.name) {
+            <div 
+              class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
+              (click)="selectTechnique(technique)"
+              [class.ring-2]="selectedTechnique === technique"
+              [class.ring-blue-500]="selectedTechnique === technique"
+            >
+              <!-- Header de la técnica -->
+              <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-white">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-3xl">{{ technique.icon }}</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-medium"
+                        [class]="technique.difficulty === 'Básico' ? 'bg-green-500' : 
+                                 technique.difficulty === 'Intermedio' ? 'bg-yellow-500' : 'bg-red-500'">
+                    {{ technique.difficulty }}
+                  </span>
+                </div>
+                <h3 class="text-xl font-bold">{{ technique.name }}</h3>
+              </div>
+
+              <!-- Contenido -->
+              <div class="p-6">
+                <p class="text-gray-700 mb-4">{{ technique.description }}</p>
+                
+                <!-- Ejemplo -->
+                <div class="bg-gray-50 rounded-xl p-4 mb-4">
+                  <p class="text-sm font-medium text-gray-600 mb-2">💡 Ejemplo:</p>
+                  <p class="text-sm text-gray-600 italic">{{ technique.example }}</p>
+                </div>
+
+                <!-- Beneficios -->
+                <div>
+                  <p class="text-sm font-medium text-gray-700 mb-2">✅ Beneficios:</p>
+                  <ul class="space-y-1">
+                    @for (benefit of technique.benefits; track benefit) {
+                      <li class="text-sm text-gray-700 flex items-center gap-2">
+                        <span class="text-green-500">•</span>
+                        {{ benefit }}
+                      </li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Ejemplos Prácticos -->
+      @if (availableExamples.length > 0) {
+        <div class="mb-12">
+          <h2 class="text-3xl font-bold text-black mb-8 text-center">💻 Ejemplos Prácticos</h2>
+          
+          <div class="space-y-8">
+            @for (example of availableExamples; track example.title) {
+              <div 
+                class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
+                (click)="selectExample(example)"
+                [class.ring-2]="selectedExample === example"
+                [class.ring-green-500]="selectedExample === example"
+              >
+                <!-- Header del ejemplo -->
+                <div class="bg-gradient-to-r from-green-500 to-blue-600 p-6 text-white">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h3 class="text-xl font-bold">{{ example.title }}</h3>
+                      <span class="inline-block bg-white/20 px-3 py-1 rounded-full text-sm mt-2">
+                        {{ example.category }}
+                      </span>
+                    </div>
+                    <span class="text-3xl">💡</span>
+                  </div>
+                </div>
+
+                <!-- Contenido del ejemplo -->
+                <div class="p-6">
+                  <!-- Prompt -->
+                  <div class="mb-6">
+                    <h4 class="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <span class="text-blue-500">📝</span>
+                      Prompt
+                    </h4>
+                    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                      <pre class="text-sm text-blue-800 whitespace-pre-wrap">{{ example.prompt }}</pre>
+                    </div>
+                  </div>
+
+                  <!-- Respuesta -->
+                  <div class="mb-6">
+                    <h4 class="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <span class="text-green-500">🤖</span>
+                      Respuesta del Modelo
+                    </h4>
+                    <div class="bg-green-50 border border-green-200 rounded-xl p-4">
+                      <pre class="text-sm text-green-800 whitespace-pre-wrap">{{ example.response }}</pre>
+                    </div>
+                  </div>
+
+                  <!-- Explicación -->
+                  <div>
+                    <h4 class="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <span class="text-purple-500">💭</span>
+                      ¿Por qué funciona?
+                    </h4>
+                    <p class="text-gray-600 bg-purple-50 border border-purple-200 rounded-xl p-4">
+                      {{ example.explanation }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Paso 6: Mejores Prácticas -->
+      @if (currentStep === 6) {
+        <div class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl p-8 text-white mb-12 shadow-xl">
+          <h2 class="text-3xl font-bold mb-6 text-center">🚀 Mejores Prácticas para MCPs</h2>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <span>✅</span>
+                Lo que SÍ hacer
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <span class="text-green-300 mt-1">•</span>
+                  <span>Ser específico y claro en las instrucciones</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-green-300 mt-1">•</span>
+                  <span>Proporcionar ejemplos cuando sea posible</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-green-300 mt-1">•</span>
+                  <span>Especificar el formato de salida esperado</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-green-300 mt-1">•</span>
+                  <span>Usar roles específicos para contexto</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-green-300 mt-1">•</span>
+                  <span>Pedir razonamiento paso a paso para problemas complejos</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <span>❌</span>
+                Lo que NO hacer
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <span class="text-red-300 mt-1">•</span>
+                  <span>Ser vago o ambiguo en las instrucciones</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-red-300 mt-1">•</span>
+                  <span>Asumir que el modelo entiende el contexto implícito</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-red-300 mt-1">•</span>
+                  <span>No especificar el formato de salida</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-red-300 mt-1">•</span>
+                  <span>Hacer preguntas demasiado abiertas</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-red-300 mt-1">•</span>
+                  <span>Ignorar la importancia del contexto</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      }
+    }
+
+    <!-- Call to Action Final -->
+    @if (currentStep === totalSteps) {
+      <div class="text-center mt-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">¡Felicitaciones! 🎉</h2>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          Has completado la guía de MCPs. Ahora tienes las herramientas necesarias para 
+          controlar y optimizar las respuestas de cualquier modelo de IA.
+        </p>
+        
+        <!-- Navegación entre secciones -->
+        <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 mb-8 border border-gray-100">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">🚀 ¿Qué sigue en tu aprendizaje?</h3>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow">
+              <h4 class="font-semibold text-gray-900 mb-2">🌐 IA en Desarrollo Web</h4>
+              <p class="text-sm text-gray-600 mb-3">Explora casos específicos de IA aplicada al desarrollo web.</p>
+              <a routerLink="/ia-web" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
+                Continuar →
+              </a>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow">
+              <h4 class="font-semibold text-gray-900 mb-2">📊 Casos de Uso Comparativos</h4>
+              <p class="text-sm text-gray-600 mb-3">Compara diferentes IAs y sus aplicaciones en desarrollo.</p>
+              <a routerLink="/comparativa-ia" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                Explorar →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de navegación -->
+        <div class="flex justify-between mt-8">
+          <a routerLink="/llms" class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
+            <span>←</span>
+            <span>Anterior: LLMs y Angular 20</span>
+          </a>
+          <a routerLink="/ia-web" class="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-green-700 transition-colors shadow-md">
+            <span>Siguiente: IA en Desarrollo Web</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    }
+  </div>
+</div>

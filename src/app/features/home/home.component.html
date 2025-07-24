@@ -8,44 +8,111 @@
       Tu guía completa para aprender a usar la inteligencia artificial de manera responsable y efectiva
     </p>
     <div class="flex flex-wrap gap-4 justify-center">
-      <a href="/que-es-ia" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
-        Comenzar Aprendizaje
+      <a routerLink="/que-es-ia" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
+        🚀 Comenzar Aprendizaje
       </a>
-      <a href="/prompt-engineering" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors duration-200">
-        Prompt Engineering
+      <a routerLink="/prompt-engineering" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors duration-200">
+        📝 Prompt Engineering
       </a>
     </div>
   </section>
 
-            <!-- Secciones principales -->
-          <section class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+  <!-- Indicador de progreso para nuevos usuarios -->
+  <div class="mb-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">🎯 Tu Ruta de Aprendizaje</h2>
+    <div class="flex items-center justify-between mb-4">
+      <span class="text-sm text-gray-600">Progreso del aprendizaje</span>
+      <span class="text-sm font-medium text-blue-600">0 de 7</span>
+    </div>
+    <div class="w-full bg-gray-200 rounded-full h-2">
+      <div class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+    </div>
+    <div class="flex justify-between text-xs text-gray-500 mt-2">
+      <span>Inicio</span>
+      <span>¿Qué es la IA?</span>
+      <span>Prompt Engineering</span>
+      <span>Herramientas</span>
+      <span>LLMs</span>
+      <span>MCPs</span>
+      <span>Casos de uso</span>
+    </div>
+    <div class="text-center mt-4">
+      <p class="text-sm text-gray-600">¡Comienza tu viaje de aprendizaje!</p>
+    </div>
+  </div>
+
+  <!-- Secciones principales con navegación mejorada -->
+  <section class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:shadow-xl transition-shadow duration-300">
       <div class="text-3xl mb-4">🟦</div>
       <h3 class="text-xl font-bold text-gray-900 mb-2">¿Qué es la IA?</h3>
       <p class="text-gray-600 mb-4">Entiende los fundamentos de la inteligencia artificial y cómo funciona.</p>
-      <a href="/que-es-ia" class="text-blue-600 hover:text-blue-700 font-medium">Explorar →</a>
+      <a routerLink="/que-es-ia" class="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2">
+        Explorar →
+        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Paso 1</span>
+      </a>
     </div>
 
-    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:shadow-xl transition-shadow duration-300">
       <div class="text-3xl mb-4">🟩</div>
       <h3 class="text-xl font-bold text-gray-900 mb-2">Prompt Engineering</h3>
       <p class="text-gray-600 mb-4">Aprende a escribir mejores instrucciones para obtener mejores resultados.</p>
-      <a href="/prompt-engineering" class="text-blue-600 hover:text-blue-700 font-medium">Explorar →</a>
+      <a routerLink="/prompt-engineering" class="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2">
+        Explorar →
+        <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Paso 2</span>
+      </a>
     </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-              <div class="text-3xl mb-4">🛠️</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-2">Herramientas</h3>
-              <p class="text-gray-600 mb-4">Descubre las mejores herramientas de IA para potenciar tu trabajo.</p>
-              <a href="/herramientas" class="text-blue-600 hover:text-blue-700 font-medium">Explorar →</a>
-            </div>
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+      <div class="text-3xl mb-4">🛠️</div>
+      <h3 class="text-xl font-bold text-gray-900 mb-2">Herramientas</h3>
+      <p class="text-gray-600 mb-4">Descubre las mejores herramientas de IA para potenciar tu trabajo.</p>
+      <a routerLink="/herramientas" class="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2">
+        Explorar →
+        <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full">Paso 3</span>
+      </a>
+    </div>
 
-            <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-              <div class="text-3xl mb-4">🧠</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-2">LLMs y Angular 20</h3>
-              <p class="text-gray-600 mb-4">Descubre cómo los LLMs están transformando el desarrollo con Angular 20.</p>
-              <a href="/llms" class="text-blue-600 hover:text-blue-700 font-medium">Explorar →</a>
-            </div>
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+      <div class="text-3xl mb-4">🧠</div>
+      <h3 class="text-xl font-bold text-gray-900 mb-2">LLMs y Angular 20</h3>
+      <p class="text-gray-600 mb-4">Descubre cómo los LLMs están transformando el desarrollo con Angular 20.</p>
+      <a routerLink="/llms" class="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2">
+        Explorar →
+        <span class="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">Paso 4</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Sección de navegación rápida -->
+  <section class="mb-12 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">⚡ Navegación Rápida</h2>
+    <div class="grid gap-4 md:grid-cols-3">
+      <div class="bg-white rounded-lg p-4 shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">🎯 Para Principiantes</h3>
+        <ul class="text-sm text-gray-600 space-y-1">
+          <li>• <a routerLink="/que-es-ia" class="hover:text-blue-600">¿Qué es la IA?</a></li>
+          <li>• <a routerLink="/prompt-engineering" class="hover:text-blue-600">Prompt Engineering</a></li>
+          <li>• <a routerLink="/herramientas" class="hover:text-blue-600">Herramientas básicas</a></li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">🚀 Para Desarrolladores</h3>
+        <ul class="text-sm text-gray-600 space-y-1">
+          <li>• <a routerLink="/llms" class="hover:text-blue-600">LLMs y Angular 20</a></li>
+          <li>• <a routerLink="/ia-web" class="hover:text-blue-600">IA en desarrollo web</a></li>
+          <li>• <a routerLink="/comparativa-ia" class="hover:text-blue-600">Casos de uso</a></li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow">
+        <h3 class="font-semibold text-gray-900 mb-2">🔧 Herramientas Avanzadas</h3>
+        <ul class="text-sm text-gray-600 space-y-1">
+          <li>• <a routerLink="/mcps" class="hover:text-blue-600">MCPs</a></li>
+          <li>• <a routerLink="/rgas" class="hover:text-blue-600">RGAs</a></li>
+          <li>• <a routerLink="/sobre-el-proyecto" class="hover:text-blue-600">Sobre el proyecto</a></li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <!-- Roadmap -->

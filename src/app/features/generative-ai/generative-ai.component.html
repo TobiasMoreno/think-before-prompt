@@ -1,8 +1,15 @@
 <section class="max-w-3xl mx-auto p-6">
+  <!-- Indicador de progreso -->
+  <app-progress-bar [currentStep]="1" [totalSteps]="7"></app-progress-bar>
+
+  <!-- Breadcrumb -->
+  <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+
   <h2 class="text-3xl font-bold mb-4 text-blue-800">¿Qué es la IA generativa?</h2>
   <p class="mb-4 text-lg">
     La <strong>Inteligencia Artificial Generativa</strong> es una rama de la IA capaz de crear contenido nuevo y original, como texto, imágenes, música o código, a partir de datos existentes. Utiliza modelos avanzados, como redes neuronales profundas, para aprender patrones y generar resultados que imitan la creatividad humana.
   </p>
+  
   <h3 class="text-2xl font-semibold mt-6 mb-2 text-blue-700">Historia y evolución</h3>
   <ul class="list-disc pl-6 mb-4">
     <li><strong>1950s-1980s:</strong> Primeros algoritmos de IA, reglas y lógica simbólica.</li>
@@ -10,6 +17,7 @@
     <li><strong>2018-2020:</strong> Modelos de lenguaje como <span class="font-semibold">GPT</span> y <span class="font-semibold">BERT</span> permiten generar texto coherente y creativo.</li>
     <li><strong>2022-2023:</strong> Modelos multimodales (texto, imagen, audio) y herramientas como <span class="font-semibold">DALL-E</span>, <span class="font-semibold">Stable Diffusion</span> y <span class="font-semibold">ChatGPT</span> popularizan la IA generativa.</li>
   </ul>
+  
   <h3 class="text-2xl font-semibold mt-6 mb-2 text-blue-700">Tipos de IA generativa</h3>
   <ul class="list-disc pl-6 mb-4">
     <li><strong>Modelos de texto:</strong> GPT, LLaMA, PaLM, Claude.</li>
@@ -17,6 +25,7 @@
     <li><strong>Modelos de audio/música:</strong> Jukebox, MusicLM.</li>
     <li><strong>Modelos de video:</strong> Imagen Video, Make-A-Video.</li>
   </ul>
+  
   <h3 class="text-2xl font-semibold mt-6 mb-2 text-blue-700">Ejemplos visuales</h3>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div class="bg-blue-50 p-4 rounded shadow">
@@ -29,8 +38,42 @@
       <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Ejemplo IA generativa" class="rounded mt-2"/>
     </div>
   </div>
+  
   <h3 class="text-xl font-semibold mt-8 mb-2 text-blue-700">¿Por qué es importante?</h3>
   <p class="mb-4 text-lg">
     La IA generativa está transformando industrias como el arte, la educación, la medicina y el desarrollo de software, permitiendo automatizar tareas creativas y abrir nuevas posibilidades para la innovación.
   </p>
+
+  <!-- Navegación entre secciones -->
+  <div class="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6">
+    <h3 class="text-xl font-bold text-gray-900 mb-4">🚀 ¿Qué sigue en tu aprendizaje?</h3>
+    <div class="grid gap-4 md:grid-cols-2">
+      <div class="bg-white rounded-lg p-4 shadow">
+        <h4 class="font-semibold text-gray-900 mb-2">📝 Prompt Engineering</h4>
+        <p class="text-sm text-gray-600 mb-3">Aprende a escribir mejores instrucciones para obtener respuestas más útiles de la IA.</p>
+        <a routerLink="/prompt-engineering" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+          Continuar →
+        </a>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow">
+        <h4 class="font-semibold text-gray-900 mb-2">🛠️ Herramientas de IA</h4>
+        <p class="text-sm text-gray-600 mb-3">Descubre las mejores herramientas para potenciar tu trabajo con IA.</p>
+        <a routerLink="/herramientas" class="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+          Explorar →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de navegación -->
+  <div class="flex justify-between mt-8">
+    <a routerLink="/" class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
+      <span>←</span>
+      <span>Volver al inicio</span>
+    </a>
+    <a routerLink="/prompt-engineering" class="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+      <span>Siguiente: Prompt Engineering</span>
+      <span>→</span>
+    </a>
+  </div>
 </section> 

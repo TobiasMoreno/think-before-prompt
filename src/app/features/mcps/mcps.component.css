@@ -1,0 +1,222 @@
+/* Estilos para el componente MCPs */
+
+/* Gradiente animado para el texto del header */
+.gradient-text {
+  background: linear-gradient(45deg, #ffffff, #e0e7ff, #ffffff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Efectos de hover para las tarjetas */
+.technique-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.technique-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Animación de entrada para las tarjetas */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.technique-card {
+  animation: fade-in-up 0.6s ease-out;
+}
+
+.technique-card:nth-child(1) { animation-delay: 0.1s; }
+.technique-card:nth-child(2) { animation-delay: 0.2s; }
+.technique-card:nth-child(3) { animation-delay: 0.3s; }
+.technique-card:nth-child(4) { animation-delay: 0.4s; }
+.technique-card:nth-child(5) { animation-delay: 0.5s; }
+.technique-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Efectos para los badges de dificultad */
+.difficulty-badge {
+  transition: all 0.2s ease;
+}
+
+.difficulty-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Estilos para los bloques de código */
+.code-block {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  line-height: 1.5;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* Efectos de hover para los botones */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Animación para los iconos */
+.icon-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Efectos para las estadísticas del header */
+.stat-card {
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Estilos para las secciones de ejemplos */
+.example-section {
+  transition: all 0.3s ease;
+}
+
+.example-section:hover {
+  transform: translateY(-4px);
+}
+
+/* Efectos para los bloques de prompt y respuesta */
+.prompt-block, .response-block {
+  transition: all 0.3s ease;
+}
+
+.prompt-block:hover, .response-block:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Animación para el texto de explicación */
+.explanation-text {
+  position: relative;
+  overflow: hidden;
+}
+
+.explanation-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.explanation-text:hover::before {
+  left: 100%;
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .gradient-text {
+    font-size: 2.5rem;
+  }
+  
+  .stat-card {
+    padding: 0.75rem;
+  }
+  
+  .technique-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Efectos de scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos para el modo oscuro (opcional) */
+@media (prefers-color-scheme: dark) {
+  .bg-white {
+    background-color: #1f2937;
+    color: #f9fafb;
+  }
+  
+  .text-gray-700 {
+    color: #d1d5db;
+  }
+  
+  .text-gray-900 {
+    color: #f9fafb;
+  }
+}
+
+/* Animación de carga para el contenido */
+@keyframes content-load {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-section {
+  animation: content-load 0.8s ease-out;
+}
+
+/* Efectos para las listas de beneficios */
+.benefit-list li {
+  transition: all 0.2s ease;
+}
+
+.benefit-list li:hover {
+  transform: translateX(4px);
+  color: #059669;
+}
+
+/* Estilos para los callouts importantes */
+.important-callout {
+  border-left: 4px solid #3b82f6;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  transition: all 0.3s ease;
+}
+
+.important-callout:hover {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  transform: translateX(4px);
+}
