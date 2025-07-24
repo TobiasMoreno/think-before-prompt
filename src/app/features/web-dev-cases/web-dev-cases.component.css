@@ -214,4 +214,17 @@ button.hover\\:scale-105:hover {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+}
+
+/* Estilos para tooltips */
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+/* Mejoras para el tooltip en móviles */
+@media (max-width: 768px) {
+  .whitespace-nowrap {
+    white-space: normal;
+    max-width: 200px;
+  }
 } 
