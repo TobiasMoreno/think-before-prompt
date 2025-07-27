@@ -1,26 +1,12 @@
 <div class="max-w-7xl mx-auto px-4 py-8">
-  <!-- Barra de progreso de navegación -->
-   @if (showNavigationBar) {
-  <div class="fixed top-0 left-0 w-full bg-white shadow-sm z-50 transition-all duration-300 ease-in-out">
-    <div class="max-w-7xl mx-auto px-4 py-2">
-      <div class="flex items-center justify-between text-sm">
-        <span class="text-gray-600 hidden md:block">Sección actual: <strong class="text-blue-600">{{ getCurrentSectionTitle() }}</strong></span>
-        <div class="flex flex-wrap gap-1 md:gap-2">
-          @for (section of sections; track section.id) {
-            <button 
-              (click)="scrollToSection(section.id)"
-              [class]="isSectionActive(section.id) ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'"
-              class="px-2 md:px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 hover:scale-105">
-                <span class="hidden sm:inline">{{ section.icon }}</span>
-                <span class="sm:hidden">{{ section.icon }}</span>
-                <span class="hidden md:inline ml-1">{{ section.title }}</span>
-            </button>
-          }
-        </div>
-      </div>
-    </div>
-  </div>
-}
+  <!-- Barra de navegación reutilizable -->
+  <app-section-navigation
+    [sections]="sections"
+    [activeColor]="'bg-blue-600'"
+    [hoverColor]="'hover:bg-gray-300'"
+    (sectionClick)="onSectionClick($event)"
+    (sectionChange)="onSectionChange($event)">
+  </app-section-navigation>
 
   <!-- Header principal -->
   <section class="text-center mb-12 mt-16">

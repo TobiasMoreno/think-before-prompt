@@ -1,0 +1,27 @@
+@if (showNavigationBar) {
+<div [class]="getContainerClasses()" >
+  <div [class]="getContentClasses()">
+    <div class="flex items-center justify-between text-sm">
+      @if (showCurrentSection) {
+        <span class="text-gray-600 hidden md:block">
+          Sección actual: <strong class="text-blue-600">{{ getCurrentSectionTitle() }}</strong>
+        </span>
+      }
+      <div class="flex flex-wrap gap-1 md:gap-2">
+        @for (section of sections(); track section.id) {
+          <button 
+            (click)="scrollToSection(section.id)"
+            [class]="getButtonClasses(section.id)">
+            @if (shouldShowIcon(section)) {
+              <span [class]="getIconClasses()">{{ section.icon }}</span>
+            }
+            @if (shouldShowTitle(section)) {
+              <span [class]="getTitleClasses()">{{ section.title }}</span>
+            }
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+} 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProgressBarComponent } from '../../../ui/progress-bar/progress-bar.component';
 import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/breadcrumb.component';
+import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
 
 export interface Tool {
   name: string;
@@ -15,7 +16,7 @@ export interface Tool {
 
 @Component({
   selector: 'app-tools',
-  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent],
+  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent, SectionNavigationComponent],
   templateUrl: './tools.component.html',
   styleUrls: ['./tools.component.css']
 })
@@ -25,6 +26,14 @@ export class ToolsComponent {
     { label: '¿Qué es la IA?', path: '/que-es-ia' },
     { label: 'Prompt Engineering', path: '/prompt-engineering' },
     { label: 'Herramientas' }
+  ];
+
+  // Secciones para navegación
+  sections: NavigationSection[] = [
+    { id: 'introduccion', title: 'Introducción', icon: '🛠️' },
+    { id: 'estadisticas', title: 'Estadísticas', icon: '📊' },
+    { id: 'filtros', title: 'Filtros', icon: '🔍' },
+    { id: 'herramientas', title: 'Herramientas', icon: '💻' }
   ];
 
   tools: Tool[] = [
@@ -191,5 +200,22 @@ export class ToolsComponent {
     return this.tools.filter(tool => 
       tool.type.includes('Multimodelo') || tool.type.includes('búsqueda')
     ).length;
+  }
+
+  // Métodos para el componente de navegación
+  onSectionClick(sectionId: string) {
+    console.log(`Sección clickeada: ${sectionId}`);
+    this.scrollToSection(sectionId);
+  }
+
+  onSectionChange(sectionId: string) {
+    console.log(`Sección cambiada: ${sectionId}`);
+  }
+
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 } 

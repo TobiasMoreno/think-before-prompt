@@ -1,0 +1,372 @@
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Barra de navegación reutilizable -->
+  <app-section-navigation
+    [sections]="sections"
+    [activeColor]="'bg-red-600'"
+    (sectionClick)="onSectionClick($event)">
+  </app-section-navigation>
+
+  <!-- Header principal -->
+  <section class="text-center mb-12">
+    <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      Inputs y Outputs en Angular
+    </h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+      Aprende la comunicación entre componentes usando inputs y outputs en Angular 16+
+    </p>
+  </section>
+
+  <!-- Sección 1: Introducción -->
+  <section id="intro" class="mb-16 ">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">📡</span>
+        Comunicación entre Componentes
+      </h2>
+      
+      <div class="mb-8">
+        <p class="text-gray-600 mb-6">
+          Los inputs y outputs son la forma fundamental de comunicación entre componentes en Angular. 
+          Permiten pasar datos del componente padre al hijo (inputs) y eventos del hijo al padre (outputs).
+        </p>
+
+        <!-- Diagrama de comunicación -->
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg mb-8">
+          <h4 class="font-semibold text-gray-800 mb-4 text-center">🔄 Flujo de Comunicación</h4>
+          <div class="flex items-center justify-center space-x-8">
+            <div class="text-center">
+              <div class="bg-blue-100 p-4 rounded-lg">
+                <h5 class="font-medium text-blue-800">Componente Padre</h5>
+                <p class="text-sm text-blue-600">Inputs → Outputs</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <span class="text-2xl text-gray-400">↓</span>
+              <span class="text-sm text-gray-500">Inputs</span>
+            </div>
+            <div class="text-center">
+              <div class="bg-purple-100 p-4 rounded-lg">
+                <h5 class="font-medium text-purple-800">Componente Hijo</h5>
+                <p class="text-sm text-purple-600">Inputs ← Outputs</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <span class="text-2xl text-gray-400">↑</span>
+              <span class="text-sm text-gray-500">Outputs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-blue-50 p-6 rounded-lg">
+          <h4 class="font-semibold text-blue-800 mb-3">📥 Inputs</h4>
+          <ul class="space-y-2 text-blue-700 text-sm">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>Pasan datos del padre al hijo</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>Se declaran con <code class="bg-blue-100 px-1 rounded">&#64;Input()</code></span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>Binding: <code class="bg-blue-100 px-1 rounded">[property]="value"</code></span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-purple-50 p-6 rounded-lg">
+          <h4 class="font-semibold text-purple-800 mb-3">📤 Outputs</h4>
+          <ul class="space-y-2 text-purple-700 text-sm">
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2 mt-1">•</span>
+              <span>Emiten eventos del hijo al padre</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2 mt-1">•</span>
+              <span>Se declaran con <code class="bg-purple-100 px-1 rounded">&#64;Output()</code></span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2 mt-1">•</span>
+              <span>Event binding: <code class="bg-purple-100 px-1 rounded">(event)="handler()"</code></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 2: Inputs -->
+  <section id="inputs" class="mb-16 ">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-xl mr-3">📥</span>
+        Inputs (&#64;Input)
+      </h2>
+      
+      <p class="text-gray-600 mb-6">
+        Los inputs permiten que un componente hijo reciba datos del componente padre. 
+        Se declaran usando el decorador <code class="bg-gray-100 px-2 py-1 rounded">&#64;Input()</code>.
+      </p>
+
+      <!-- Ejemplo de Input -->
+      <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-gray-300">Ejemplo de Input</span>
+          <button (click)="copyCode('input-example')" class="text-gray-300 hover:text-white">
+            📋 Copiar
+          </button>
+        </div>
+        <pre><code id="input-example">{{ inputExample }}</code></pre>
+      </div>
+
+      <!-- Características de Inputs -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-800 mb-3">🔧 Configuración</h4>
+          <ul class="space-y-2 text-blue-700 text-sm">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><code class="bg-blue-100 px-1 rounded">&#64;Input()</code> en la propiedad</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>Binding en el template: <code class="bg-blue-100 px-1 rounded">[property]="value"</code></span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>Tipado TypeScript opcional</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-3">💡 Mejores Prácticas</h4>
+          <ul class="space-y-2 text-green-700 text-sm">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Usar nombres descriptivos</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Tipado explícito</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Validación de datos</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Valores por defecto</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 3: Outputs -->
+  <section id="outputs" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-xl mr-3">📤</span>
+        Outputs (&#64;Output)
+      </h2>
+      
+      <p class="text-gray-600 mb-6">
+        Los outputs permiten que un componente hijo emita eventos al componente padre. 
+        Se declaran usando el decorador <code class="bg-gray-100 px-2 py-1 rounded">&#64;Output()</code> con EventEmitter.
+      </p>
+
+      <!-- Ejemplo de Output -->
+      <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-gray-300">Ejemplo de Output</span>
+          <button (click)="copyCode('output-example')" class="text-gray-300 hover:text-white">
+            📋 Copiar
+          </button>
+        </div>
+        <pre><code id="output-example">{{ outputExample }}</code></pre>
+      </div>
+
+      <!-- Características de Outputs -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-purple-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-purple-800 mb-3">🔧 Configuración</h4>
+          <ul class="space-y-2 text-purple-700 text-sm">
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2 mt-1">•</span>
+              <span><code class="bg-purple-100 px-1 rounded">&#64;Output()</code> con EventEmitter</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2 mt-1">•</span>
+              <span>Binding en el template: <code class="bg-purple-100 px-1 rounded">(event)="handler()"</code></span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2 mt-1">•</span>
+              <span>Método <code class="bg-purple-100 px-1 rounded">emit()</code> para disparar eventos</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-orange-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-orange-800 mb-3">💡 Mejores Prácticas</h4>
+          <ul class="space-y-2 text-orange-700 text-sm">
+            <li class="flex items-start">
+              <span class="text-orange-500 mr-2 mt-1">✓</span>
+              <span>Nombres de eventos descriptivos</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-orange-500 mr-2 mt-1">✓</span>
+              <span>Datos estructurados en eventos</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-orange-500 mr-2 mt-1">✓</span>
+              <span>Validación antes de emitir</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-orange-500 mr-2 mt-1">✓</span>
+              <span>Documentación de eventos</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 4: Ejemplo Completo -->
+  <section id="complete" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-xl mr-3">🎯</span>
+        Ejemplo Completo: Componente de Usuario
+      </h2>
+      
+      <p class="text-gray-600 mb-6">
+        Veamos un ejemplo completo de un componente que usa inputs y outputs para manejar una lista de usuarios.
+      </p>
+
+      <!-- Ejemplo completo -->
+      <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-gray-300">Ejemplo Completo: Inputs y Outputs</span>
+          <button (click)="copyCode('complete-example')" class="text-gray-300 hover:text-white">
+            📋 Copiar
+          </button>
+        </div>
+        <pre><code id="complete-example">{{ completeExample }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 5: Patrones Avanzados -->
+  <section id="advanced" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-xl mr-3">🚀</span>
+        Patrones Avanzados
+      </h2>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-indigo-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-indigo-800 mb-3">🔄 Two-Way Binding</h4>
+          <p class="text-sm text-indigo-700 mb-2">
+            Combinación de input y output para sincronización bidireccional
+          </p>
+          <code class="bg-gray-700 px-2 py-1 rounded text-xs">
+            [(ngModel)]="value"
+          </code>
+        </div>
+
+        <div class="bg-teal-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-teal-800 mb-3">📋 Content Projection</h4>
+          <p class="text-sm text-teal-700 mb-2">
+            Pasar contenido HTML entre componentes
+          </p>
+          <code class="bg-gray-700 px-2 py-1 rounded text-xs">
+            &lt;ng-content&gt;&lt;/ng-content&gt;
+          </code>
+        </div>
+
+        <div class="bg-pink-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-pink-800 mb-3">🎯 ViewChild</h4>
+          <p class="text-sm text-pink-700 mb-2">
+            Acceso directo a componentes hijos
+          </p>
+          <code class="bg-gray-700 px-2 py-1 rounded text-xs">
+            &#64;ViewChild() childComponent
+          </code>
+        </div>
+      </div>
+
+      <!-- Consejos y Advertencias -->
+      <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg mt-8">
+        <h4 class="font-semibold text-yellow-800 mb-3">⚠️ Consideraciones Importantes</h4>
+        <ul class="space-y-2 text-yellow-700 text-sm">
+          <li class="flex items-start">
+            <span class="text-yellow-600 mr-2 mt-1">•</span>
+            <span>Los inputs son <strong>readonly</strong> en el componente hijo</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-yellow-600 mr-2 mt-1">•</span>
+            <span>Los outputs deben ser <strong>EventEmitter</strong> tipados</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-yellow-600 mr-2 mt-1">•</span>
+            <span>Evitar mutar objetos pasados por input</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-yellow-600 mr-2 mt-1">•</span>
+            <span>Usar OnPush change detection para mejor performance</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 6: Próximos Pasos -->
+  <section class="mb-16">
+    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 border border-blue-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🎯</span>
+        ¿Qué sigue?
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Próximos Temas</h3>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/fundamentals" class="hover:text-blue-600 underline">Fundamentos de Angular</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/components" class="hover:text-blue-600 underline">Componentes Avanzados</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/services" class="hover:text-blue-600 underline">Servicios y Estado</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/forms" class="hover:text-blue-600 underline">Formularios Reactivos</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg">
+          <h4 class="font-semibold text-gray-800 mb-3">💡 Recursos Adicionales</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• <a href="https://angular.io/guide/inputs-outputs" target="_blank" class="text-blue-600 hover:underline">Inputs y Outputs Guide</a></li>
+            <li>• <a href="https://angular.io/guide/component-interaction" target="_blank" class="text-blue-600 hover:underline">Component Interaction</a></li>
+            <li>• <a href="https://angular.io/guide/event-binding" target="_blank" class="text-blue-600 hover:underline">Event Binding</a></li>
+            <li>• <a href="https://angular.io/guide/property-binding" target="_blank" class="text-blue-600 hover:underline">Property Binding</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div> 

@@ -20,8 +20,8 @@ export const routes: Routes = [
       { path: 'ia/comparative-ia', loadComponent: () => import('./features/ia/comparative-cards/comparative-cards.component').then(m => m.ComparativeCardsComponent) },
       
       // Rutas de Angular
-      { path: 'angular', loadComponent: () => import('./features/angular/angular-fundamentos/angular-fundamentos.component').then(m => m.AngularFundamentosComponent) },
-      { path: 'angular/fundamentals', loadComponent: () => import('./features/angular/angular-fundamentos/angular-fundamentos.component').then(m => m.AngularFundamentosComponent) },
+      { path: 'angular/fundamentals', loadComponent: () => import('./features/angular/fundamentals/fundamentals.component').then(m => m.FundamentalsComponent) },
+      { path: 'angular/inputs-outputs', loadComponent: () => import('./features/angular/inputs-outputs/inputs-outputs.component').then(m => m.InputsOutputsComponent) },
       { path: 'angular/components', loadComponent: () => import('./features/angular/components/components.component').then(m => m.AngularComponentesComponent) },
       { path: 'angular/services', loadComponent: () => import('./features/angular/services/services.component').then(m => m.AngularServiciosComponent) },
       { path: 'angular/routing', loadComponent: () => import('./features/angular/routing/routing.component').then(m => m.AngularRoutingComponent) },

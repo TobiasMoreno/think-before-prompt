@@ -1,0 +1,350 @@
+<div class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Barra de navegación reutilizable -->
+  <app-section-navigation
+    [sections]="sections"
+    [activeColor]="'bg-red-600'"
+    [hoverColor]="'hover:bg-gray-300'"
+    (sectionClick)="onSectionClick($event)"
+    (sectionChange)="onSectionChange($event)">
+  </app-section-navigation>
+
+  <!-- Header principal -->
+  <section class="text-center mb-12">
+    <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+      Fundamentos de Angular 16+
+    </h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+      Aprende Angular moderno con standalone components, sin módulos y con las mejores prácticas actuales
+    </p>
+  </section>
+
+  <!-- Navegación por secciones -->
+  <nav class="mb-8">
+    <div class="flex flex-wrap gap-2 justify-center">
+      @for (section of sections; track section.id) {
+      <button 
+        (click)="scrollToSection(section.id)"
+        class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
+        [class.bg-red-100]="activeSection === section.id"
+        [class.text-red-700]="activeSection === section.id">
+        {{ section.title }}
+      </button>
+      }
+    </div>
+  </nav>
+
+  <!-- Sección 1: Introducción -->
+  <section id="intro" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🚀</span>
+        Angular 16+: La Era Standalone
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">¿Qué es Angular Moderno?</h3>
+          <p class="text-gray-600 mb-4">
+            Angular 16+ introduce los <strong>standalone components</strong>, eliminando la necesidad de módulos 
+            y simplificando la arquitectura de aplicaciones.
+          </p>
+          <p class="text-gray-600 mb-4">
+            Esta nueva aproximación hace que Angular sea más simple, más rápido y más fácil de aprender.
+          </p>
+        </div>
+        
+        <div class="bg-gradient-to-br from-red-50 to-orange-50 p-6 rounded-lg">
+          <h4 class="font-semibold text-gray-800 mb-3">✨ Características Principales</h4>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              Standalone components
+            </li>
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              Sin NgModules
+            </li>
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              Lazy loading simplificado
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Comparativa -->
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <h4 class="font-semibold text-gray-800 mb-4">🔄 Evolución de Angular</h4>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-red-50 p-4 rounded-lg">
+            <h5 class="font-medium text-red-800 mb-2">Antes (con Módulos)</h5>
+            <ul class="text-sm text-red-700 space-y-1">
+              <li>• NgModule obligatorio</li>
+              <li>• Imports/Exports complejos</li>
+              <li>• Configuración verbosa</li>
+              <li>• Bundle size más grande</li>
+            </ul>
+          </div>
+          <div class="bg-green-50 p-4 rounded-lg">
+            <h5 class="font-medium text-green-800 mb-2">Ahora (Standalone)</h5>
+            <ul class="text-sm text-green-700 space-y-1">
+              <li>• Sin NgModule requerido</li>
+              <li>• Imports directos</li>
+              <li>• Configuración simple</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 2: Standalone Components -->
+  <section id="standalone" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🧩</span>
+        Standalone Components
+      </h2>
+
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">¿Qué es un Standalone Component?</h3>
+        <p class="text-gray-600 mb-6">
+          Un standalone component es un componente que se declara a sí mismo y no necesita ser declarado en un NgModule. 
+          Se configura con <code class="bg-gray-100 px-2 py-1 rounded">standalone: true</code>.
+        </p>
+
+        <!-- Ejemplo de código -->
+        <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-300">Ejemplo de Standalone Component</span>
+            <button (click)="copyCode('standalone-example')" class="text-gray-300 hover:text-white">
+              📋 Copiar
+            </button>
+          </div>
+          <pre><code id="standalone-example">{{ standaloneExample }}</code></pre>
+        </div>
+      </div>
+
+      <!-- Características -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">🔧 Configuración</h4>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><code class="bg-gray-100 px-1 rounded">standalone: true</code> en el decorador</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><code class="bg-gray-100 px-1 rounded">imports: []</code> para dependencias</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>No necesita NgModule</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">💡 Ventajas</h4>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Configuración más simple</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Mejor tree-shaking</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Lazy loading más eficiente</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Menos boilerplate</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 3: Dependency Injection -->
+  <section id="di" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">💉</span>
+        Dependency Injection Moderna
+      </h2>
+
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Inyección de Dependencias en Angular Moderno</h3>
+        <p class="text-gray-600 mb-6">
+          Angular utiliza un sistema de inyección de dependencias que permite que los componentes 
+          obtengan las dependencias que necesitan sin crearlas directamente.
+        </p>
+
+        <!-- Ejemplo de servicio -->
+        <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-300">Ejemplo de Servicio Standalone</span>
+            <button (click)="copyCode('service-example')" class="text-gray-300 hover:text-white">
+              📋 Copiar
+            </button>
+          </div>
+          <pre><code id="service-example">{{ serviceExample }}</code></pre>
+        </div>
+      </div>
+
+      <!-- Tipos de providers -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-800 mb-2">🌐 Root Level</h4>
+          <p class="text-sm text-blue-700 mb-2">
+            <code class="bg-blue-100 px-1 rounded">providedIn: 'root'</code>
+          </p>
+          <p class="text-xs text-blue-600">
+            Singleton global, disponible en toda la aplicación
+          </p>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">🎯 Component Level</h4>
+          <p class="text-sm text-green-700 mb-2">
+            <code class="bg-green-100 px-1 rounded">providers: []</code>
+          </p>
+          <p class="text-xs text-green-600">
+            Instancia única por componente y sus hijos
+          </p>
+        </div>
+
+        <div class="bg-purple-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-purple-800 mb-2">🔄 Factory</h4>
+          <p class="text-sm text-purple-700 mb-2">
+            <code class="bg-purple-100 px-1 rounded">useFactory</code>
+          </p>
+          <p class="text-xs text-purple-600">
+            Creación dinámica de dependencias
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 4: Routing Moderno -->
+  <section id="routing" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🛣️</span>
+        Routing Moderno
+      </h2>
+
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Routing sin Módulos</h3>
+        <p class="text-gray-600 mb-6">
+          Angular 16+ simplifica el routing eliminando la necesidad de módulos de routing. 
+          Los componentes standalone pueden ser cargados directamente.
+        </p>
+
+        <!-- Ejemplo de routing -->
+        <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-300">Ejemplo de Routing Standalone</span>
+            <button (click)="copyCode('routing-example')" class="text-gray-300 hover:text-white">
+              📋 Copiar
+            </button>
+          </div>
+          <pre><code id="routing-example">{{ routingExample }}</code></pre>
+        </div>
+      </div>
+
+      <!-- Características del routing -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">🚀 Lazy Loading</h4>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Carga bajo demanda</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Mejor performance</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Bundle size optimizado</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">🛡️ Guards y Resolvers</h4>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>CanActivate, CanDeactivate</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>Resolve data</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>CanLoad para lazy loading</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Sección 6: Próximos Pasos -->
+  <section class="mb-16">
+    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 border border-blue-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🎯</span>
+        ¿Qué sigue?
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Próximos Temas</h3>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/inputs-outputs" class="hover:text-blue-600 underline">Inputs y Outputs</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/components" class="hover:text-blue-600 underline">Componentes Avanzados</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/services" class="hover:text-blue-600 underline">Servicios y Estado</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/forms" class="hover:text-blue-600 underline">Formularios Reactivos</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/http-client" class="hover:text-blue-600 underline">HTTP Client</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg">
+          <h4 class="font-semibold text-gray-800 mb-3">💡 Recursos Adicionales</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• <a href="https://angular.io/docs" target="_blank" class="text-blue-600 hover:underline">Documentación Oficial</a></li>
+            <li>• <a href="https://angular.io/guide/standalone-components" target="_blank" class="text-blue-600 hover:underline">Standalone Components Guide</a></li>
+            <li>• <a href="https://angular.io/guide/routing" target="_blank" class="text-blue-600 hover:underline">Routing Guide</a></li>
+            <li>• <a href="https://angular.io/guide/dependency-injection" target="_blank" class="text-blue-600 hover:underline">Dependency Injection</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div> 

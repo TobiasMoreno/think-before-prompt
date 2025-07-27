@@ -1,4 +1,12 @@
 <div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Barra de navegación reutilizable -->
+  <app-section-navigation
+    [sections]="sections"
+    [activeColor]="'bg-red-600'"
+    [hoverColor]="'hover:bg-gray-300'"
+    (sectionClick)="onSectionClick($event)">
+  </app-section-navigation>
+
   <section class="text-center mb-12">
     <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
       Formularios en Angular
@@ -8,16 +16,235 @@
     </p>
   </section>
 
-  <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">🚧 En Construcción</h2>
-    <p class="text-gray-600 mb-6">
-      Esta sección está siendo desarrollada. Pronto tendrás acceso a contenido completo sobre formularios en Angular.
-    </p>
+  <!-- FormsModule - Template-Driven Forms -->
+  <div id="template-driven" class="bg-white rounded-xl shadow-lg p-8 border border-gray-200 mb-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+      <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg text-sm font-semibold mr-3">FormsModule</span>
+      Formularios Template-Driven
+    </h2>
     
-    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-2xl">
-      <p class="text-blue-800 font-medium">
-        💡 <strong>Próximamente:</strong> Formularios reactivos, template-driven, validaciones y más.
-      </p>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Características</h3>
+        <ul class="space-y-2 text-gray-600">
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            Sincronización automática con el modelo
+          </li>
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            Fácil de implementar para formularios simples
+          </li>
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            Directivas como ngModel, ngForm
+          </li>
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            Validación básica con directivas HTML5
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Ejemplo Práctico</h3>
+        <form #templateForm="ngForm" (ngSubmit)="onSubmitTemplate()" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+            <input 
+              type="text" 
+              name="name" 
+              [(ngModel)]="templateFormData.name" 
+              class="w-full px-3 py-2 border text-gray-700 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input 
+              type="email" 
+              name="email" 
+              [(ngModel)]="templateFormData.email" 
+              class="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+            <textarea 
+              name="message" 
+              [(ngModel)]="templateFormData.message" 
+              rows="3"
+              class="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required></textarea>
+          </div>
+          
+          <button 
+            type="submit" 
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+            Enviar (Template-Driven)
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ReactiveFormsModule -->
+  <div id="reactive" class="bg-white rounded-xl shadow-lg p-8 border border-gray-200 mb-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+      <span class="bg-green-100 text-green-800 px-3 py-1 rounded-lg text-sm font-semibold mr-3">ReactiveFormsModule</span>
+      Formularios Reactivos
+    </h2>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Características</h3>
+        <ul class="space-y-2 text-gray-600">
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            Control total sobre el modelo de datos
+          </li>
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            Validaciones complejas y personalizadas
+          </li>
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            Testing más fácil y predecible
+          </li>
+          <li class="flex items-start">
+            <span class="text-green-500 mr-2">✓</span>
+            Mejor rendimiento para formularios complejos
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Ejemplo Práctico</h3>
+        <form [formGroup]="reactiveForm" (ngSubmit)="onSubmitReactive()" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+            <input 
+              type="text" 
+              formControlName="name"
+              class="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              [class.border-red-500]="nameError"
+              [class.border-gray-300]="!nameError">
+              @if (nameError) {
+            <div class="text-red-500 text-sm mt-1">
+              El nombre es requerido y debe tener al menos 2 caracteres
+            </div>
+            }
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input 
+              type="email" 
+              formControlName="email"
+              class="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              [class.border-red-500]="emailError"
+              [class.border-gray-300]="!emailError">
+              @if (emailError) {
+            <div class="text-red-500 text-sm mt-1">
+              Ingresa un email válido
+            </div>
+            }
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+            <textarea 
+              formControlName="message"
+              rows="3"
+              class="w-full px-3 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              [class.border-red-500]="messageError"
+              [class.border-gray-300]="!messageError"></textarea>
+              @if (messageError) {
+            <div class="text-red-500 text-sm mt-1">
+              El mensaje es requerido y debe tener al menos 10 caracteres
+            </div>
+            }
+          </div>
+          
+          <button 
+            type="submit" 
+            class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors">
+            Enviar (Reactivo)
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparativas -->
+  <div id="comparative" class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">📊 Comparativa: Template-Driven vs Reactive</h2>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr class="bg-gray-50">
+            <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-black">Aspecto</th>
+            <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-blue-600">Template-Driven</th>
+            <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-green-600">Reactive</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Complejidad</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Simple</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Compleja</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Validaciones</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Básicas (HTML5)</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Avanzadas y personalizadas</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Testing</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Difícil</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Fácil</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Rendimiento</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Bueno para formularios simples</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Excelente para formularios complejos</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Control del modelo</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Limitado</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Total</td>
+          </tr> 
+          <tr class="bg-gray-50">
+            <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Casos de uso</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Formularios simples</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Formularios complejos</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-8 grid md:grid-cols-2 gap-6">
+      <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+        <h3 class="text-xl font-semibold text-blue-800 mb-3">¿Cuándo usar Template-Driven?</h3>
+        <ul class="space-y-2 text-blue-700">
+          <li>• Formularios simples y pequeños</li>
+          <li>• Prototipado rápido</li>
+          <li>• Validaciones básicas</li>
+          <li>• Equipos nuevos en Angular</li>
+        </ul>
+      </div>
+      
+      <div class="bg-green-50 p-6 rounded-lg border border-green-200">
+        <h3 class="text-xl font-semibold text-green-800 mb-3">¿Cuándo usar Reactive?</h3>
+        <ul class="space-y-2 text-green-700">
+          <li>• Formularios complejos</li>
+          <li>• Validaciones avanzadas</li>
+          <li>• Testing exhaustivo</li>
+          <li>• Aplicaciones empresariales</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div> 

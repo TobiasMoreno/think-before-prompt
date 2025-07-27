@@ -125,6 +125,12 @@ export class SidebarComponent {
           path: '/angular/http-client',
           icon: '🌐',
           expanded: false
+        },
+        {
+          label: 'Inputs y Outputs',
+          path: '/angular/inputs-outputs',
+          icon: '📝',
+          expanded: false
         }
       ]
     }

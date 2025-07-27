@@ -5,13 +5,22 @@
   <!-- Breadcrumb -->
   <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
 
+  <!-- Barra de navegación reutilizable -->
+  <app-section-navigation
+    [sections]="sections"
+    [activeColor]="'bg-blue-600'"
+    [hoverColor]="'hover:bg-gray-300'"
+    (sectionClick)="onSectionClick($event)"
+    (sectionChange)="onSectionChange($event)">
+  </app-section-navigation>
+
   <!-- Header -->
-  <div class="text-center mb-12">
+  <section id="introduccion" class="text-center mb-12">
     <h1 class="text-4xl font-bold text-white mb-4">🎯 Prompt Engineering</h1>
     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
       Aprende a escribir mejores instrucciones para obtener respuestas más útiles de la IA
     </p>
-  </div>
+  </section>
 
   <!-- Filtros -->
   <div class="mb-8">
@@ -34,7 +43,7 @@
   </div>
 
   <!-- Ejemplos de Prompts -->
-  <div class="mb-12">
+  <section id="ejemplos" class="mb-12">
     <h2 class="text-2xl font-bold text-white mb-6 text-center">📝 Ejemplos: Malos vs Buenos Prompts</h2>
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
       @for (example of filteredExamples; track example.title) {
@@ -68,10 +77,10 @@
         </div>
       }
     </div>
-  </div>
+  </section>
 
   <!-- Templates de Prompts -->
-  <div class="mb-12">
+  <section id="templates" class="mb-12">
     <h2 class="text-2xl font-bold text-white mb-6 text-center">📋 Templates Reutilizables</h2>
     <div class="grid gap-6 md:grid-cols-2">
       @for (template of promptTemplates; track template.name) {
@@ -91,85 +100,58 @@
         </div>
       }
     </div>
-  </div>
+  </section>
 
   <!-- Consejos -->
-  <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8">
+  <section id="consejos" class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8">
     <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">💡 Consejos para Mejores Prompts</h2>
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       <div class="bg-white p-4 rounded-lg shadow">
         <h3 class="font-semibold text-gray-900 mb-2">🎯 Sé Específico</h3>
-        <p class="text-sm text-gray-600">Define claramente qué quieres, para quién y con qué formato.</p>
+        <p class="text-sm text-gray-600">Define claramente qué quieres obtener y en qué formato.</p>
       </div>
       <div class="bg-white p-4 rounded-lg shadow">
-        <h3 class="font-semibold text-gray-900 mb-2">📏 Define Límites</h3>
-        <p class="text-sm text-gray-600">Especifica longitud, tono, nivel técnico y elementos requeridos.</p>
+        <h3 class="font-semibold text-gray-900 mb-2">📏 Establece Límites</h3>
+        <p class="text-sm text-gray-600">Especifica longitud, tono y público objetivo.</p>
       </div>
       <div class="bg-white p-4 rounded-lg shadow">
         <h3 class="font-semibold text-gray-900 mb-2">🔧 Proporciona Contexto</h3>
-        <p class="text-sm text-gray-600">Incluye información relevante sobre el proyecto o situación.</p>
+        <p class="text-sm text-gray-600">Incluye información relevante para mejores resultados.</p>
       </div>
       <div class="bg-white p-4 rounded-lg shadow">
-        <h3 class="font-semibold text-gray-900 mb-2">📋 Usa Ejemplos</h3>
-        <p class="text-sm text-gray-600">Muestra el formato o estilo que esperas en la respuesta.</p>
+        <h3 class="font-semibold text-gray-900 mb-2">📋 Usa Estructura</h3>
+        <p class="text-sm text-gray-600">Organiza tu prompt con listas y secciones claras.</p>
       </div>
       <div class="bg-white p-4 rounded-lg shadow">
         <h3 class="font-semibold text-gray-900 mb-2">🔄 Itera y Mejora</h3>
-        <p class="text-sm text-gray-600">Refina tus prompts basándote en las respuestas obtenidas.</p>
+        <p class="text-sm text-gray-600">Refina tus prompts basándote en los resultados.</p>
       </div>
       <div class="bg-white p-4 rounded-lg shadow">
-        <h3 class="font-semibold text-gray-900 mb-2">⚡ Mantén la Claridad</h3>
-        <p class="text-sm text-gray-600">Usa lenguaje claro y evita ambigüedades en tus instrucciones.</p>
+        <h3 class="font-semibold text-gray-900 mb-2">🎨 Incluye Ejemplos</h3>
+        <p class="text-sm text-gray-600">Proporciona ejemplos del formato esperado.</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Navegación entre secciones -->
-  <div class="mt-12 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
-    <h3 class="text-xl font-bold text-gray-900 mb-4">🚀 ¿Qué sigue en tu aprendizaje?</h3>
-    <div class="grid gap-4 md:grid-cols-2">
-      <div class="bg-white rounded-lg p-4 shadow">
-        <h4 class="font-semibold text-gray-900 mb-2">🛠️ Herramientas de IA</h4>
-        <p class="text-sm text-gray-600 mb-3">Descubre las mejores herramientas para potenciar tu trabajo con IA.</p>
-        <a routerLink="/ia/tools" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
-          Continuar →
-        </a>
+  <!-- Herramienta de Mejora de Prompts -->
+  <section id="mejora" class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">🔧 Mejora tu Prompt</h2>
+    <div class="grid gap-6 md:grid-cols-2">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-3">Tu Prompt:</h3>
+        <textarea 
+          [(ngModel)]="userPrompt"
+          (input)="improvePrompt()"
+          placeholder="Escribe tu prompt aquí..."
+          class="w-full h-32 p-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        ></textarea>
       </div>
-      <div class="bg-white rounded-lg p-4 shadow">
-        <h4 class="font-semibold text-gray-900 mb-2">🧠 LLMs y Angular 20</h4>
-        <p class="text-sm text-gray-600 mb-3">Descubre cómo los LLMs están transformando el desarrollo con Angular 20.</p>
-        <a routerLink="/ia/llms" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-          Explorar →
-        </a>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-3">Prompt Mejorado:</h3>
+        <div class="w-full h-32 p-3 border border-gray-300 rounded-lg bg-gray-50 overflow-y-auto">
+          <p class="text-sm text-gray-700">{{ improvedPrompt || 'Escribe un prompt arriba para ver la mejora...' }}</p>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- Botones de navegación -->
-  <div class="flex justify-between mt-8">
-    <a routerLink="/ia/what-is-ia" class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
-      <span>←</span>
-      <span>Anterior: ¿Qué es la IA?</span>
-    </a>
-    <a routerLink="/ia/tools" class="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">
-      <span>Siguiente: Herramientas</span>
-      <span>→</span>
-    </a>
-  </div>
-
-  <!-- Demo de mejora de prompt -->
-  <div class="my-12">
-    <h2 class="text-2xl font-bold text-blue-700 mb-4 text-center">🔄 Demo: Mejorá tu Prompt</h2>
-    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200 max-w-xl mx-auto flex flex-col gap-4">
-      <label for="userPrompt" class="font-semibold text-gray-800">Escribí tu prompt:</label>
-      <input id="userPrompt" type="text" [(ngModel)]="userPrompt" class="border border-gray-300 text-black rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Ej: Resumí este texto...">
-      <button (click)="improvePrompt()" class="bg-blue-600 px-4 py-2 rounded font-medium hover:bg-blue-700 transition-colors duration-200">Mejorar Prompt</button>
-      @if (improvedPrompt) {
-      <div class="mt-4 p-4 bg-green-50 border border-green-200 rounded">
-        <span class="font-semibold text-green-800">Prompt mejorado:</span>
-        <p class="text-green-700 mt-2">{{ improvedPrompt }}</p>
-      </div>
-      }
-    </div>
-  </div>
+  </section>
 </div> 

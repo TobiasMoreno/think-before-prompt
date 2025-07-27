@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProgressBarComponent } from '../../../ui/progress-bar/progress-bar.component';
 import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/breadcrumb.component';
+import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
 
 export interface LLMExample {
   title: string;
@@ -31,11 +32,21 @@ export interface ImplementationExample {
 
 @Component({
   selector: 'app-llms',
-  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent],
+  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent, SectionNavigationComponent],
   templateUrl: './llms.component.html',
   styleUrls: ['./llms.component.css']
 })
 export class LLMsComponent {
+  // Secciones para navegación
+  sections: NavigationSection[] = [
+    { id: 'introduccion', title: 'Introducción', icon: '🏆' },
+    { id: 'ejemplos', title: 'Ejemplos Prácticos', icon: '💻' },
+    { id: 'herramientas', title: 'Herramientas Oficiales', icon: '🛠️' },
+    { id: 'caracteristicas', title: 'Características', icon: '🚀' },
+    { id: 'comparacion', title: 'Comparación', icon: '⚖️' },
+    { id: 'navegacion', title: 'Navegación', icon: '🚀' }
+  ];
+
   breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', path: '/' },
     { label: '¿Qué es la IA?', path: '/que-es-ia' },
@@ -371,5 +382,22 @@ describe('ProductCardComponent', () => {
 
   selectExample(example: LLMExample) {
     this.selectedExample = example;
+  }
+
+  // Métodos para el componente de navegación
+  onSectionClick(sectionId: string) {
+    console.log(`Sección clickeada: ${sectionId}`);
+    this.scrollToSection(sectionId);
+  }
+
+  onSectionChange(sectionId: string) {
+    console.log(`Sección cambiada: ${sectionId}`);
+  }
+
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 } 

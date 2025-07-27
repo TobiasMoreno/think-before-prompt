@@ -1,16 +1,17 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
 
 @Component({
   selector: 'app-web-dev-cases',
-  imports: [ RouterModule],
+  imports: [RouterModule, SectionNavigationComponent],
   templateUrl: './web-dev-cases.component.html',
   styleUrl: './web-dev-cases.component.css',
 })
 export class WebDevCasesComponent implements OnInit {
   currentSection: string = '';
   showNavigationBar: boolean = false;
-  sections = [
+  sections: NavigationSection[] = [
     { id: 'generacion-codigo', title: 'Generación de Código', icon: '💻' },
     { id: 'debugging', title: 'Debugging IA', icon: '🐛' },
     { id: 'testing', title: 'Testing Automatizado', icon: '🧪' },
@@ -88,5 +89,16 @@ export class WebDevCasesComponent implements OnInit {
   trackToolClick(toolName: string) {
     console.log(`Herramienta clickeada: ${toolName}`);
     // Aquí podrías implementar analytics
+  }
+
+  // Métodos para el componente de navegación
+  onSectionClick(sectionId: string) {
+    console.log(`Sección clickeada: ${sectionId}`);
+    this.trackSectionView(sectionId);
+  }
+
+  onSectionChange(sectionId: string) {
+    console.log(`Sección cambiada: ${sectionId}`);
+    this.currentSection = sectionId;
   }
 }

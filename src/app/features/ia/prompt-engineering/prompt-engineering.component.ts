@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { ProgressBarComponent } from '../../../ui/progress-bar/progress-bar.component';
 import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/breadcrumb.component';
 import { FormsModule } from '@angular/forms';
+import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
 
 export interface PromptExample {
   title: string;
@@ -22,14 +22,23 @@ export interface PromptTemplate {
 @Component({
   selector: 'app-prompt-engineering',
   standalone: true,
-  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, RouterLink],
+  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, SectionNavigationComponent],
   templateUrl: './prompt-engineering.component.html',
   styleUrls: ['./prompt-engineering.component.css']
 })
 export class PromptEngineeringComponent {
+  // Secciones para navegación
+  sections: NavigationSection[] = [
+    { id: 'introduccion', title: 'Introducción', icon: '🎯' },
+    { id: 'ejemplos', title: 'Ejemplos', icon: '📝' },
+    { id: 'templates', title: 'Templates', icon: '📋' },
+    { id: 'consejos', title: 'Consejos', icon: '💡' },
+    { id: 'mejora', title: 'Mejora Prompts', icon: '🔧' }
+  ];
+
   breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', path: '/' },
-    { label: '¿Qué es la IA?', path: '/que-es-ia' },
+    { label: '¿Qué es la IA?', path: 'ia/what-is-ia' },
     { label: 'Prompt Engineering' }
   ];
 
@@ -110,5 +119,22 @@ export class PromptEngineeringComponent {
       return this.promptExamples;
     }
     return this.promptExamples.filter(example => example.category === this.selectedCategory);
+  }
+
+  // Métodos para el componente de navegación
+  onSectionClick(sectionId: string) {
+    console.log(`Sección clickeada: ${sectionId}`);
+    this.scrollToSection(sectionId);
+  }
+
+  onSectionChange(sectionId: string) {
+    console.log(`Sección cambiada: ${sectionId}`);
+  }
+
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 } 

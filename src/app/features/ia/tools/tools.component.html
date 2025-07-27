@@ -5,16 +5,25 @@
   <!-- Breadcrumb -->
   <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
 
+  <!-- Barra de navegación reutilizable -->
+  <app-section-navigation
+    [sections]="sections"
+    [activeColor]="'bg-green-600'"
+    [hoverColor]="'hover:bg-gray-300'"
+    (sectionClick)="onSectionClick($event)"
+    (sectionChange)="onSectionChange($event)">
+  </app-section-navigation>
+
   <!-- Header -->
-  <div class="text-center mb-12">
+  <section id="introduccion" class="text-center mb-12">
     <h1 class="text-4xl font-bold text-white mb-4">🛠️ Herramientas de IA</h1>
     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
       Descubre las mejores herramientas de inteligencia artificial para potenciar tu trabajo
     </p>
-  </div>
+  </section>
 
   <!-- Estadísticas por tipo -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+  <section id="estadisticas" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
     <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 text-center">
       <div class="text-3xl font-bold text-blue-600 mb-2">{{ assistantsCount }}</div>
       <div class="text-blue-800 font-semibold">Asistentes Generales</div>
@@ -27,10 +36,10 @@
       <div class="text-3xl font-bold text-purple-600 mb-2">{{ multiModelCount }}</div>
       <div class="text-purple-800 font-semibold">Multimodelo</div>
     </div>
-  </div>
+  </section>
 
   <!-- Filtros -->
-  <div class="mb-8">
+  <section id="filtros" class="mb-8">
     <div class="flex flex-wrap gap-2 justify-center">
       @for (category of categories; track category) {
         <button 
@@ -47,10 +56,10 @@
         </button>
       }
     </div>
-  </div>
+  </section>
 
   <!-- Grid de Herramientas -->
-  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  <section id="herramientas" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
     @for (tool of filteredTools; track tool.name) {
       <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
         <!-- Header de la herramienta -->
@@ -98,12 +107,12 @@
             rel="noopener noreferrer"
             class="block w-full bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200"
           >
-            Visitar {{ tool.name }}
+            Visitar Herramienta →
           </a>
         </div>
       </div>
     }
-  </div>
+  </section>
 
   <!-- Consejos de uso -->
   <div class="mt-12 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-8">
