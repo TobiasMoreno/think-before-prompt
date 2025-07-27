@@ -9,7 +9,7 @@
 
   <!-- Header principal -->
   <section class="text-center mb-12">
-    <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+    <h1 class="text-5xl font-bold mb-6 pb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
       Inputs y Outputs en Angular
     </h1>
     <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
@@ -17,23 +17,38 @@
     </p>
   </section>
 
+    <!-- Navegación por secciones -->
+    <nav class="mb-8">
+      <div class="flex flex-wrap gap-2 justify-center">
+        @for (section of sections; track section.id) {
+        <button 
+          (click)="scrollToSection(section.id)"
+          class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
+          [class.bg-red-100]="activeSection === section.id"
+          [class.text-red-700]="activeSection === section.id">
+          {{ section.title }}
+        </button>
+        }
+      </div>
+    </nav>
+
   <!-- Sección 1: Introducción -->
   <section id="intro" class="mb-16 ">
-    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
         <span class="text-2xl mr-3">📡</span>
         Comunicación entre Componentes
       </h2>
       
       <div class="mb-8">
-        <p class="text-gray-600 mb-6">
+        <p class="text-gray-300 mb-6">
           Los inputs y outputs son la forma fundamental de comunicación entre componentes en Angular. 
           Permiten pasar datos del componente padre al hijo (inputs) y eventos del hijo al padre (outputs).
         </p>
 
         <!-- Diagrama de comunicación -->
         <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg mb-8">
-          <h4 class="font-semibold text-gray-800 mb-4 text-center">🔄 Flujo de Comunicación</h4>
+          <h4 class="font-semibold text-gray-700 mb-4 text-center">🔄 Flujo de Comunicación</h4>
           <div class="flex items-center justify-center space-x-8">
             <div class="text-center">
               <div class="bg-blue-100 p-4 rounded-lg">
@@ -101,22 +116,22 @@
 
   <!-- Sección 2: Inputs -->
   <section id="inputs" class="mb-16 ">
-    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
         <span class="text-xl mr-3">📥</span>
         Inputs (&#64;Input)
       </h2>
       
-      <p class="text-gray-600 mb-6">
+      <p class="text-gray-300 mb-6">
         Los inputs permiten que un componente hijo reciba datos del componente padre. 
-        Se declaran usando el decorador <code class="bg-gray-100 px-2 py-1 rounded">&#64;Input()</code>.
+        Se declaran usando el decorador <code class="bg-gray-800 px-2 py-1 rounded">&#64;Input()</code>.
       </p>
 
       <!-- Ejemplo de Input -->
-      <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+      <div class="bg-gray-700 text-white p-6 rounded-lg mb-6">
         <div class="flex items-center justify-between mb-4">
           <span class="text-sm text-gray-300">Ejemplo de Input</span>
-          <button (click)="copyCode('input-example')" class="text-gray-300 hover:text-white">
+          <button (click)="copyCode('input-example')" class="text-gray-300 hover:text-gray-300">
             📋 Copiar
           </button>
         </div>
@@ -127,17 +142,17 @@
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-blue-50 p-4 rounded-lg">
           <h4 class="font-semibold text-blue-800 mb-3">🔧 Configuración</h4>
-          <ul class="space-y-2 text-blue-700 text-sm">
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2 mt-1">•</span>
-              <span><code class="bg-blue-100 px-1 rounded">&#64;Input()</code> en la propiedad</span>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span><code class="bg-blue-300 px-1 rounded">&#64;Input()</code> en la propiedad</span>
             </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2 mt-1">•</span>
-              <span>Binding en el template: <code class="bg-blue-100 px-1 rounded">[property]="value"</code></span>
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Binding en el template: <code class="bg-blue-300 px-1 rounded">[property]="value"</code></span>
             </li>
-            <li class="flex items-start">
-              <span class="text-blue-500 mr-2 mt-1">•</span>
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">•</span>
               <span>Tipado TypeScript opcional</span>
             </li>
           </ul>
@@ -145,21 +160,21 @@
 
         <div class="bg-green-50 p-4 rounded-lg">
           <h4 class="font-semibold text-green-800 mb-3">💡 Mejores Prácticas</h4>
-          <ul class="space-y-2 text-green-700 text-sm">
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2 mt-1">✓</span>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">✓</span>
               <span>Usar nombres descriptivos</span>
             </li>
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2 mt-1">✓</span>
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">✓</span>
               <span>Tipado explícito</span>
             </li>
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2 mt-1">✓</span>
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">✓</span>
               <span>Validación de datos</span>
             </li>
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2 mt-1">✓</span>
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">✓</span>
               <span>Valores por defecto</span>
             </li>
           </ul>
@@ -170,22 +185,22 @@
 
   <!-- Sección 3: Outputs -->
   <section id="outputs" class="mb-16 scroll-mt-20">
-    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
         <span class="text-xl mr-3">📤</span>
         Outputs (&#64;Output)
       </h2>
       
-      <p class="text-gray-600 mb-6">
+      <p class="text-gray-300 mb-6">
         Los outputs permiten que un componente hijo emita eventos al componente padre. 
-        Se declaran usando el decorador <code class="bg-gray-100 px-2 py-1 rounded">&#64;Output()</code> con EventEmitter.
+        Se declaran usando el decorador <code class="bg-gray-800 px-2 py-1 rounded">&#64;Output()</code> con EventEmitter.
       </p>
 
       <!-- Ejemplo de Output -->
-      <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+      <div class="bg-gray-700 text-white p-6 rounded-lg mb-6">
         <div class="flex items-center justify-between mb-4">
           <span class="text-sm text-gray-300">Ejemplo de Output</span>
-          <button (click)="copyCode('output-example')" class="text-gray-300 hover:text-white">
+          <button (click)="copyCode('output-example')" class="text-gray-300 hover:text-gray-300">
             📋 Copiar
           </button>
         </div>
@@ -196,39 +211,39 @@
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-purple-50 p-4 rounded-lg">
           <h4 class="font-semibold text-purple-800 mb-3">🔧 Configuración</h4>
-          <ul class="space-y-2 text-purple-700 text-sm">
-            <li class="flex items-start">
-              <span class="text-purple-500 mr-2 mt-1">•</span>
-              <span><code class="bg-purple-100 px-1 rounded">&#64;Output()</code> con EventEmitter</span>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-purple-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span><code class="bg-purple-300 px-1 rounded ">&#64;Output()</code> con EventEmitter</span>
             </li>
-            <li class="flex items-start">
-              <span class="text-purple-500 mr-2 mt-1">•</span>
-              <span>Binding en el template: <code class="bg-purple-100 px-1 rounded">(event)="handler()"</code></span>
+            <li class="flex items-start text-purple-500">
+              <span class="text-purple-700 mr-2 mt-1">•</span>
+              <span>Binding en el template: <code class="bg-purple-300 px-1 rounded">(event)="handler()"</code></span>
             </li>
-            <li class="flex items-start">
+            <li class="flex items-start text-purple-500">
               <span class="text-purple-500 mr-2 mt-1">•</span>
-              <span>Método <code class="bg-purple-100 px-1 rounded">emit()</code> para disparar eventos</span>
+              <span>Método <code class="bg-purple-300 px-1 rounded">emit()</code> para disparar eventos</span>
             </li>
           </ul>
         </div>
 
         <div class="bg-orange-50 p-4 rounded-lg">
           <h4 class="font-semibold text-orange-800 mb-3">💡 Mejores Prácticas</h4>
-          <ul class="space-y-2 text-orange-700 text-sm">
-            <li class="flex items-start">
-              <span class="text-orange-500 mr-2 mt-1">✓</span>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-orange-500">
+              <span class=" mr-2 mt-1">✓</span>
               <span>Nombres de eventos descriptivos</span>
             </li>
-            <li class="flex items-start">
-              <span class="text-orange-500 mr-2 mt-1">✓</span>
+            <li class="flex items-start text-orange-500">
+              <span class=" mr-2 mt-1">✓</span>
               <span>Datos estructurados en eventos</span>
             </li>
-            <li class="flex items-start">
-              <span class="text-orange-500 mr-2 mt-1">✓</span>
+            <li class="flex items-start text-orange-500">
+              <span class=" mr-2 mt-1">✓</span>
               <span>Validación antes de emitir</span>
             </li>
-            <li class="flex items-start">
-              <span class="text-orange-500 mr-2 mt-1">✓</span>
+            <li class="flex items-start text-orange-500">
+              <span class=" mr-2 mt-1">✓</span>
               <span>Documentación de eventos</span>
             </li>
           </ul>
@@ -239,21 +254,21 @@
 
   <!-- Sección 4: Ejemplo Completo -->
   <section id="complete" class="mb-16 scroll-mt-20">
-    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
         <span class="text-xl mr-3">🎯</span>
         Ejemplo Completo: Componente de Usuario
       </h2>
       
-      <p class="text-gray-600 mb-6">
+      <p class="text-gray-300 mb-6">
         Veamos un ejemplo completo de un componente que usa inputs y outputs para manejar una lista de usuarios.
       </p>
 
       <!-- Ejemplo completo -->
-      <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+      <div class="bg-gray-700 text-white p-6 rounded-lg mb-6">
         <div class="flex items-center justify-between mb-4">
           <span class="text-sm text-gray-300">Ejemplo Completo: Inputs y Outputs</span>
-          <button (click)="copyCode('complete-example')" class="text-gray-300 hover:text-white">
+          <button (click)="copyCode('complete-example')" class="text-gray-300 hover:text-gray-300">
             📋 Copiar
           </button>
         </div>
@@ -264,8 +279,8 @@
 
   <!-- Sección 5: Patrones Avanzados -->
   <section id="advanced" class="mb-16 scroll-mt-20">
-    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
         <span class="text-xl mr-3">🚀</span>
         Patrones Avanzados
       </h2>
@@ -273,7 +288,7 @@
       <div class="grid md:grid-cols-3 gap-6">
         <div class="bg-indigo-50 p-4 rounded-lg">
           <h4 class="font-semibold text-indigo-800 mb-3">🔄 Two-Way Binding</h4>
-          <p class="text-sm text-indigo-700 mb-2">
+          <p class="text-sm text-gray-700 mb-2">
             Combinación de input y output para sincronización bidireccional
           </p>
           <code class="bg-gray-700 px-2 py-1 rounded text-xs">
@@ -329,16 +344,16 @@
 
   <!-- Sección 6: Próximos Pasos -->
   <section class="mb-16">
-    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 border border-blue-200">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
         <span class="text-2xl mr-3">🎯</span>
         ¿Qué sigue?
       </h2>
       
       <div class="grid md:grid-cols-2 gap-8">
         <div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-4">Próximos Temas</h3>
-          <ul class="space-y-3 text-gray-700">
+          <h3 class="text-xl font-semibold text-white mb-4">Próximos Temas</h3>
+          <ul class="space-y-3 text-gray-300">
             <li class="flex items-center">
               <span class="text-blue-500 mr-3">→</span>
               <a routerLink="/angular/fundamentals" class="hover:text-blue-600 underline">Fundamentos de Angular</a>
@@ -358,13 +373,13 @@
           </ul>
         </div>
 
-        <div class="bg-white p-6 rounded-lg">
-          <h4 class="font-semibold text-gray-800 mb-3">💡 Recursos Adicionales</h4>
-          <ul class="space-y-2 text-sm text-gray-600">
-            <li>• <a href="https://angular.io/guide/inputs-outputs" target="_blank" class="text-blue-600 hover:underline">Inputs y Outputs Guide</a></li>
-            <li>• <a href="https://angular.io/guide/component-interaction" target="_blank" class="text-blue-600 hover:underline">Component Interaction</a></li>
-            <li>• <a href="https://angular.io/guide/event-binding" target="_blank" class="text-blue-600 hover:underline">Event Binding</a></li>
-            <li>• <a href="https://angular.io/guide/property-binding" target="_blank" class="text-blue-600 hover:underline">Property Binding</a></li>
+        <div class="bg-gray-700 p-6 rounded-lg">
+          <h4 class="font-semibold text-white mb-3">💡 Recursos Adicionales</h4>
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li>• <a href="https://angular.io/guide/inputs-outputs" target="_blank" class="text-blue-500 hover:underline">Inputs y Outputs Guide</a></li>
+            <li>• <a href="https://angular.io/guide/component-interaction" target="_blank" class="text-blue-500 hover:underline">Component Interaction</a></li>
+            <li>• <a href="https://angular.io/guide/event-binding" target="_blank" class="text-blue-500 hover:underline">Event Binding</a></li>
+            <li>• <a href="https://angular.io/guide/property-binding" target="_blank" class="text-blue-500 hover:underline">Property Binding</a></li>
           </ul>
         </div>
       </div>

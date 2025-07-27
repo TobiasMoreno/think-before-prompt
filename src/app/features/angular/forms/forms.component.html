@@ -9,7 +9,7 @@
   </app-section-navigation>
 
   <section class="text-center mb-12">
-    <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+    <h1 class="text-5xl font-bold mb-6 pb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
       Formularios en Angular
     </h1>
     <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
@@ -17,17 +17,32 @@
     </p>
   </section>
 
+    <!-- Navegación por secciones -->
+    <nav class="mb-8">
+      <div class="flex flex-wrap gap-2 justify-center">
+        @for (section of sections; track section.id) {
+        <button 
+          (click)="scrollToSection(section.id)"
+          class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
+          [class.bg-red-100]="activeSection === section.id"
+          [class.text-red-700]="activeSection === section.id">
+          {{ section.title }}
+        </button>
+        }
+      </div>
+    </nav>
+
   <!-- FormsModule - Template-Driven Forms -->
-  <div id="template-driven" class="bg-white rounded-xl shadow-lg p-8 border border-gray-200 mb-8">
-    <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+  <div id="template-driven" class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
       <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg text-sm font-semibold mr-3">FormsModule</span>
       Formularios Template-Driven
     </h2>
     
     <div class="grid md:grid-cols-2 gap-8">
       <div>
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">Características</h3>
-        <ul class="space-y-2 text-gray-600">
+        <h3 class="text-xl font-semibold text-white mb-4">Características</h3>
+        <ul class="space-y-2 text-gray-300">
           <li class="flex items-start">
             <span class="text-green-500 mr-2">✓</span>
             Sincronización automática con el modelo
@@ -48,10 +63,10 @@
       </div>
       
       <div>
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">Ejemplo Práctico</h3>
+        <h3 class="text-xl font-semibold text-white mb-4">Ejemplo Práctico</h3>
         <form #templateForm="ngForm" (ngSubmit)="onSubmitTemplate()" class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+            <label class="block text-sm font-medium text-white mb-1">Nombre</label>
             <input 
               type="text" 
               name="name" 
@@ -61,7 +76,7 @@
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label class="block text-sm font-medium text-white mb-1">Email</label>
             <input 
               type="email" 
               name="email" 
@@ -71,7 +86,7 @@
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+            <label class="block text-sm font-medium text-white mb-1">Mensaje</label>
             <textarea 
               name="message" 
               [(ngModel)]="templateFormData.message" 
@@ -91,16 +106,16 @@
   </div>
 
   <!-- ReactiveFormsModule -->
-  <div id="reactive" class="bg-white rounded-xl shadow-lg p-8 border border-gray-200 mb-8">
-    <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+  <div id="reactive" class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
       <span class="bg-green-100 text-green-800 px-3 py-1 rounded-lg text-sm font-semibold mr-3">ReactiveFormsModule</span>
       Formularios Reactivos
     </h2>
     
     <div class="grid md:grid-cols-2 gap-8">
       <div>
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">Características</h3>
-        <ul class="space-y-2 text-gray-600">
+        <h3 class="text-xl font-semibold text-white mb-4">Características</h3>
+        <ul class="space-y-2 text-gray-300">
           <li class="flex items-start">
             <span class="text-green-500 mr-2">✓</span>
             Control total sobre el modelo de datos
@@ -121,10 +136,10 @@
       </div>
       
       <div>
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">Ejemplo Práctico</h3>
+        <h3 class="text-xl font-semibold text-white mb-4">Ejemplo Práctico</h3>
         <form [formGroup]="reactiveForm" (ngSubmit)="onSubmitReactive()" class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+            <label class="block text-sm font-medium text-white mb-1">Nombre</label>
             <input 
               type="text" 
               formControlName="name"
@@ -139,7 +154,7 @@
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label class="block text-sm font-medium text-white mb-1">Email</label>
             <input 
               type="email" 
               formControlName="email"
@@ -154,7 +169,7 @@
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+            <label class="block text-sm font-medium text-white mb-1">Mensaje</label>
             <textarea 
               formControlName="message"
               rows="3"
@@ -179,23 +194,23 @@
   </div>
 
   <!-- Comparativas -->
-  <div id="comparative" class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-    <h2 class="text-3xl font-bold text-gray-900 mb-6">📊 Comparativa: Template-Driven vs Reactive</h2>
+  <div id="comparative" class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+    <h2 class="text-3xl font-bold text-white mb-6">📊 Comparativa: Template-Driven vs Reactive</h2>
     
     <div class="overflow-x-auto">
       <table class="w-full border-collapse border border-gray-300">
         <thead>
           <tr class="bg-gray-50">
-            <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-black">Aspecto</th>
+            <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-800">Aspecto</th>
             <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-blue-600">Template-Driven</th>
             <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-green-600">Reactive</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Complejidad</td>
-            <td class="border border-gray-300 px-4 py-3 text-gray-700">Simple</td>
-            <td class="border border-gray-300 px-4 py-3 text-gray-700">Compleja</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-200 font-medium">Complejidad</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-200">Simple</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-200">Compleja</td>
           </tr>
           <tr class="bg-gray-50">
             <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Validaciones</td>
@@ -203,9 +218,9 @@
             <td class="border border-gray-300 px-4 py-3 text-gray-700">Avanzadas y personalizadas</td>
           </tr>
           <tr>
-            <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Testing</td>
-            <td class="border border-gray-300 px-4 py-3 text-gray-700">Difícil</td>
-            <td class="border border-gray-300 px-4 py-3 text-gray-700">Fácil</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-200 font-medium">Testing</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-200">Difícil</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-200">Fácil</td>
           </tr>
           <tr class="bg-gray-50">
             <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Rendimiento</td>
@@ -213,9 +228,9 @@
             <td class="border border-gray-300 px-4 py-3 text-gray-700">Excelente para formularios complejos</td>
           </tr>
           <tr>
-            <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Control del modelo</td>
-            <td class="border border-gray-300 px-4 py-3 text-gray-700">Limitado</td>
-            <td class="border border-gray-300 px-4 py-3 text-gray-700">Total</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-200 font-medium">Control del modelo</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-200">Limitado</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-200">Total</td>
           </tr> 
           <tr class="bg-gray-50">
             <td class="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Casos de uso</td>
@@ -228,8 +243,8 @@
 
     <div class="mt-8 grid md:grid-cols-2 gap-6">
       <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
-        <h3 class="text-xl font-semibold text-blue-800 mb-3">¿Cuándo usar Template-Driven?</h3>
-        <ul class="space-y-2 text-blue-700">
+        <h3 class="text-xl font-semibold text-gray-700 mb-3">¿Cuándo usar Template-Driven?</h3>
+        <ul class="space-y-2 text-gray-600">
           <li>• Formularios simples y pequeños</li>
           <li>• Prototipado rápido</li>
           <li>• Validaciones básicas</li>
@@ -238,8 +253,8 @@
       </div>
       
       <div class="bg-green-50 p-6 rounded-lg border border-green-200">
-        <h3 class="text-xl font-semibold text-green-800 mb-3">¿Cuándo usar Reactive?</h3>
-        <ul class="space-y-2 text-green-700">
+        <h3 class="text-xl font-semibold text-gray-700 mb-3">¿Cuándo usar Reactive?</h3>
+        <ul class="space-y-2 text-gray-600">
           <li>• Formularios complejos</li>
           <li>• Validaciones avanzadas</li>
           <li>• Testing exhaustivo</li>
