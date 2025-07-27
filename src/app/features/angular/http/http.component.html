@@ -1,25 +1,496 @@
 <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-12 px-4 sm:px-6 lg:px-8 border border-gray-700 rounded-2xl">
   <div class="max-w-7xl mx-auto">
+  <!-- Barra de navegación reutilizable -->
+  <app-section-navigation
+    [sections]="sections"
+    [activeColor]="'bg-green-600'"
+    (sectionClick)="onSectionClick($event)">
+  </app-section-navigation>
+
+  <!-- Header principal -->
   <section class="text-center mb-12">
     <h1 class="text-5xl font-bold mb-6 pb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
       HTTP Client en Angular
     </h1>
-    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-      Aprende a hacer peticiones HTTP y consumir APIs en Angular
+    <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+      Aprende a hacer peticiones HTTP y consumir APIs en Angular usando HttpClient
     </p>
   </section>
 
-  <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">🚧 En Construcción</h2>
-    <p class="text-gray-600 mb-6">
-      Esta sección está siendo desarrollada. Pronto tendrás acceso a contenido completo sobre HTTP Client en Angular.
-    </p>
-    
-    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-2xl">
-      <p class="text-blue-800 font-medium">
-        💡 <strong>Próximamente:</strong> HttpClient, interceptors, manejo de errores y más.
-      </p>
+    <!-- Navegación por secciones -->
+    <nav class="mb-8">
+      <div class="flex flex-wrap gap-2 justify-center">
+        @for (section of sections; track section.id) {
+        <button 
+          (click)="scrollToSection(section.id)"
+          class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
+          [class.bg-green-100]="activeSection === section.id"
+          [class.text-green-700]="activeSection === section.id">
+          {{ section.title }}
+        </button>
+        }
+      </div>
+    </nav>
+
+  <!-- Sección 1: Introducción -->
+  <section id="intro" class="mb-16">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+        <span class="text-2xl mr-3">🌐</span>
+        HTTP Client en Angular
+      </h2>
+      
+      <div class="mb-8">
+        <p class="text-gray-300 mb-6">
+          HttpClient es el servicio de Angular para realizar peticiones HTTP. Proporciona una API moderna y potente 
+          para comunicarse con APIs REST, manejar respuestas, errores y más.
+        </p>
+
+        <!-- Diagrama de HTTP Client -->
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg mb-8">
+          <h4 class="font-semibold text-gray-700 mb-4 text-center">🔄 Flujo de Peticiones HTTP</h4>
+          <div class="flex items-center justify-center space-x-8">
+            <div class="text-center">
+              <div class="bg-blue-100 p-4 rounded-lg">
+                <h5 class="font-medium text-blue-800">Angular App</h5>
+                <p class="text-sm text-blue-600">HttpClient</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <span class="text-2xl text-gray-400">→</span>
+              <span class="text-sm text-gray-500">Request</span>
+            </div>
+            <div class="text-center">
+              <div class="bg-purple-100 p-4 rounded-lg">
+                <h5 class="font-medium text-purple-800">API Server</h5>
+                <p class="text-sm text-purple-600">REST API</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <span class="text-2xl text-gray-400">←</span>
+              <span class="text-sm text-gray-500">Response</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-blue-50 p-6 rounded-lg">
+          <h4 class="font-semibold text-blue-800 mb-3">🚀 Características</h4>
+          <ul class="space-y-2 text-blue-700 text-sm">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>API moderna basada en Observables</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>Interceptores para modificar requests/responses</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>Manejo automático de errores</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span>Tipado fuerte con TypeScript</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-purple-50 p-6 rounded-lg">
+          <h4 class="font-semibold text-purple-800 mb-3">📋 Métodos HTTP</h4>
+          <ul class="space-y-2 text-purple-700 text-sm">
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2 mt-1">•</span>
+              <span><code class="bg-purple-100 px-1 rounded">get()</code> - Obtener datos</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2 mt-1">•</span>
+              <span><code class="bg-purple-100 px-1 rounded">post()</code> - Crear recursos</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2 mt-1">•</span>
+              <span><code class="bg-purple-100 px-1 rounded">put()</code> - Actualizar recursos</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2 mt-1">•</span>
+              <span><code class="bg-purple-100 px-1 rounded">delete()</code> - Eliminar recursos</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Sección 2: Configuración -->
+  <section id="setup" class="mb-16">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+        <span class="text-xl mr-3">⚙️</span>
+        Configuración Inicial
+      </h2>
+      
+      <p class="text-gray-300 mb-6">
+        Para usar HttpClient en Angular, necesitas importar HttpClientModule en tu aplicación.
+      </p>
+
+      <!-- Ejemplo de Configuración -->
+      <div class="bg-gray-700 text-white p-6 rounded-lg mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-gray-300">Configuración en app.config.ts</span>
+          <button (click)="copyCode('setup-example')" class="text-gray-300 hover:text-gray-300">
+            📋 Copiar
+          </button>
+        </div>
+        <pre><code id="setup-example">{{ setupExample }}</code></pre>
+      </div>
+
+      <!-- Características de Configuración -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-green-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-3">🔧 Importación</h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Importar <code class="bg-green-300 px-1 rounded">HttpClientModule</code></span>
+            </li>
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Agregar a <code class="bg-green-300 px-1 rounded">imports</code> del provider</span>
+            </li>
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Inyectar <code class="bg-green-300 px-1 rounded">HttpClient</code> en servicios</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-800 mb-3">💡 Mejores Prácticas</h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">✓</span>
+              <span>Crear servicios dedicados</span>
+            </li>
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">✓</span>
+              <span>Usar interceptores para headers</span>
+            </li>
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">✓</span>
+              <span>Manejar errores globalmente</span>
+            </li>
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">✓</span>
+              <span>Tipado fuerte con interfaces</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 3: Peticiones Básicas -->
+  <section id="basic" class="mb-16 scroll-mt-20">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+        <span class="text-xl mr-3">📡</span>
+        Peticiones Básicas
+      </h2>
+      
+      <p class="text-gray-300 mb-6">
+        Aprende a realizar peticiones HTTP básicas usando los métodos get, post, put y delete.
+      </p>
+
+      <!-- Ejemplo de Peticiones Básicas -->
+      <div class="bg-gray-700 text-white p-6 rounded-lg mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-gray-300">Ejemplo de Peticiones Básicas</span>
+          <button (click)="copyCode('basic-example')" class="text-gray-300 hover:text-gray-300">
+            📋 Copiar
+          </button>
+        </div>
+        <pre><code id="basic-example">{{ basicExample }}</code></pre>
+      </div>
+
+      <!-- Métodos HTTP -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-800 mb-3">📥 GET - Obtener Datos</h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Obtener lista de usuarios</span>
+            </li>
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Obtener usuario específico</span>
+            </li>
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Con parámetros de query</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-3">📤 POST - Crear Recursos</h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Crear nuevo usuario</span>
+            </li>
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Enviar formularios</span>
+            </li>
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Subir archivos</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 4: Manejo de Errores -->
+  <section id="errors" class="mb-16 scroll-mt-20">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+        <span class="text-xl mr-3">⚠️</span>
+        Manejo de Errores
+      </h2>
+      
+      <p class="text-gray-300 mb-6">
+        Aprende a manejar errores HTTP de forma elegante usando operadores RxJS.
+      </p>
+
+      <!-- Ejemplo de Manejo de Errores -->
+      <div class="bg-gray-700 text-white p-6 rounded-lg mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-gray-300">Ejemplo de Manejo de Errores</span>
+          <button (click)="copyCode('errors-example')" class="text-gray-300 hover:text-gray-300">
+            📋 Copiar
+          </button>
+        </div>
+        <pre><code id="errors-example">{{ errorsExample }}</code></pre>
+      </div>
+
+      <!-- Tipos de Errores -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-red-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-red-800 mb-3">🚨 Errores Comunes</h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-red-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>404 - Recurso no encontrado</span>
+            </li>
+            <li class="flex items-start text-red-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>400 - Bad Request</span>
+            </li>
+            <li class="flex items-start text-red-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>500 - Error del servidor</span>
+            </li>
+            <li class="flex items-start text-red-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Network Error</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-yellow-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-yellow-800 mb-3">🛠️ Operadores RxJS</h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-yellow-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span><code class="bg-yellow-300 px-1 rounded">catchError()</code> - Capturar errores</span>
+            </li>
+            <li class="flex items-start text-yellow-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span><code class="bg-yellow-300 px-1 rounded">retry()</code> - Reintentar peticiones</span>
+            </li>
+            <li class="flex items-start text-yellow-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span><code class="bg-yellow-300 px-1 rounded">timeout()</code> - Timeout de peticiones</span>
+            </li>
+            <li class="flex items-start text-yellow-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span><code class="bg-yellow-300 px-1 rounded">finalize()</code> - Limpieza final</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 5: Interceptores -->
+  <section id="interceptors" class="mb-16 scroll-mt-20">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+        <span class="text-xl mr-3">🔧</span>
+        Interceptores HTTP
+      </h2>
+      
+      <p class="text-gray-300 mb-6">
+        Los interceptores permiten modificar requests y responses de forma global antes de que lleguen a su destino.
+      </p>
+
+      <!-- Ejemplo de Interceptor -->
+      <div class="bg-gray-700 text-white p-6 rounded-lg mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-gray-300">Ejemplo de Interceptor</span>
+          <button (click)="copyCode('interceptor-example')" class="text-gray-300 hover:text-gray-300">
+            📋 Copiar
+          </button>
+        </div>
+        <pre><code id="interceptor-example">{{ interceptorExample }}</code></pre>
+      </div>
+
+      <!-- Usos de Interceptores -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-purple-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-purple-800 mb-3">🎯 Casos de Uso</h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-purple-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Agregar headers de autorización</span>
+            </li>
+            <li class="flex items-start text-purple-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Logging de peticiones</span>
+            </li>
+            <li class="flex items-start text-purple-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Manejo global de errores</span>
+            </li>
+            <li class="flex items-start text-purple-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Transformación de datos</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-800 mb-3">⚡ Ventajas</h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">✓</span>
+              <span>Código centralizado</span>
+            </li>
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">✓</span>
+              <span>Reutilizable</span>
+            </li>
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">✓</span>
+              <span>Fácil mantenimiento</span>
+            </li>
+            <li class="flex items-start text-blue-500">
+              <span class=" mr-2 mt-1">✓</span>
+              <span>Configuración global</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 6: Ejemplo Completo -->
+  <section id="complete" class="mb-16 scroll-mt-20">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+        <span class="text-xl mr-3">🔄</span>
+        Ejemplo Completo
+      </h2>
+      
+      <p class="text-gray-300 mb-6">
+        Un ejemplo completo de un servicio HTTP con todas las operaciones CRUD y manejo de errores, dividido en partes para mejor comprensión.
+      </p>
+
+      <!-- Card 1: Interfaces -->
+      <div class="bg-gray-700 text-white p-6 rounded-lg mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-gray-300">📋 Interfaces TypeScript</span>
+          <button (click)="copyCode('complete-interfaces')" class="text-gray-300 hover:text-gray-300">
+            📋 Copiar
+          </button>
+        </div>
+        <pre><code id="complete-interfaces">{{ completeInterfaces }}</code></pre>
+      </div>
+
+      <!-- Card 2: Servicio HTTP -->
+      <div class="bg-gray-700 text-white p-6 rounded-lg mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-gray-300">🔧 Servicio HTTP Completo</span>
+          <button (click)="copyCode('complete-service')" class="text-gray-300 hover:text-gray-300">
+            📋 Copiar
+          </button>
+        </div>
+        <pre><code id="complete-service">{{ completeService }}</code></pre>
+      </div>
+
+      <!-- Card 3: Componente de Lista -->
+      <div class="bg-gray-700 text-white p-6 rounded-lg mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-gray-300">📋 Componente de Lista</span>
+          <button (click)="copyCode('complete-component')" class="text-gray-300 hover:text-gray-300">
+            📋 Copiar
+          </button>
+        </div>
+        <pre><code id="complete-component">{{ completeComponent }}</code></pre>
+      </div>
+
+      <!-- Características del Ejemplo -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-green-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-3">✅ Funcionalidades</h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>CRUD completo (Create, Read, Update, Delete)</span>
+            </li>
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Manejo de errores con catchError</span>
+            </li>
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Tipado fuerte con interfaces</span>
+            </li>
+            <li class="flex items-start text-green-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Loading states con BehaviorSubject</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-purple-50 p-4 rounded-lg">
+          <h4 class="font-semibold text-purple-800 mb-3">🎯 Uso en Componentes</h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li class="flex items-start text-purple-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Inyectar servicio en constructor</span>
+            </li>
+            <li class="flex items-start text-purple-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Usar async pipe en template</span>
+            </li>
+            <li class="flex items-start text-purple-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Manejar loading y errores</span>
+            </li>
+            <li class="flex items-start text-purple-500">
+              <span class=" mr-2 mt-1">•</span>
+              <span>Unsubscribe en ngOnDestroy</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   </div>
 </div> 
