@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { SidebarService } from './sidebar.service';
 
 export interface SidebarItem {
   label: string;
@@ -21,7 +22,8 @@ export interface SidebarSection {
   templateUrl: './sidebar.component.html',
 })
 export class SidebarComponent {
-  isSidebarOpen = true; // Sidebar abierto por defecto
+  sidebarService = inject(SidebarService);
+  router = inject(Router);
 
   sidebarSections: SidebarSection[] = [
     {
@@ -30,49 +32,49 @@ export class SidebarComponent {
       items: [
         {
           label: '¿Qué es la IA?',
-          path: '/que-es-ia',
+          path: '/ia/what-is-ia',
           icon: '🧠',
           expanded: false
         },
         {
           label: 'Ventajas',
-          path: '/ventajas',
+          path: '/ia/advantages',
           icon: '✅',
           expanded: false
         },
         {
           label: 'Prompt Engineering',
-          path: '/prompt-engineering',
+          path: '/ia/prompt-engineering',
           icon: '📝',
           expanded: false
         },
         {
           label: 'Herramientas',
-          path: '/herramientas',
+          path: '/ia/tools',
           icon: '🛠️',
           expanded: false
         },
         {
           label: 'LLMs',
-          path: '/llms',
+          path: '/ia/llms',
           icon: '🤖',
           expanded: false
         },
         {
           label: 'MCPs',
-          path: '/mcps',
+          path: '/ia/mcps',
           icon: '🎯',
           expanded: false
         },
         {
           label: 'IA en Desarrollo Web',
-          path: '/ia-web',
+          path: '/ia/ia-web',
           icon: '🌐',
           expanded: false
         },
         {
           label: 'Casos de Uso',
-          path: '/comparativa-ia',
+          path: '/ia/comparative-ia',
           icon: '📊',
           expanded: false
         }
@@ -84,37 +86,37 @@ export class SidebarComponent {
       items: [
         {
           label: 'Fundamentos',
-          path: '/angular-fundamentos',
+          path: '/angular/fundamentals',
           icon: '📚',
           expanded: false
         },
         {
           label: 'Componentes',
-          path: '/angular-componentes',
+          path: '/angular/components',
           icon: '🧩',
           expanded: false
         },
         {
           label: 'Servicios',
-          path: '/angular-servicios',
+          path: '/angular/services',
           icon: '⚙️',
           expanded: false
         },
         {
           label: 'Routing',
-          path: '/angular-routing',
+          path: '/angular/routing',
           icon: '🛣️',
           expanded: false
         },
         {
           label: 'Formularios',
-          path: '/angular-formularios',
+          path: '/angular/forms',
           icon: '📋',
           expanded: false
         },
         {
           label: 'HTTP Client',
-          path: '/angular-http',
+          path: '/angular/http-client',
           icon: '🌐',
           expanded: false
         }
@@ -122,8 +124,22 @@ export class SidebarComponent {
     }
   ];
 
+  getCurrentSectionTitle(): string {
+    const currentPath = this.router.url;
+    
+    for (const section of this.sidebarSections) {
+      for (const item of section.items) {
+        if (item.path === currentPath) {
+          return section.title;
+        }
+      }
+    }
+    
+    return 'Think Before Prompt';
+  }
+
   toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
+    this.sidebarService.toggleSidebar();
   }
 
   toggleSection(section: SidebarSection) {
