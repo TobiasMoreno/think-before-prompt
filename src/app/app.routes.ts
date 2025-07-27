@@ -22,9 +22,9 @@ export const routes: Routes = [
       // Rutas de Angular
       { path: 'angular/fundamentals', loadComponent: () => import('./features/angular/fundamentals/fundamentals.component').then(m => m.FundamentalsComponent) },
       { path: 'angular/inputs-outputs', loadComponent: () => import('./features/angular/inputs-outputs/inputs-outputs.component').then(m => m.InputsOutputsComponent) },
-      { path: 'angular/components', loadComponent: () => import('./features/angular/components/components.component').then(m => m.AngularComponentesComponent) },
+      { path: 'angular/components', loadComponent: () => import('./features/angular/components/components.component').then(m => m.ComponentsComponent) },
       { path: 'angular/services', loadComponent: () => import('./features/angular/services/services.component').then(m => m.AngularServiciosComponent) },
-      { path: 'angular/routing', loadComponent: () => import('./features/angular/routing/routing.component').then(m => m.AngularRoutingComponent) },
+      { path: 'angular/routing', loadComponent: () => import('./features/angular/routing/routing.component').then(m => m.RoutingComponent) },
       { path: 'angular/forms', loadComponent: () => import('./features/angular/forms/forms.component').then(m => m.FormsComponent) },
       { path: 'angular/http-client', loadComponent: () => import('./features/angular/http/http.component').then(m => m.AngularHttpComponent) },
       { path: 'angular/history', loadComponent: () => import('./features/angular/history/history.component').then(m => m.HistoryComponent) },

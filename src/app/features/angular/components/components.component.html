@@ -1,26 +1,492 @@
 
-<div class="max-w-7xl mx-auto px-4 py-8">
+<div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-12 px-4 sm:px-6 lg:px-8 border border-gray-700 rounded-2xl">
+  <div class="max-w-7xl mx-auto">
+  <!-- Barra de navegación reutilizable -->
+  <app-section-navigation
+    [sections]="sections"
+    [activeColor]="'bg-red-600'"
+    [hoverColor]="'hover:bg-gray-300'"
+    (sectionClick)="onSectionClick($event)"
+    (sectionChange)="onSectionChange($event)">
+  </app-section-navigation>
+
   <!-- Header principal -->
   <section class="text-center mb-12">
     <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
       Componentes en Angular
     </h1>
     <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-      Aprende a crear y usar componentes en Angular para construir interfaces de usuario reutilizables
+      Aprende a crear y usar componentes en Angular para construir interfaces de usuario reutilizables y modulares
     </p>
   </section>
 
-  <!-- Contenido placeholder -->
-  <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">🚧 En Construcción</h2>
-    <p class="text-gray-600 mb-6">
-      Esta sección está siendo desarrollada. Pronto tendrás acceso a contenido completo sobre componentes en Angular.
-    </p>
-    
-    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-2xl">
-      <p class="text-blue-800 font-medium">
-        💡 <strong>Próximamente:</strong> Creación de componentes, lifecycle hooks, comunicación entre componentes y más.
-      </p>
+
+  <!-- Sección 1: Introducción -->
+  <section id="intro" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🧩</span>
+        ¿Qué son los Componentes?
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Definición</h3>
+          <p class="text-gray-600 mb-4">
+            Los componentes son los bloques fundamentales de construcción en Angular. Cada componente encapsula:
+          </p>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><strong>Template:</strong> La vista HTML</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><strong>Clase:</strong> La lógica de negocio</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><strong>Estilos:</strong> CSS específico del componente</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><strong>Metadatos:</strong> Configuración del decorador</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-gradient-to-br from-red-50 to-orange-50 p-6 rounded-lg">
+          <h4 class="font-semibold text-gray-800 mb-3">✨ Características Principales</h4>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              Reutilizables
+            </li>
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              Encapsulados
+            </li>
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              Independientes
+            </li>
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              Testeables
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Arquitectura de componentes -->
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <h4 class="font-semibold text-gray-800 mb-4">🏗️ Arquitectura de Componentes</h4>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h5 class="font-medium text-blue-800 mb-2">Template (Vista)</h5>
+            <p class="text-sm text-blue-700">
+              HTML que define la estructura visual del componente
+            </p>
+          </div>
+          <div class="bg-green-50 p-4 rounded-lg">
+            <h5 class="font-medium text-green-800 mb-2">Clase (Lógica)</h5>
+            <p class="text-sm text-green-700">
+              TypeScript que maneja la lógica y datos del componente
+            </p>
+          </div>
+          <div class="bg-purple-50 p-4 rounded-lg">
+            <h5 class="font-medium text-purple-800 mb-2">Estilos (Apariencia)</h5>
+            <p class="text-sm text-purple-700">
+              CSS que define la apariencia visual del componente
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- Sección 2: Estructura -->
+  <section id="structure" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🏗️</span>
+        Estructura de un Componente
+      </h2>
+
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Anatomía de un Componente Standalone</h3>
+        <p class="text-gray-600 mb-6">
+          Los componentes modernos en Angular 16+ utilizan la arquitectura standalone, que simplifica 
+          la configuración y elimina la necesidad de módulos.
+        </p>
+
+        <!-- Ejemplo de código básico -->
+        <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-300">Ejemplo de Componente Básico</span>
+            <button (click)="copyCode('basic-component-example')" class="text-gray-300 hover:text-white">
+              📋 Copiar
+            </button>
+          </div>
+          <pre><code id="basic-component-example">{{ basicComponentExample }}</code></pre>
+        </div>
+      </div>
+
+      <!-- Partes del componente -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">🔧 Decorador &#64;Component</h4>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><code class="bg-gray-100 px-1 rounded">selector</code>: Nombre del elemento HTML</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><code class="bg-gray-100 px-1 rounded">standalone: true</code>: Componente independiente</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><code class="bg-gray-100 px-1 rounded">imports</code>: Dependencias necesarias</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2 mt-1">•</span>
+              <span><code class="bg-gray-100 px-1 rounded">template</code>: HTML inline o templateUrl</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">💡 Mejores Prácticas</h4>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Usar nombres descriptivos para el selector</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Mantener componentes pequeños y enfocados</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Separar lógica compleja en servicios</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">✓</span>
+              <span>Usar TypeScript para tipado fuerte</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 3: Ciclos de Vida -->
+  <section id="lifecycle" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🔄</span>
+        Ciclos de Vida de los Componentes
+      </h2>
+
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Hooks del Ciclo de Vida</h3>
+        <p class="text-gray-600 mb-6">
+          Angular proporciona hooks que te permiten ejecutar código en momentos específicos del ciclo de vida del componente.
+        </p>
+
+        <!-- Ejemplo de lifecycle -->
+        <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-300">Ejemplo de Lifecycle Hooks</span>
+            <button (click)="copyCode('lifecycle-example')" class="text-gray-300 hover:text-white">
+              📋 Copiar
+            </button>
+          </div>
+          <pre><code id="lifecycle-example">{{ lifecycleExample }}</code></pre>
+        </div>
+      </div>
+
+      <!-- Hooks principales -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">🚀 Hooks de Inicialización</h4>
+          <ul class="space-y-3 text-gray-700">
+            <li class="bg-blue-50 p-3 rounded-lg">
+              <h5 class="font-medium text-blue-800">constructor()</h5>
+              <p class="text-sm text-blue-700">Se ejecuta al crear la instancia del componente</p>
+            </li>
+            <li class="bg-green-50 p-3 rounded-lg">
+              <h5 class="font-medium text-green-800">ngOnInit()</h5>
+              <p class="text-sm text-green-700">Se ejecuta después de inicializar inputs y child components</p>
+            </li>
+            <li class="bg-purple-50 p-3 rounded-lg">
+              <h5 class="font-medium text-purple-800">ngAfterViewInit()</h5>
+              <p class="text-sm text-purple-700">Se ejecuta después de inicializar la vista y child views</p>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">🔄 Hooks de Cambios</h4>
+          <ul class="space-y-3 text-gray-700">
+            <li class="bg-orange-50 p-3 rounded-lg">
+              <h5 class="font-medium text-orange-800">ngOnChanges()</h5>
+              <p class="text-sm text-orange-700">Se ejecuta cuando cambian los inputs del componente</p>
+            </li>
+            <li class="bg-red-50 p-3 rounded-lg">
+              <h5 class="font-medium text-red-800">ngDoCheck()</h5>
+              <p class="text-sm text-red-700">Se ejecuta en cada ciclo de detección de cambios</p>
+            </li>
+            <li class="bg-yellow-50 p-3 rounded-lg">
+              <h5 class="font-medium text-yellow-800">ngOnDestroy()</h5>
+              <p class="text-sm text-yellow-700">Se ejecuta antes de destruir el componente</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Diagrama de flujo -->
+      <div class="mt-8 bg-gray-50 p-6 rounded-lg">
+        <h4 class="font-semibold text-gray-800 mb-4">📊 Flujo del Ciclo de Vida</h4>
+        <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
+          <div class="bg-blue-100 px-3 py-2 rounded text-gray-700">Constructor</div>
+          <span class="text-gray-400">→</span>
+          <div class="bg-green-100 px-3 py-2 rounded text-gray-700">ngOnInit</div>
+          <span class="text-gray-400">→</span>
+          <div class="bg-purple-100 px-3 py-2 rounded text-gray-700">ngAfterViewInit</div>
+          <span class="text-gray-400">→</span>
+          <div class="bg-orange-100 px-3 py-2 rounded text-gray-700">ngOnChanges</div>
+          <span class="text-gray-400">→</span>
+          <div class="bg-red-100 px-3 py-2 rounded text-gray-700">ngOnDestroy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 4: Comunicación -->
+  <section id="communication" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">💬</span>
+        Comunicación entre Componentes
+      </h2>
+
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Patrones de Comunicación</h3>
+        <p class="text-gray-600 mb-6">
+          Los componentes necesitan comunicarse entre sí. Angular proporciona varios mecanismos para esto.
+        </p>
+
+        <!-- Ejemplo de Input/Output -->
+        <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-300">Ejemplo de Input/Output</span>
+            <button (click)="copyCode('input-output-example')" class="text-gray-300 hover:text-white">
+              📋 Copiar
+            </button>
+          </div>
+          <pre><code id="input-output-example">{{ inputOutputExample }}</code></pre>
+        </div>
+      </div>
+
+      <!-- Patrones de comunicación -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">📤 Input/Output</h4>
+          <ul class="space-y-3 text-gray-700">
+            <li class="bg-blue-50 p-3 rounded-lg">
+              <h5 class="font-medium text-blue-800">&#64;Input()</h5>
+              <p class="text-sm text-blue-700">Recibe datos del componente padre</p>
+            </li>
+            <li class="bg-green-50 p-3 rounded-lg">
+              <h5 class="font-medium text-green-800">&#64;Output()</h5>
+              <p class="text-sm text-green-700">Envía eventos al componente padre</p>
+            </li>
+            <li class="bg-purple-50 p-3 rounded-lg">
+              <h5 class="font-medium text-purple-800">EventEmitter</h5>
+              <p class="text-sm text-purple-700">Clase para emitir eventos personalizados</p>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">🔗 Otros Patrones</h4>
+          <ul class="space-y-3 text-gray-700">
+            <li class="bg-orange-50 p-3 rounded-lg">
+              <h5 class="font-medium text-orange-800">Servicios</h5>
+              <p class="text-sm text-orange-700">Compartir estado entre componentes</p>
+            </li>
+            <li class="bg-red-50 p-3 rounded-lg">
+              <h5 class="font-medium text-red-800">ViewChild/ContentChild</h5>
+              <p class="text-sm text-red-700">Acceder a componentes hijos</p>
+            </li>
+            <li class="bg-yellow-50 p-3 rounded-lg">
+              <h5 class="font-medium text-yellow-800">Observables</h5>
+              <p class="text-sm text-yellow-700">Comunicación reactiva entre componentes</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Content Projection -->
+      <div class="mt-8">
+        <h4 class="font-semibold text-gray-800 mb-4">🎯 Content Projection</h4>
+        <p class="text-gray-600 mb-4">
+          Permite insertar contenido dinámico en un componente usando <code class="bg-gray-100 px-1 rounded">ng-content</code>.
+        </p>
+
+        <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-300">Ejemplo de Content Projection</span>
+            <button (click)="copyCode('content-projection-example')" class="text-gray-300 hover:text-white">
+              📋 Copiar
+            </button>
+          </div>
+          <pre><code id="content-projection-example">{{ contentProjectionExample }}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 5: Avanzado -->
+  <section id="advanced" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🚀</span>
+        Técnicas Avanzadas
+      </h2>
+
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Funcionalidades Avanzadas</h3>
+        <p class="text-gray-600 mb-6">
+          Técnicas avanzadas para crear componentes más potentes y reutilizables.
+        </p>
+
+        <!-- ViewChild ejemplo -->
+        <div class="bg-gray-900 text-white p-6 rounded-lg mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-300">Ejemplo de ViewChild</span>
+            <button (click)="copyCode('viewchild-example')" class="text-gray-300 hover:text-white">
+              📋 Copiar
+            </button>
+          </div>
+          <pre><code id="viewchild-example">{{ viewChildExample }}</code></pre>
+        </div>
+      </div>
+
+      <!-- Técnicas avanzadas -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">🔍 ViewChild y ContentChild</h4>
+          <ul class="space-y-3 text-gray-700">
+            <li class="bg-blue-50 p-3 rounded-lg">
+              <h5 class="font-medium text-blue-800">&#64;ViewChild()</h5>
+              <p class="text-sm text-blue-700">Acceder a componentes hijos por referencia</p>
+            </li>
+            <li class="bg-green-50 p-3 rounded-lg">
+              <h5 class="font-medium text-green-800">&#64;ContentChild()</h5>
+              <p class="text-sm text-green-700">Acceder a contenido proyectado</p>
+            </li>
+            <li class="bg-purple-50 p-3 rounded-lg">
+              <h5 class="font-medium text-purple-800">ElementRef</h5>
+              <p class="text-sm text-purple-700">Acceder al elemento DOM nativo</p>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-gray-800 mb-3">⚡ Optimizaciones</h4>
+          <ul class="space-y-3 text-gray-700">
+            <li class="bg-orange-50 p-3 rounded-lg">
+              <h5 class="font-medium text-orange-800">OnPush Strategy</h5>
+              <p class="text-sm text-orange-700">Optimizar detección de cambios</p>
+            </li>
+            <li class="bg-red-50 p-3 rounded-lg">
+              <h5 class="font-medium text-red-800">TrackBy Functions</h5>
+              <p class="text-sm text-red-700">Optimizar *ngFor con listas dinámicas</p>
+            </li>
+            <li class="bg-yellow-50 p-3 rounded-lg">
+              <h5 class="font-medium text-yellow-800">Pure Pipes</h5>
+              <p class="text-sm text-yellow-700">Transformaciones eficientes de datos</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mejores prácticas avanzadas -->
+      <div class="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg">
+        <h4 class="font-semibold text-gray-800 mb-4">💡 Mejores Prácticas Avanzadas</h4>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h5 class="font-medium text-gray-800 mb-2">🎯 Rendimiento</h5>
+            <ul class="text-sm text-gray-700 space-y-1">
+              <li>• Usar OnPush change detection</li>
+              <li>• Implementar trackBy en *ngFor</li>
+              <li>• Lazy load componentes pesados</li>
+              <li>• Usar pure pipes cuando sea posible</li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="font-medium text-gray-800 mb-2">🏗️ Arquitectura</h5>
+            <ul class="text-sm text-gray-700 space-y-1">
+              <li>• Separar lógica en servicios</li>
+              <li>• Usar interfaces para tipado</li>
+              <li>• Implementar error boundaries</li>
+              <li>• Crear componentes reutilizables</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Próximos Pasos -->
+  <section class="mb-16">
+    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 border border-blue-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🎯</span>
+        ¿Qué sigue?
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Próximos Temas</h3>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/inputs-outputs" class="hover:text-blue-600 underline">Inputs y Outputs Detallado</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/services" class="hover:text-blue-600 underline">Servicios y Estado</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/forms" class="hover:text-blue-600 underline">Formularios Reactivos</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/routing" class="hover:text-blue-600 underline">Routing Avanzado</a>
+            </li>
+            <li class="flex items-center">
+              <span class="text-blue-500 mr-3">→</span>
+              <a routerLink="/angular/http" class="hover:text-blue-600 underline">HTTP Client</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg">
+          <h4 class="font-semibold text-gray-800 mb-3">💡 Recursos Adicionales</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• <a href="https://angular.io/guide/component-overview" target="_blank" class="text-blue-600 hover:underline">Component Overview</a></li>
+            <li>• <a href="https://angular.io/guide/lifecycle-hooks" target="_blank" class="text-blue-600 hover:underline">Lifecycle Hooks</a></li>
+            <li>• <a href="https://angular.io/guide/component-interaction" target="_blank" class="text-blue-600 hover:underline">Component Interaction</a></li>
+            <li>• <a href="https://angular.io/guide/component-styles" target="_blank" class="text-blue-600 hover:underline">Component Styles</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
   </div>
 </div> 

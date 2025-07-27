@@ -1,23 +1,392 @@
-<div class="max-w-7xl mx-auto px-4 py-8">
-  <section class="text-center mb-12">
-    <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
-      Routing en Angular
-    </h1>
-    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-      Aprende a configurar la navegación entre páginas en tu aplicación Angular
-    </p>
-  </section>
-
-  <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">🚧 En Construcción</h2>
-    <p class="text-gray-600 mb-6">
-      Esta sección está siendo desarrollada. Pronto tendrás acceso a contenido completo sobre routing en Angular.
-    </p>
-    
-    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-2xl">
-      <p class="text-blue-800 font-medium">
-        💡 <strong>Próximamente:</strong> Configuración de rutas, navegación programática, guards y más.
+<div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-12 px-4 sm:px-6 lg:px-8 border border-gray-700 rounded-2xl">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-bold text-white mb-4">Angular Routing</h1>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        Aprende a implementar navegación efectiva en Angular, desde conceptos básicos hasta técnicas avanzadas 
+        de routing y navegación programática.
       </p>
     </div>
+
+    <!-- Navigation -->
+    <app-section-navigation
+      [sections]="sections"
+      [activeColor]="'bg-red-600'"
+      [hoverColor]="'hover:bg-gray-300'"
+      (sectionClick)="onSectionClick($event)"
+      (sectionChange)="onSectionChange($event)">
+    </app-section-navigation>
+
+    <!-- Content Sections -->
+    <div class="mt-12 space-y-16">
+      <!-- Introducción -->
+      <section id="intro" class="transition-all duration-700 ease-in-out animate-fade-in-up">
+        <div class="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
+          <h2 class="text-3xl font-bold text-white mb-6">¿Qué es Angular Routing?</h2>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            El routing en Angular es el sistema que permite navegar entre diferentes vistas o componentes 
+            de tu aplicación sin recargar la página completa. Es fundamental para crear aplicaciones 
+            de página única (SPA) con múltiples vistas.
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Características Principales</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  Navegación declarativa y programática
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  Parámetros de ruta y query strings
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  Guards de navegación
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  Lazy loading de módulos
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Beneficios</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  Mejor experiencia de usuario
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  Navegación más rápida
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  URLs amigables y SEO
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  Código más organizado
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Routing Básico -->
+      <section id="basic" class="transition-all duration-700 ease-in-out animate-slide-up">
+        <div class="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
+          <h2 class="text-3xl font-bold text-white mb-6">Routing Básico</h2>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            El routing básico en Angular se configura definiendo rutas que mapean URLs a componentes. 
+            Cada ruta especifica un path y el componente que se debe mostrar.
+          </p>
+          
+          <div class="bg-gray-900 rounded-lg p-6 border border-gray-600 mb-6">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold text-white">Configuración Básica de Rutas</h3>
+              <button (click)="copyCode(basicRoutingExample)" class="text-blue-400 hover:text-blue-300 text-sm">
+                Copiar código
+              </button>
+            </div>
+            <pre class="bg-gray-800 rounded p-4 overflow-x-auto"><code class="text-green-400 text-sm">{{ basicRoutingExample }}</code></pre>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Elementos Clave</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-blue-400">RouterModule:</strong> Módulo que proporciona funcionalidad de routing</li>
+                <li><strong class="text-blue-400">Routes:</strong> Array que define las rutas de la aplicación</li>
+                <li><strong class="text-blue-400">RouterOutlet:</strong> Directiva que renderiza el componente de la ruta activa</li>
+                <li><strong class="text-blue-400">routerLink:</strong> Directiva para navegación declarativa</li>
+              </ul>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Flujo de Navegación</h3>
+              <ol class="space-y-2 text-gray-300">
+                <li>1. Usuario hace clic en un enlace</li>
+                <li>2. Angular intercepta la navegación</li>
+                <li>3. Router busca la ruta correspondiente</li>
+                <li>4. Se renderiza el componente asociado</li>
+                <li>5. Se actualiza la URL en el navegador</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navegación -->
+      <section id="navigation" class="transition-all duration-700 ease-in-out animate-fade-in-up">
+        <div class="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
+          <h2 class="text-3xl font-bold text-white mb-6">Navegación en Angular</h2>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Angular proporciona dos formas principales de navegación: declarativa usando directivas 
+            y programática usando el servicio Router.
+          </p>
+
+          <div class="bg-gray-900 rounded-lg p-6 border border-gray-600 mb-6">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold text-white">Ejemplos de Navegación</h3>
+              <button (click)="copyCode(navigationExample)" class="text-blue-400 hover:text-blue-300 text-sm">
+                Copiar código
+              </button>
+            </div>
+            <pre class="bg-gray-800 rounded p-4 overflow-x-auto"><code class="text-green-400 text-sm">{{ navigationExample }}</code></pre>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Navegación Declarativa</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-blue-400">routerLink:</strong> Navegación básica</li>
+                <li><strong class="text-blue-400">routerLinkActive:</strong> Estilos para rutas activas</li>
+                <li><strong class="text-blue-400">[routerLink]:</strong> Navegación dinámica</li>
+                <li><strong class="text-blue-400">queryParams:</strong> Parámetros de consulta</li>
+              </ul>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Navegación Programática</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-blue-400">router.navigate():</strong> Navegación básica</li>
+                <li><strong class="text-blue-400">router.navigateByUrl():</strong> Navegación por URL</li>
+                <li><strong class="text-blue-400">ActivatedRoute:</strong> Acceso a parámetros</li>
+                <li><strong class="text-blue-400">Router Events:</strong> Eventos de navegación</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Parámetros de Ruta -->
+      <section id="params" class="transition-all duration-700 ease-in-out animate-scale-in">
+        <div class="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
+          <h2 class="text-3xl font-bold text-white mb-6">Parámetros de Ruta</h2>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Los parámetros de ruta permiten pasar datos entre componentes a través de la URL. 
+            Son fundamentales para crear rutas dinámicas y reutilizables.
+          </p>
+
+          <div class="bg-gray-900 rounded-lg p-6 border border-gray-600 mb-6">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold text-white">Configuración de Parámetros</h3>
+              <button (click)="copyCode(paramsExample)" class="text-blue-400 hover:text-blue-300 text-sm">
+                Copiar código
+              </button>
+            </div>
+            <pre class="bg-gray-800 rounded p-4 overflow-x-auto"><code class="text-green-400 text-sm">{{ paramsExample }}</code></pre>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Tipos de Parámetros</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-blue-400">Path Parameters:</strong> /users/:id</li>
+                <li><strong class="text-blue-400">Query Parameters:</strong> ?page=1&size=10</li>
+                <li><strong class="text-blue-400">Matrix Parameters:</strong> /users;id=123</li>
+                <li><strong class="text-blue-400">Optional Parameters:</strong> Parámetros opcionales</li>
+              </ul>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Acceso a Parámetros</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-blue-400">ActivatedRoute.params:</strong> Parámetros de ruta</li>
+                <li><strong class="text-blue-400">ActivatedRoute.queryParams:</strong> Query parameters</li>
+                <li><strong class="text-blue-400">ActivatedRoute.data:</strong> Datos de resolvers</li>
+                <li><strong class="text-blue-400">ActivatedRoute.fragment:</strong> Fragmentos de URL</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guards -->
+      <section id="guards" class="transition-all duration-700 ease-in-out animate-fade-in-up">
+        <div class="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
+          <h2 class="text-3xl font-bold text-white mb-6">Guards de Navegación</h2>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Los guards son interfaces que permiten controlar el acceso a rutas. Pueden prevenir 
+            la navegación, redirigir a otras rutas o cargar datos antes de activar una ruta.
+          </p>
+
+          <div class="bg-gray-900 rounded-lg p-6 border border-gray-600 mb-6">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold text-white">Implementación de Guards</h3>
+              <button (click)="copyCode(guardsExample)" class="text-blue-400 hover:text-blue-300 text-sm">
+                Copiar código
+              </button>
+            </div>
+            <pre class="bg-gray-800 rounded p-4 overflow-x-auto"><code class="text-green-400 text-sm">{{ guardsExample }}</code></pre>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Tipos de Guards</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-blue-400">CanActivate:</strong> Controla acceso a rutas</li>
+                <li><strong class="text-blue-400">CanDeactivate:</strong> Previene salida de rutas</li>
+                <li><strong class="text-blue-400">CanLoad:</strong> Controla carga de módulos</li>
+                <li><strong class="text-blue-400">Resolve:</strong> Precarga datos</li>
+              </ul>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Casos de Uso</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-blue-400">Autenticación:</strong> Verificar login</li>
+                <li><strong class="text-blue-400">Autorización:</strong> Verificar permisos</li>
+                <li><strong class="text-blue-400">Validación:</strong> Verificar datos</li>
+                <li><strong class="text-blue-400">Precarga:</strong> Cargar datos necesarios</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lazy Loading -->
+      <section id="lazy" class="transition-all duration-700 ease-in-out animate-slide-up">
+        <div class="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
+          <h2 class="text-3xl font-bold text-white mb-6">Lazy Loading</h2>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            El lazy loading permite cargar módulos y componentes solo cuando son necesarios, 
+            mejorando significativamente el rendimiento de la aplicación.
+          </p>
+
+          <div class="bg-gray-900 rounded-lg p-6 border border-gray-600 mb-6">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold text-white">Configuración de Lazy Loading</h3>
+              <button (click)="copyCode(lazyLoadingExample)" class="text-blue-400 hover:text-blue-300 text-sm">
+                Copiar código
+              </button>
+            </div>
+            <pre class="bg-gray-800 rounded p-4 overflow-x-auto"><code class="text-green-400 text-sm">{{ lazyLoadingExample }}</code></pre>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Beneficios</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-green-400">Tiempo de carga inicial:</strong> Más rápido</li>
+                <li><strong class="text-green-400">Uso de memoria:</strong> Optimizado</li>
+                <li><strong class="text-green-400">Ancho de banda:</strong> Reducido</li>
+                <li><strong class="text-green-400">Experiencia de usuario:</strong> Mejorada</li>
+              </ul>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Estrategias</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-blue-400">Route-based:</strong> Por rutas específicas</li>
+                <li><strong class="text-blue-400">Feature-based:</strong> Por funcionalidades</li>
+                <li><strong class="text-blue-400">Preloading:</strong> Carga anticipada</li>
+                <li><strong class="text-blue-400">Standalone:</strong> Componentes independientes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Técnicas Avanzadas -->
+      <section id="advanced" class="transition-all duration-700 ease-in-out animate-scale-in">
+        <div class="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
+          <h2 class="text-3xl font-bold text-white mb-6">Técnicas Avanzadas</h2>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Las técnicas avanzadas de routing incluyen resolvers, child routes, auxiliar routes 
+            y navegación con múltiples outlets.
+          </p>
+
+          <div class="bg-gray-900 rounded-lg p-6 border border-gray-600 mb-6">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold text-white">Ejemplos Avanzados</h3>
+              <button (click)="copyCode(advancedExample)" class="text-blue-400 hover:text-blue-300 text-sm">
+                Copiar código
+              </button>
+            </div>
+            <pre class="bg-gray-800 rounded p-4 overflow-x-auto"><code class="text-green-400 text-sm">{{ advancedExample }}</code></pre>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Técnicas Avanzadas</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-blue-400">Resolvers:</strong> Precarga de datos</li>
+                <li><strong class="text-blue-400">Child Routes:</strong> Rutas anidadas</li>
+                <li><strong class="text-blue-400">Auxiliar Routes:</strong> Múltiples outlets</li>
+                <li><strong class="text-blue-400">Route Reuse:</strong> Reutilización de componentes</li>
+              </ul>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-6 border border-gray-600">
+              <h3 class="text-xl font-bold text-white mb-3">Optimizaciones</h3>
+              <ul class="space-y-2 text-gray-300">
+                <li><strong class="text-green-400">Preloading:</strong> Carga anticipada</li>
+                <li><strong class="text-green-400">Route Caching:</strong> Cache de rutas</li>
+                <li><strong class="text-green-400">Error Handling:</strong> Manejo de errores</li>
+                <li><strong class="text-green-400">Analytics:</strong> Seguimiento de navegación</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Próximos Pasos -->
+      <section class="transition-all duration-700 ease-in-out animate-fade-in-up">
+        <div class="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
+          <h2 class="text-3xl font-bold text-white mb-6">Próximos Pasos</h2>
+          <p class="text-gray-300 mb-8 leading-relaxed">
+            Ahora que has aprendido sobre routing en Angular, continúa explorando otros conceptos 
+            fundamentales del framework.
+          </p>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a routerLink="/angular/fundamentals" class="block bg-gray-700 rounded-lg p-6 border border-gray-600 hover:bg-gray-600 transition-colors duration-300">
+              <h3 class="text-xl font-bold text-white mb-2">Fundamentos</h3>
+              <p class="text-gray-300">Aprende los conceptos básicos de Angular</p>
+            </a>
+            
+            <a routerLink="/angular/components" class="block bg-gray-700 rounded-lg p-6 border border-gray-600 hover:bg-gray-600 transition-colors duration-300">
+              <h3 class="text-xl font-bold text-white mb-2">Componentes</h3>
+              <p class="text-gray-300">Domina la creación de componentes</p>
+            </a>
+            
+            <a routerLink="/angular/services" class="block bg-gray-700 rounded-lg p-6 border border-gray-600 hover:bg-gray-600 transition-colors duration-300">
+              <h3 class="text-xl font-bold text-white mb-2">Servicios</h3>
+              <p class="text-gray-300">Aprende sobre inyección de dependencias</p>
+            </a>
+            
+            <a routerLink="/angular/forms" class="block bg-gray-700 rounded-lg p-6 border border-gray-600 hover:bg-gray-600 transition-colors duration-300">
+              <h3 class="text-xl font-bold text-white mb-2">Formularios</h3>
+              <p class="text-gray-300">Maneja formularios reactivos y template-driven</p>
+            </a>
+            
+            <a routerLink="/angular/http" class="block bg-gray-700 rounded-lg p-6 border border-gray-600 hover:bg-gray-600 transition-colors duration-300">
+              <h3 class="text-xl font-bold text-white mb-2">HTTP</h3>
+              <p class="text-gray-300">Comunícate con APIs y servicios</p>
+            </a>
+            
+            <a routerLink="/angular/inputs-outputs" class="block bg-gray-700 rounded-lg p-6 border border-gray-600 hover:bg-gray-600 transition-colors duration-300">
+              <h3 class="text-xl font-bold text-white mb-2">Inputs & Outputs</h3>
+              <p class="text-gray-300">Comunicación entre componentes</p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
-</div> 
+</div>

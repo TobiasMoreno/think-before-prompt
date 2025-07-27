@@ -1,23 +1,358 @@
-<div class="max-w-7xl mx-auto px-4 py-8">
+<div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-12 px-4 sm:px-6 lg:px-8 border border-gray-700 rounded-2xl">
+  <div class="max-w-7xl mx-auto">
+  <!-- Barra de navegación reutilizable -->
+  <app-section-navigation
+    [sections]="sections"
+    [activeColor]="'bg-red-600'"
+    [hoverColor]="'hover:bg-gray-300'"
+    (sectionClick)="onSectionClick($event)"
+    (sectionChange)="onSectionChange($event)">
+  </app-section-navigation>
+
+  <!-- Header principal -->
   <section class="text-center mb-12">
     <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
       Servicios en Angular
     </h1>
     <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-      Aprende a crear y usar servicios para compartir lógica entre componentes
+      Aprende a crear y usar servicios para compartir lógica entre componentes y manejar datos de forma centralizada
     </p>
   </section>
 
-  <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">🚧 En Construcción</h2>
-    <p class="text-gray-600 mb-6">
-      Esta sección está siendo desarrollada. Pronto tendrás acceso a contenido completo sobre servicios en Angular.
-    </p>
-    
-    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-2xl">
-      <p class="text-blue-800 font-medium">
-        💡 <strong>Próximamente:</strong> Creación de servicios, inyección de dependencias, HTTP services y más.
-      </p>
+  <!-- Navegación por secciones -->
+  <nav class="mb-8">
+    <div class="flex flex-wrap gap-2 justify-center">
+      @for (section of sections; track section.id) {
+      <button
+        (click)="scrollToSection(section.id)"
+        class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
+        [class.bg-red-100]="activeSection === section.id"
+        [class.text-red-700]="activeSection === section.id">
+        {{ section.title }}
+      </button>
+      }
     </div>
+  </nav>
+
+  <!-- Sección 1: Introducción -->
+  <section id="intro" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🔧</span>
+        ¿Qué son los Servicios?
+      </h2>
+      
+      <div class="space-y-6">
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Los servicios en Angular son clases que encapsulan lógica de negocio, manejo de datos y funcionalidades que pueden ser compartidas entre múltiples componentes. Son fundamentales para mantener el código organizado y reutilizable.
+        </p>
+
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-2xl">
+          <h3 class="font-bold text-blue-900 mb-2">Características principales:</h3>
+          <ul class="text-blue-800 space-y-1">
+            <li>• <strong>Singleton:</strong> Una sola instancia por aplicación</li>
+            <li>• <strong>Inyección de dependencias:</strong> Se inyectan automáticamente</li>
+            <li>• <strong>Reutilizables:</strong> Pueden ser usados por múltiples componentes</li>
+            <li>• <strong>Testeables:</strong> Fáciles de mockear en pruebas unitarias</li>
+            <li>• <strong>Separación de responsabilidades:</strong> Lógica de negocio separada de la UI</li>
+          </ul>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mt-8">
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h4 class="font-bold text-green-800 mb-3">✅ Casos de uso comunes:</h4>
+            <ul class="text-green-700 space-y-2">
+              <li>• Llamadas a APIs HTTP</li>
+              <li>• Manejo de estado global</li>
+              <li>• Validaciones de formularios</li>
+              <li>• Lógica de autenticación</li>
+              <li>• Cálculos complejos</li>
+              <li>• Caché de datos</li>
+            </ul>
+          </div>
+
+          <div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
+            <h4 class="font-bold text-orange-800 mb-3">⚠️ Beneficios:</h4>
+            <ul class="text-orange-700 space-y-2">
+              <li>• Código más mantenible</li>
+              <li>• Reducción de duplicación</li>
+              <li>• Mejor testabilidad</li>
+              <li>• Arquitectura más limpia</li>
+              <li>• Facilita el trabajo en equipo</li>
+              <li>• Mejor rendimiento</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 2: Creación de Servicios -->
+  <section id="creation" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">⚙️</span>
+        Creación de Servicios
+      </h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Estructura básica de un servicio</h3>
+          <p class="text-gray-700 mb-4">
+            Un servicio básico se crea usando el decorador <code class="bg-gray-100 px-2 py-1 rounded">&#64;Injectable()</code> y debe ser registrado en el sistema de inyección de dependencias.
+          </p>
+          
+          <div class="bg-gray-900 rounded-lg p-4 mb-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-gray-300 text-sm">data.service.ts</span>
+              <button 
+                (click)="copyCode('basic-service')"
+                class="text-gray-400 hover:text-white text-sm">
+                📋 Copiar
+              </button>
+            </div>
+            <pre id="basic-service" class="text-green-400 text-sm overflow-x-auto">{{ basicServiceExample }}</pre>
+          </div>
+        </div>
+
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-2xl">
+          <h4 class="font-bold text-yellow-800 mb-2">Puntos importantes:</h4>
+          <ul class="text-yellow-700 space-y-1">
+            <li>• <code class="bg-yellow-100 px-1 rounded">&#64;Injectable()</code> marca la clase como inyectable</li>
+            <li>• <code class="bg-yellow-100 px-1 rounded">providedIn: 'root'</code> hace el servicio singleton global</li>
+            <li>• Los métodos públicos son la API del servicio</li>
+            <li>• Los datos privados se encapsulan dentro del servicio</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 3: Inyección de Dependencias -->
+  <section id="injection" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">💉</span>
+        Inyección de Dependencias
+      </h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Cómo usar servicios en componentes</h3>
+          <p class="text-gray-700 mb-4">
+            Los servicios se inyectan automáticamente en el constructor del componente. Angular se encarga de crear y gestionar las instancias.
+          </p>
+          
+          <div class="bg-gray-900 rounded-lg p-4 mb-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-gray-300 text-sm">user-list.component.ts</span>
+              <button 
+                (click)="copyCode('component-service')"
+                class="text-gray-400 hover:text-white text-sm">
+                📋 Copiar
+              </button>
+            </div>
+            <pre id="component-service" class="text-green-400 text-sm overflow-x-auto">{{ componentUsingServiceExample }}</pre>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-3">✅ Ventajas de la inyección:</h4>
+            <ul class="text-blue-700 space-y-2">
+              <li>• Desacoplamiento de dependencias</li>
+              <li>• Facilita las pruebas unitarias</li>
+              <li>• Gestión automática del ciclo de vida</li>
+              <li>• Configuración centralizada</li>
+              <li>• Reutilización de instancias</li>
+            </ul>
+          </div>
+
+          <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+            <h4 class="font-bold text-purple-800 mb-3">🔧 Patrones comunes:</h4>
+            <ul class="text-purple-700 space-y-2">
+              <li>• Inyección en constructor</li>
+              <li>• Servicios anidados</li>
+              <li>• Tokens de inyección</li>
+              <li>• Factories y providers</li>
+              <li>• Lazy loading de servicios</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h4 class="font-bold text-green-800 mb-3">💡 Mejores prácticas:</h4>
+          <ul class="text-green-700 space-y-2">
+            <li>• Usa <code class="bg-green-100 px-1 rounded">providedIn: 'root'</code> para servicios globales</li>
+            <li>• Mantén los servicios enfocados en una responsabilidad</li>
+            <li>• Usa interfaces para definir contratos de servicios</li>
+            <li>• Implementa manejo de errores en servicios HTTP</li>
+            <li>• Considera el uso de interceptores para lógica transversal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 4: HTTP Services -->
+  <section id="http" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🌐</span>
+        HTTP Services
+      </h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Servicios con HttpClient</h3>
+          <p class="text-gray-700 mb-4">
+            Los servicios HTTP son fundamentales para comunicarse con APIs. Angular proporciona <code class="bg-gray-100 px-2 py-1 rounded">HttpClient</code> para manejar peticiones HTTP de forma eficiente.
+          </p>
+          
+          <div class="bg-gray-900 rounded-lg p-4 mb-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-gray-300 text-sm">user.service.ts</span>
+              <button 
+                (click)="copyCode('http-service')"
+                class="text-gray-400 hover:text-white text-sm">
+                📋 Copiar
+              </button>
+            </div>
+            <pre id="http-service" class="text-green-400 text-sm overflow-x-auto">{{ serviceWithHttpExample }}</pre>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
+            <h4 class="font-bold text-indigo-800 mb-3">📡 Métodos HTTP comunes:</h4>
+            <ul class="text-indigo-700 space-y-2">
+              <li>• <code class="bg-indigo-100 px-1 rounded">GET</code> - Obtener datos</li>
+              <li>• <code class="bg-indigo-100 px-1 rounded">POST</code> - Crear recursos</li>
+              <li>• <code class="bg-indigo-100 px-1 rounded">PUT</code> - Actualizar recursos</li>
+              <li>• <code class="bg-indigo-100 px-1 rounded">DELETE</code> - Eliminar recursos</li>
+              <li>• <code class="bg-indigo-100 px-1 rounded">PATCH</code> - Actualización parcial</li>
+            </ul>
+          </div>
+
+          <div class="bg-teal-50 border border-teal-200 rounded-lg p-6">
+            <h4 class="font-bold text-teal-800 mb-3">🛡️ Características de seguridad:</h4>
+            <ul class="text-teal-700 space-y-2">
+              <li>• Protección automática XSS</li>
+              <li>• Sanitización de datos</li>
+              <li>• Manejo de CORS</li>
+              <li>• Interceptores para headers</li>
+              <li>• Timeout configurables</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
+          <h4 class="font-bold text-orange-800 mb-3">⚡ Optimizaciones:</h4>
+          <ul class="text-orange-700 space-y-2">
+            <li>• Usa <code class="bg-orange-100 px-1 rounded">shareReplay()</code> para cachear peticiones</li>
+            <li>• Implementa <code class="bg-orange-100 px-1 rounded">retry()</code> para reintentos automáticos</li>
+            <li>• Usa <code class="bg-orange-100 px-1 rounded">debounceTime()</code> para búsquedas</li>
+            <li>• Considera <code class="bg-orange-100 px-1 rounded">switchMap()</code> para cancelar peticiones</li>
+            <li>• Implementa interceptores para logging y errores</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 5: Técnicas Avanzadas -->
+  <section id="advanced" class="mb-16 scroll-mt-20">
+    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+        <span class="text-2xl mr-3">🚀</span>
+        Técnicas Avanzadas
+      </h2>
+
+      <div class="space-y-8">
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+            <h4 class="font-bold text-red-800 mb-3">🎯 Patrones avanzados:</h4>
+            <ul class="text-red-700 space-y-2">
+              <li>• Factory Pattern para servicios complejos</li>
+              <li>• Observer Pattern con RxJS</li>
+              <li>• Repository Pattern para datos</li>
+              <li>• Strategy Pattern para algoritmos</li>
+              <li>• Decorator Pattern para funcionalidad</li>
+            </ul>
+          </div>
+
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h4 class="font-bold text-green-800 mb-3">🔧 Herramientas útiles:</h4>
+            <ul class="text-green-700 space-y-2">
+              <li>• RxJS para operaciones reactivas</li>
+              <li>• NgRx para estado global</li>
+              <li>• Interceptores HTTP</li>
+              <li>• Guards para protección de rutas</li>
+              <li>• Resolvers para precarga de datos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <h4 class="font-bold text-blue-800 mb-3">📊 Monitoreo y debugging:</h4>
+          <ul class="text-blue-700 space-y-2">
+            <li>• Usa <code class="bg-blue-100 px-1 rounded">console.log()</code> para debugging básico</li>
+            <li>• Implementa interceptores para logging</li>
+            <li>• Usa Angular DevTools para inspección</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Próximos pasos -->
+  <section class="mb-16">
+    <div class="bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-xl p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">🎯 Próximos Pasos</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-3">Conceptos relacionados:</h3>
+          <ul class="space-y-2">
+            <li>
+              <a routerLink="/angular/routing" class="text-red-600 hover:text-red-800 font-medium">
+                → Routing y Navegación
+              </a>
+            </li>
+            <li>
+              <a routerLink="/angular/forms" class="text-red-600 hover:text-red-800 font-medium">
+                → Formularios Reactivos
+              </a>
+            </li>
+            <li>
+              <a routerLink="/angular/http" class="text-red-600 hover:text-red-800 font-medium">
+                → HTTP y APIs
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-3">Recursos adicionales:</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="https://angular.io/guide/dependency-injection" target="_blank" class="text-red-600 hover:text-red-800 font-medium">
+                → Documentación oficial de DI
+              </a>
+            </li>
+            <li>
+              <a href="https://angular.io/guide/http" target="_blank" class="text-red-600 hover:text-red-800 font-medium">
+                → Guía de HttpClient
+              </a>
+            </li>
+            <li>
+              <a href="https://rxjs.dev/" target="_blank" class="text-red-600 hover:text-red-800 font-medium">
+                → RxJS Documentation
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
   </div>
 </div> 
