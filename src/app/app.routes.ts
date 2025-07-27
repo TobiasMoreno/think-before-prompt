@@ -27,6 +27,7 @@ export const routes: Routes = [
       { path: 'angular/routing', loadComponent: () => import('./features/angular/routing/routing.component').then(m => m.AngularRoutingComponent) },
       { path: 'angular/forms', loadComponent: () => import('./features/angular/forms/forms.component').then(m => m.FormsComponent) },
       { path: 'angular/http-client', loadComponent: () => import('./features/angular/http/http.component').then(m => m.AngularHttpComponent) },
+      { path: 'angular/history', loadComponent: () => import('./features/angular/history/history.component').then(m => m.HistoryComponent) },
       
       // Ruta sobre el proyecto
       { path: 'about-the-project', loadComponent: () => import('./features/about-project/about-project.component').then(m => m.AboutProjectComponent) },

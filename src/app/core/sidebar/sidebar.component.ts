@@ -85,6 +85,12 @@ export class SidebarComponent {
       expanded: false,
       items: [
         {
+          label: 'Historia de Angular',
+          path: '/angular/history',
+          icon: '📜',
+          expanded: false
+        },
+        {
           label: 'Fundamentos',
           path: '/angular/fundamentals',
           icon: '📚',
