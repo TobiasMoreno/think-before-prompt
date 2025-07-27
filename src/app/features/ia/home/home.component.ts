@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { RoadmapComponent } from '../../ui/roadmap/roadmap.component';
+import { RoadmapComponent } from '../../../ui/roadmap/roadmap.component';
 
 @Component({
     selector: 'app-home',

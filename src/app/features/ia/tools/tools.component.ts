@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ProgressBarComponent } from '../../ui/progress-bar/progress-bar.component';
-import { BreadcrumbComponent, BreadcrumbItem } from '../../ui/breadcrumb/breadcrumb.component';
+import { ProgressBarComponent } from '../../../ui/progress-bar/progress-bar.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/breadcrumb.component';
 
 export interface Tool {
   name: string;

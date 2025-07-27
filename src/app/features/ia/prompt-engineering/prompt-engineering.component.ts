@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ProgressBarComponent } from '../../ui/progress-bar/progress-bar.component';
-import { BreadcrumbComponent, BreadcrumbItem } from '../../ui/breadcrumb/breadcrumb.component';
+import { ProgressBarComponent } from '../../../ui/progress-bar/progress-bar.component';
+import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/breadcrumb.component';
 import { FormsModule } from '@angular/forms';
 
 export interface PromptExample {
@@ -22,7 +22,7 @@ export interface PromptTemplate {
 @Component({
   selector: 'app-prompt-engineering',
   standalone: true,
-  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent],
+  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, RouterLink],
   templateUrl: './prompt-engineering.component.html',
   styleUrls: ['./prompt-engineering.component.css']
 })
