@@ -1,4 +1,5 @@
-import { Component, OnInit, HostListener, input, output } from '@angular/core';
+import { Component, OnInit, HostListener, input, output, inject } from '@angular/core';
+import { SidebarService } from '../../core/sidebar/sidebar.service';
 
 export interface NavigationSection {
   id: string;
@@ -43,6 +44,8 @@ export class SectionNavigationComponent implements OnInit {
 
   currentSection: string = '';
   showNavigationBar: boolean = false;
+
+  sidebarService = inject(SidebarService);
 
   ngOnInit() {
     if (this.sections().length > 0) {

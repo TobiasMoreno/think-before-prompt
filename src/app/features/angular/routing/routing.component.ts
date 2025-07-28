@@ -1,10 +1,11 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
 import { RouterLink } from '@angular/router';
+import { SectionButtonsComponent } from "../../../ui/section-buttons/section-buttons.component";
 
 @Component({
   selector: 'app-routing',
-  imports: [RouterLink, SectionNavigationComponent],
+  imports: [RouterLink, SectionNavigationComponent, SectionButtonsComponent],
   templateUrl: './routing.component.html',
 })
 export class RoutingComponent implements OnInit {

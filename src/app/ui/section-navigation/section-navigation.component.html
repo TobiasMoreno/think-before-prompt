@@ -1,13 +1,15 @@
 @if (showNavigationBar) {
-<div [class]="getContainerClasses()" >
+<div [class]="getContainerClasses()"
+     [class.ml-0]="!sidebarService.isSidebarOpen"
+     [class.ml-70]="sidebarService.isSidebarOpen" >
   <div [class]="getContentClasses()">
-    <div class="flex items-center justify-between text-sm">
+    <div class="flex justify-between text-sm">
       @if (showCurrentSection) {
-        <span class="text-gray-600 hidden md:block">
+        <span class="text-gray-600 md:block justify-start flex">
           Sección actual: <strong class="text-blue-600">{{ getCurrentSectionTitle() }}</strong>
         </span>
       }
-      <div class="flex flex-wrap gap-1 md:gap-2">
+      <div class="flex flex-wrap gap-1 md:gap-2 justify-end">
         @for (section of sections(); track section.id) {
           <button 
             (click)="scrollToSection(section.id)"

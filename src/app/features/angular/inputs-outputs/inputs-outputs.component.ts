@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
+import { SectionButtonsComponent } from '../../../ui/section-buttons/section-buttons.component';
 
 @Component({
   selector: 'app-inputs-outputs',
-  imports: [RouterModule, SectionNavigationComponent],
+  imports: [SectionNavigationComponent, SectionButtonsComponent],
   templateUrl: './inputs-outputs.component.html',
 })
 export class InputsOutputsComponent {

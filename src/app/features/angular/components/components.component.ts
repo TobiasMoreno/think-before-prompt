@@ -2,10 +2,11 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
+import { SectionButtonsComponent } from "../../../ui/section-buttons/section-buttons.component";
 
 @Component({
   selector: 'app-components',
-  imports: [CommonModule, RouterModule, SectionNavigationComponent],
+  imports: [CommonModule, RouterModule, SectionNavigationComponent, SectionButtonsComponent],
   templateUrl: './components.component.html',
 })
 export class ComponentsComponent implements OnInit {

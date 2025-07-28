@@ -1,10 +1,11 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
 import { RouterLink } from '@angular/router';
+import { SectionButtonsComponent } from "../../../ui/section-buttons/section-buttons.component";
 
 @Component({
   selector: 'app-services',
-  imports: [SectionNavigationComponent, RouterLink],
+  imports: [SectionNavigationComponent, RouterLink, SectionButtonsComponent],
   templateUrl: './services.component.html',
 })
 export class AngularServiciosComponent implements OnInit {

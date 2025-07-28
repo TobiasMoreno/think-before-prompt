@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationSection, SectionNavigationComponent } from '../../../ui/section-navigation/section-navigation.component';
+import { SectionButtonsComponent } from "../../../ui/section-buttons/section-buttons.component";
 
 @Component({
   selector: 'app-forms',
-  imports: [FormsModule, ReactiveFormsModule, SectionNavigationComponent],
+  imports: [FormsModule, ReactiveFormsModule, SectionNavigationComponent, SectionButtonsComponent],
   templateUrl: './forms.component.html',
 })
 export class FormsComponent implements OnInit {

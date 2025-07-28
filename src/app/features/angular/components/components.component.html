@@ -4,7 +4,7 @@
   <!-- Barra de navegación reutilizable -->
   <app-section-navigation
     [sections]="sections"
-    [activeColor]="'bg-red-600'"
+    [activeColor]="'bg-green-600'"
     [hoverColor]="'hover:bg-gray-300'"
     (sectionClick)="onSectionClick($event)"
     (sectionChange)="onSectionChange($event)">
@@ -20,21 +20,13 @@
     </p>
   </section>
 
-    <!-- Navegación por secciones -->
-  <nav class="mb-8">
-    <div class="flex flex-wrap gap-2 justify-center">
-      @for (section of sections; track section.id) {
-      <button 
-        (click)="scrollToSection(section.id)"
-        class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
-        [class.bg-red-100]="activeSection === section.id"
-        [class.text-red-700]="activeSection === section.id">
-        {{ section.title }}
-      </button>
-      }
-    </div>
-  </nav>
-
+  <!-- Navegación por secciones -->
+  <app-section-buttons
+    [sections]="sections"
+    [activeSection]="activeSection"
+    [activeColor]="'bg-green-600'"
+    (sectionClick)="scrollToSection($event)">
+  </app-section-buttons>
 
   <!-- Sección 1: Introducción -->
   <section id="intro" class="mb-16">

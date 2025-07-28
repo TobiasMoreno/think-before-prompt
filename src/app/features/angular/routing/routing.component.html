@@ -12,11 +12,19 @@
     <!-- Navigation -->
     <app-section-navigation
       [sections]="sections"
-      [activeColor]="'bg-red-600'"
+      [activeColor]="'bg-green-600'"
       [hoverColor]="'hover:bg-gray-300'"
       (sectionClick)="onSectionClick($event)"
       (sectionChange)="onSectionChange($event)">
     </app-section-navigation>
+
+    <!-- Navegación por secciones -->
+    <app-section-buttons
+      [sections]="sections"
+      [activeSection]="activeSection"
+      [activeColor]="'bg-green-600'"
+      (sectionClick)="scrollToSection($event)">
+    </app-section-buttons>
 
     <!-- Content Sections -->
     <div class="mt-12 space-y-16">

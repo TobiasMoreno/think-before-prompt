@@ -18,19 +18,12 @@
   </section>
 
     <!-- Navegación por secciones -->
-    <nav class="mb-8">
-      <div class="flex flex-wrap gap-2 justify-center">
-        @for (section of sections; track section.id) {
-        <button 
-          (click)="scrollToSection(section.id)"
-          class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors"
-          [class.bg-green-100]="activeSection === section.id"
-          [class.text-green-700]="activeSection === section.id">
-          {{ section.title }}
-        </button>
-        }
-      </div>
-    </nav>
+    <app-section-buttons
+      [sections]="sections"
+      [activeSection]="activeSection"
+      [activeColor]="'bg-red-600'"
+      (sectionClick)="scrollToSection($event)">
+    </app-section-buttons>
 
   <!-- Sección 1: Introducción -->
   <section id="intro" class="mb-16">

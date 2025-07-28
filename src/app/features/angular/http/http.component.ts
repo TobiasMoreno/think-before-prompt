@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
+import { SectionButtonsComponent } from '../../../ui/section-buttons/section-buttons.component';
 
 @Component({
   selector: 'app-http',
-  imports: [ SectionNavigationComponent],
+  imports: [ SectionNavigationComponent, SectionButtonsComponent],
   templateUrl: './http.component.html',
 })
 export class HttpComponent {
