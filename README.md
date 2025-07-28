@@ -16,7 +16,9 @@ El proyecto nace de la necesidad de crear una experiencia de aprendizaje integra
 
 ### 📚 Contenido Educativo
 
-El proyecto está organizado en **5 etapas de aprendizaje** más una sección bonus:
+El proyecto está organizado en **dos áreas principales de aprendizaje**:
+
+## 🤖 **Área 1: Inteligencia Artificial (5 Etapas)**
 
 #### 🟦 **Etapa 1: ¿Qué es la Inteligencia Artificial?**
 - Conceptos fundamentales de IA
@@ -50,12 +52,62 @@ El proyecto está organizado en **5 etapas de aprendizaje** más una sección bo
 
 #### 📦 **Bonus: Herramientas Recomendadas**
 - ChatGPT, Cursor, Claude, Gemini, PoWe
-- Comparativas y cWasos de uso específicos
+- Comparativas y casos de uso específicos
+
+## ⚡ **Área 2: Angular 20 (8 Módulos)**
+
+#### 🔵 **Módulo 1: Fundamentos de Angular 20**
+- Standalone components y arquitectura moderna
+- Diferencias con versiones anteriores
+- Configuración inicial del proyecto
+- Herramientas de desarrollo
+
+#### 🟢 **Módulo 2: Componentes**
+- Creación y estructura de componentes
+- Lifecycle hooks y métodos
+- Encapsulación y estilos
+- Componentes reutilizables
+
+#### 🟡 **Módulo 3: Inputs y Outputs**
+- Comunicación entre componentes
+- Property binding y event binding
+- Decoradores @Input y @Output
+- Patrones de comunicación
+
+#### 🟠 **Módulo 4: Servicios**
+- Inyección de dependencias
+- Servicios singleton y compartidos
+- HTTP Client y APIs
+- Manejo de estado
+
+#### 🟣 **Módulo 5: Routing**
+- Configuración de rutas
+- Lazy loading y code splitting
+- Guards y resolvers
+- Navegación programática
+
+#### 🔴 **Módulo 6: Forms**
+- Template-driven forms
+- Reactive forms
+- Validación de formularios
+- Manejo de errores
+
+#### 🟤 **Módulo 7: HTTP Client**
+- Consumo de APIs REST
+- Interceptors y headers
+- Manejo de errores HTTP
+- Optimización de requests
+
+#### ⚫ **Módulo 8: Historia y Evolución**
+- Evolución de Angular desde v1
+- Cambios principales por versión
+- Mejores prácticas actuales
+- Roadmap futuro
 
 ## 🛠️ Tecnologías Utilizadas
 
 ### Frontend
-- **Angular 20**: Framework principal con capacidades de IA integradas
+- **Angular 19**: Framework principal con capacidades de IA integradas
 - **TypeScript**: Lenguaje de programación
 - **Tailwind CSS**: Framework de estilos
 - **Angular CLI**: Herramientas de desarrollo
@@ -81,6 +133,13 @@ El proyecto está organizado en **5 etapas de aprendizaje** más una sección bo
 - **Herramientas de IA**: Catálogo con características y capacidades
 - **LLMs y Angular 20**: Ejemplos de implementación práctica
 - **Casos de uso**: Aplicaciones reales en desarrollo web
+
+### ⚡ **Aprendizaje de Angular 16**
+- **Fundamentos modernos**: Standalone components y arquitectura actual
+- **Componentes interactivos**: Ejemplos prácticos y código real
+- **Servicios y HTTP**: Consumo de APIs y manejo de estado
+- **Routing avanzado**: Lazy loading y navegación dinámica
+- **Forms reactivos**: Validación y manejo de formularios
 
 ### 📊 **Contenido Educativo**
 - **Roadmap interactivo**: Progreso visual del aprendizaje
@@ -110,21 +169,30 @@ src/app/
 │   ├── footer/             # Pie de página
 │   └── layout/             # Layout principal
 ├── features/               # Funcionalidades principales
-│   ├── home/              # Página de inicio
-│   ├── advantages/        # Ventajas de la IA
-│   ├── prompt-engineering/ # Prompt Engineering
-│   ├── tools/             # Herramientas de IA
-│   ├── llms/              # LLMs y Angular 20
-│   ├── web-dev-cases/     # Casos de uso en desarrollo
-│   ├── good-practices/    # Buenas prácticas
-│   ├── bad-practices/     # Malas prácticas
-│   ├── generative-ai/     # IA Generativa
-│   ├── about-project/     # Sobre el proyecto
-│   ├── comparative-cards/ # Tarjetas comparativas
-│   ├── mcps/             # MCPs (futuro)
-│   └── rgas/             # RGAs (futuro)
+│   ├── ia/                # Sección de Inteligencia Artificial
+│   │   ├── home/          # Página de inicio IA
+│   │   ├── advantages/    # Ventajas de la IA
+│   │   ├── prompt-engineering/ # Prompt Engineering
+│   │   ├── tools/         # Herramientas de IA
+│   │   ├── llms/          # LLMs y Angular 20
+│   │   ├── web-dev-cases/ # Casos de uso en desarrollo
+│   │   ├── good-practices/ # Buenas prácticas
+│   │   ├── bad-practices/ # Malas prácticas
+│   │   ├── generative-ai/ # IA Generativa
+│   │   ├── comparative-cards/ # Tarjetas comparativas
+│   │   ├── mcps/          # MCPs (futuro)
+│   │   └── rgas/          # RGAs (futuro)
+│   ├── angular/           # Sección de Angular 20
+│   │   ├── fundamentals/  # Fundamentos de Angular
+│   │   ├── components/    # Componentes
+│   │   ├── inputs-outputs/ # Inputs y Outputs
+│   │   ├── services/      # Servicios
+│   │   ├── routing/       # Routing
+│   │   ├── forms/         # Forms
+│   │   ├── http/          # HTTP Client
+│   │   └── history/       # Historia de Angular
+│   └── about-project/     # Sobre el proyecto
 └── ui/                    # Componentes de interfaz
-    └── roadmap/           # Roadmap de aprendizaje
 ```
 
 ## 🎯 Público Objetivo
@@ -162,6 +230,8 @@ http://localhost:4200
 ```
 
 ### Navegación
+
+#### 🤖 **Sección de IA**
 1. **Inicio**: Visión general del proyecto
 2. **Ventajas**: Beneficios de la IA en desarrollo
 3. **Prompt Engineering**: Aprender a comunicarse con IA
@@ -169,57 +239,21 @@ http://localhost:4200
 5. **LLMs**: Ejemplos prácticos con Angular 20
 6. **Casos de uso**: Aplicaciones reales
 
-## 🔮 Roadmap Futuro
-
-### Próximas Funcionalidades
-- **MCPs (Model Context Protocol)**: Integración avanzada
-- **RGAs (Rapid Generative Applications)**: Desarrollo rápido
-- **Tests interactivos**: Evaluación del aprendizaje
-- **Progreso personalizado**: Seguimiento individual
-- **Contenido multilingüe**: Soporte para otros idiomas
-
-### Mejoras Técnicas
-- **PWA**: Aplicación web progresiva
-- **Offline**: Funcionamiento sin conexión
-- **Analytics**: Seguimiento de uso
-- **SEO**: Optimización para motores de búsqueda
-
-## 🤝 Contribuciones
-
-### Cómo Contribuir
-1. **Fork** del repositorio
-2. Crear una **rama** para tu feature
-3. Hacer **commit** de tus cambios
-4. Crear un **Pull Request**
-
-### Áreas de Contribución
-- **Contenido**: Mejorar o agregar material educativo
-- **Diseño**: Mejorar la experiencia de usuario
-- **Funcionalidades**: Agregar nuevas características
-- **Documentación**: Mejorar la documentación
-
-## 📄 Licencia
-
-Este proyecto está bajo la licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
-## 👥 Autores
-
-- **Desarrollador Principal**: [Tobias Moreno]
-- **Diseño UX/UI**: [Tobias Moreno]
-- **Contenido Educativo**: Basado en mejores prácticas de IA
+#### ⚡ **Sección de Angular 20**
+1. **Fundamentos**: Introducción a Angular 20 y standalone components
+2. **Componentes**: Creación y estructura de componentes
+3. **Inputs/Outputs**: Comunicación entre componentes
+4. **Servicios**: Inyección de dependencias y HTTP Client
+5. **Routing**: Navegación y lazy loading
+6. **Forms**: Template-driven y reactive forms
+7. **HTTP**: Consumo de APIs REST
+8. **Historia**: Evolución de Angular desde v1
 
 ## 📞 Contacto
 
 - **Email**: [tobiasmoreno.tm.21@gmail.com]
 - **GitHub**: [https://github.com/TobiasMoreno]
 - **LinkedIn**: [https://www.linkedin.com/in/tobiasmoreno/]
-
-## 🙏 Agradecimientos
-
-- **Angular Team**: Por Angular 20 y sus capacidades de IA
-- **OpenAI**: Por ChatGPT y las herramientas de IA
-- **Comunidad Angular**: Por el soporte y feedback
-- **Educadores de IA**: Por inspirar este proyecto educativo
 
 ---
 
@@ -228,3 +262,9 @@ Este proyecto está bajo la licencia MIT. Ver el archivo `LICENSE` para más det
 **"Democratizar el conocimiento de IA y hacer que la tecnología sea accesible para todos los desarrolladores, sin importar su nivel de experiencia."**
 
 Este proyecto busca cerrar la brecha entre la teoría de la IA y su aplicación práctica en el desarrollo de software, proporcionando una experiencia de aprendizaje estructurada, interactiva y actualizada con las últimas tecnologías.
+
+## 👥 Autores
+
+- **Desarrollador Principal**: [Tobias Moreno]
+- **Diseño UX/UI**: [Tobias Moreno]
+- **Contenido Educativo**: Basado en mejores prácticas de IA
