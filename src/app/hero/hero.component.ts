@@ -1,45 +1,47 @@
 import { Component, ElementRef, ViewChildren, QueryList, AfterViewInit, Renderer2 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import * as AOS from 'aos';
 import 'aos/dist/aos.css';
 
 @Component({
   selector: 'app-hero',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.css'],
 })
 export class HeroComponent implements AfterViewInit {
-  slides = [
+  navigationOptions = [
     {
-      title: 'Piensa antes de promptar',
-      text: 'Mejora tus resultados con IA entendiendo el contexto y las mejores prácticas.',
-      button: 'Comenzar',
-      icon: '🚀'
+      title: 'Inteligencia Artificial',
+      subtitle: 'Aprende sobre IA, prompts y mejores prácticas',
+      description: 'Descubre cómo crear prompts efectivos, entender el contexto y evitar malas prácticas al trabajar con inteligencia artificial.',
+      icon: '🤖',
+      route: '/app/ia',
+      color: 'from-purple-500 to-pink-600',
+      hoverColor: 'hover:from-purple-600 hover:to-pink-700'
     },
     {
-      title: 'Descubre el poder del contexto',
-      text: 'Un buen prompt depende de entender el problema y el objetivo.',
-      button: 'Aprender más',
-      icon: '💡'
-    },
-    {
-      title: 'Evita malas prácticas',
-      text: 'Conoce los errores comunes y cómo evitarlos al interactuar con IA.',
-      button: 'Ver ejemplos',
-      icon: '⚡'
-    },
+      title: 'Angular',
+      subtitle: 'Domina el framework de Google',
+      description: 'Aprende los fundamentos, componentes, servicios, routing y todas las características avanzadas de Angular para crear aplicaciones web modernas.',
+      icon: '⚡',
+      route: '/app/angular/fundamentals',
+      color: 'bg-gradient-to-r from-blue-600 to-purple-600',
+      hoverColor: 'hover:from-blue-700 hover:to-purple-700'
+    }
   ];
-  visibleSlides: boolean[] = [false, false, false];
 
   @ViewChildren('slideSection', { read: ElementRef }) slideSections!: QueryList<ElementRef>;
   private observer!: IntersectionObserver;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private router: Router) {}
 
   ngOnInit() {
     AOS.init();
+  }
+
+  navigateTo(route: string): void {
+    this.router.navigate([route]);
   }
 
   ngAfterViewInit() {

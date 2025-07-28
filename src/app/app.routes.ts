@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  { path: '', loadComponent: () => import('./hero/hero.component').then(m => m.HeroComponent) },
   {
-    path: '',
+    path: 'app',
     loadComponent: () => import('./core/layout/layout.component').then(m => m.LayoutComponent),
     children: [
       { path: '', loadComponent: () => import('./features/ia/home/home.component').then(m => m.HomeComponent) },
@@ -33,7 +34,6 @@ export const routes: Routes = [
       { path: 'about-the-project', loadComponent: () => import('./features/about-project/about-project.component').then(m => m.AboutProjectComponent) },
     ]
   },
-  { path: 'hero', loadComponent: () => import('./features/ia/hero/hero.component').then(m => m.HeroComponent) },
 
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

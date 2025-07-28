@@ -32,49 +32,49 @@ export class SidebarComponent {
       items: [
         {
           label: '¿Qué es la IA?',
-          path: '/ia/what-is-ia',
+          path: '/app/ia/what-is-ia',
           icon: '🧠',
           expanded: false
         },
         {
           label: 'Ventajas',
-          path: '/ia/advantages',
+          path: '/app/ia/advantages',
           icon: '✅',
           expanded: false
         },
         {
           label: 'Prompt Engineering',
-          path: '/ia/prompt-engineering',
+          path: '/app/ia/prompt-engineering',
           icon: '📝',
           expanded: false
         },
         {
           label: 'Herramientas',
-          path: '/ia/tools',
+          path: '/app/ia/tools',
           icon: '🛠️',
           expanded: false
         },
         {
           label: 'LLMs',
-          path: '/ia/llms',
+          path: '/app/ia/llms',
           icon: '🤖',
           expanded: false
         },
         {
           label: 'MCPs',
-          path: '/ia/mcps',
+          path: '/app/ia/mcps',
           icon: '🎯',
           expanded: false
         },
         {
           label: 'IA en Desarrollo Web',
-          path: '/ia/ia-web',
+          path: '/app/ia/ia-web',
           icon: '🌐',
           expanded: false
         },
         {
           label: 'Casos de Uso',
-          path: '/ia/comparative-ia',
+          path: '/app/ia/comparative-ia',
           icon: '📊',
           expanded: false
         }
@@ -86,49 +86,49 @@ export class SidebarComponent {
       items: [
         {
           label: 'Historia de Angular',
-          path: '/angular/history',
+          path: '/app/angular/history',
           icon: '📜',
           expanded: false
         },
         {
           label: 'Fundamentos',
-          path: '/angular/fundamentals',
+          path: '/app/angular/fundamentals',
           icon: '📚',
           expanded: false
         },
         {
           label: 'Componentes',
-          path: '/angular/components',
+          path: '/app/angular/components',
           icon: '🧩',
           expanded: false
         },
         {
           label: 'Servicios',
-          path: '/angular/services',
+          path: '/app/angular/services',
           icon: '⚙️',
           expanded: false
         },
         {
           label: 'Routing',
-          path: '/angular/routing',
+          path: '/app/angular/routing',
           icon: '🛣️',
           expanded: false
         },
         {
           label: 'Formularios',
-          path: '/angular/forms',
+          path: '/app/angular/forms',
           icon: '📋',
           expanded: false
         },
         {
           label: 'HTTP Client',
-          path: '/angular/http-client',
+          path: '/app/angular/http-client',
           icon: '🌐',
           expanded: false
         },
         {
           label: 'Inputs y Outputs',
-          path: '/angular/inputs-outputs',
+          path: '/app/angular/inputs-outputs',
           icon: '📝',
           expanded: false
         }
