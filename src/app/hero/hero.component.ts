@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChildren, QueryList, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, ViewChildren, QueryList, AfterViewInit, Renderer2, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import * as AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -25,7 +25,7 @@ export class HeroComponent implements AfterViewInit {
       subtitle: 'Domina el framework de Google',
       description: 'Aprende los fundamentos, componentes, servicios, routing y todas las características avanzadas de Angular para crear aplicaciones web modernas.',
       icon: '⚡',
-      route: '/app/angular/fundamentals',
+      route: '/app/angular/history',
       color: 'bg-gradient-to-r from-blue-600 to-purple-600',
       hoverColor: 'hover:from-blue-700 hover:to-purple-700'
     }
@@ -34,7 +34,8 @@ export class HeroComponent implements AfterViewInit {
   @ViewChildren('slideSection', { read: ElementRef }) slideSections!: QueryList<ElementRef>;
   private observer!: IntersectionObserver;
 
-  constructor(private renderer: Renderer2, private router: Router) {}
+  renderer = inject(Renderer2);
+  router = inject(Router);
 
   ngOnInit() {
     AOS.init();
