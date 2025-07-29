@@ -19,7 +19,7 @@ export interface BreadcrumbItem {
               <span class="text-blue-600 font-medium">{{ item.label }}</span>
             } @else {
               @if (item.path) {
-                <a [routerLink]="item.path" class="hover:text-blue-600">{{ item.label }}</a>
+                <a [routerLink]="'/app/ia/'+item.path" class="hover:text-blue-600">{{ item.label }}</a>
               } @else {
                 <span>{{ item.label }}</span>
               }

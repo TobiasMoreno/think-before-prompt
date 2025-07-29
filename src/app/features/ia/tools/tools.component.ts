@@ -23,8 +23,8 @@ export interface Tool {
 export class ToolsComponent {
   breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', path: '/' },
-    { label: '¿Qué es la IA?', path: '/que-es-ia' },
-    { label: 'Prompt Engineering', path: '/prompt-engineering' },
+    { label: '¿Qué es la IA?', path: 'what-is-ia' },
+    { label: 'Prompt Engineering', path: 'prompt-engineering' },
     { label: 'Herramientas' }
   ];
 
