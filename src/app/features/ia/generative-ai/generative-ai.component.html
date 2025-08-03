@@ -1,73 +1,210 @@
-<section class="max-w-3xl mx-auto p-6">
+<div class="max-w-7xl mx-auto px-4 py-8">
   <!-- Indicador de progreso -->
   <app-progress-bar [currentStep]="1"/>
 
   <!-- Breadcrumb -->
   <app-breadcrumb [items]="breadcrumbItems"/>
 
-  <h2 class="text-3xl font-bold mb-4 text-blue-800">¿Qué es la IA generativa?</h2>
-  <p class="mb-4 text-lg">
-    La <strong>Inteligencia Artificial Generativa</strong> es una rama de la IA capaz de crear contenido nuevo y original, como texto, imágenes, música o código, a partir de datos existentes. Utiliza modelos avanzados, como redes neuronales profundas, para aprender patrones y generar resultados que imitan la creatividad humana.
-  </p>
-  
-  <h3 class="text-2xl font-semibold mt-6 mb-2 text-blue-700">Historia y evolución</h3>
-  <ul class="list-disc pl-6 mb-4">
-    <li><strong>1950s-1980s:</strong> Primeros algoritmos de IA, reglas y lógica simbólica.</li>
-    <li><strong>2014:</strong> Nacen las <span class="font-semibold">Redes Generativas Adversariales (GANs)</span>, revolucionando la generación de imágenes y audio.</li>
-    <li><strong>2018-2020:</strong> Modelos de lenguaje como <span class="font-semibold">GPT</span> y <span class="font-semibold">BERT</span> permiten generar texto coherente y creativo.</li>
-    <li><strong>2022-2023:</strong> Modelos multimodales (texto, imagen, audio) y herramientas como <span class="font-semibold">DALL-E</span>, <span class="font-semibold">Stable Diffusion</span> y <span class="font-semibold">ChatGPT</span> popularizan la IA generativa.</li>
-  </ul>
-  
-  <h3 class="text-2xl font-semibold mt-6 mb-2 text-blue-700">Tipos de IA generativa</h3>
-  <ul class="list-disc pl-6 mb-4">
-    <li><strong>Modelos de texto:</strong> GPT, LLaMA, PaLM, Claude.</li>
-    <li><strong>Modelos de imagen:</strong> DALL-E, Stable Diffusion, Midjourney.</li>
-    <li><strong>Modelos de audio/música:</strong> Jukebox, MusicLM.</li>
-    <li><strong>Modelos de video:</strong> Imagen Video, Make-A-Video.</li>
-  </ul>
-  
-  <h3 class="text-2xl font-semibold mt-6 mb-2 text-blue-700">Ejemplos visuales</h3>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div class="bg-blue-50 p-4 rounded shadow">
-      <h4 class="font-bold mb-2 text-black">Texto generado</h4>
-      <p class="italic text-black">"En un futuro cercano, la IA colaborará con los humanos para resolver problemas complejos y crear nuevas formas de arte."</p>
+  <!-- Header -->
+  <section class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-white mb-4">🤖 ¿Qué es la Inteligencia Artificial?</h1>
+    <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+      Explora los fundamentos de la IA y descubre cómo la IA Generativa está transformando el mundo
+    </p>
+  </section>
+
+  <!-- Introducción a la IA -->
+  <section class="mb-12 bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-8 border border-gray-700">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">🔍 ¿Qué es la Inteligencia Artificial?</h2>
+    <p class="mb-6 text-lg text-gray-300">
+      La <strong>Inteligencia Artificial (IA)</strong> es la simulación de procesos de inteligencia humana en máquinas, especialmente en sistemas informáticos. Estos procesos incluyen el aprendizaje (adquisición de información y reglas para usarla), el razonamiento (usar reglas para llegar a conclusiones aproximadas o definitivas) y la autocorrección.
+    </p>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="bg-gray-700 p-6 rounded-lg shadow border border-gray-600">
+        <h3 class="text-xl font-semibold text-white mb-3">Características principales</h3>
+        <ul class="text-gray-300 space-y-2">
+          <li><strong>Aprendizaje:</strong> Capacidad de mejorar con la experiencia</li>
+          <li><strong>Razonamiento:</strong> Procesamiento lógico de información</li>
+          <li><strong>Resolución de problemas:</strong> Encontrar soluciones a tareas complejas</li>
+          <li><strong>Percepción:</strong> Interpretar datos del entorno (texto, imágenes, audio)</li>
+          <li><strong>Adaptación:</strong> Ajustarse a nuevas situaciones</li>
+        </ul>
+      </div>
+      <div class="bg-gray-700 p-6 rounded-lg shadow border border-gray-600">
+        <h3 class="text-xl font-semibold text-white mb-3">Beneficios de la IA</h3>
+        <ul class="text-gray-300 space-y-2">
+          <li>✅ Automatización de tareas repetitivas</li>
+          <li>✅ Análisis de grandes volúmenes de datos</li>
+          <li>✅ Mejora en la toma de decisiones</li>
+          <li>✅ Personalización de experiencias</li>
+          <li>✅ Innovación en múltiples industrias</li>
+        </ul>
+      </div>
     </div>
-    <div class="bg-blue-50 p-4 rounded shadow">
-      <h4 class="font-bold mb-2 text-black">Imagen generada</h4>
-      <p class="italic text-black">Prompt: "Un robot pintando un cuadro en un museo futurista"</p>
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Ilustración: robot pintando un cuadro en un museo futurista, generada por IA" class="rounded mt-2" role="img" />
+  </section>
+
+  <!-- Tipos de IA -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">📊 Tipos de Inteligencia Artificial</h2>
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 text-white">
+        <h3 class="text-xl font-semibold text-white mb-3">IA Débil (Narrow AI)</h3>
+        <p class="text-gray-400 mb-4">Diseñada para tareas específicas y limitadas.</p>
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-300 mb-2">Ejemplos:</h4>
+          <ul class="text-gray-300 text-sm space-y-1">
+            <li>• Asistentes virtuales (Siri, Alexa)</li>
+            <li>• Sistemas de recomendación</li>
+            <li>• Reconocimiento facial</li>
+            <li>• Traductores automáticos</li>
+          </ul>
+        </div>
+      </div>
+             <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 text-white">
+         <h3 class="text-xl font-semibold text-white mb-3">IA General (AGI)</h3>
+         <p class="text-gray-400 mb-4">Capaz de realizar cualquier tarea intelectual que un humano puede hacer.</p>
+         <div class="bg-gray-700 p-4 rounded-lg">
+           <h4 class="font-semibold text-green-300 mb-2">Características:</h4>
+           <ul class="text-gray-300 text-sm space-y-1">
+             <li>• Inteligencia general</li>
+             <li>• Aprendizaje autónomo</li>
+             <li>• Razonamiento abstracto</li>
+             <li>• Aún en desarrollo teórico</li>
+           </ul>
+         </div>
+       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- IA Generativa -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">🎨 ¿Qué es la IA Generativa?</h2>
+    <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-8 border border-gray-700">
+      <p class="mb-6 text-lg text-gray-300">
+        La <strong>Inteligencia Artificial Generativa</strong> es una rama especializada de la IA que se enfoca en crear contenido nuevo y original. A diferencia de la IA tradicional que analiza y clasifica datos, la IA generativa puede producir texto, imágenes, música, código y otros tipos de contenido que no existían previamente.
+      </p>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="bg-gray-700 p-6 rounded-lg border border-gray-600">
+          <h3 class="text-xl font-semibold text-white mb-3">¿Cómo funciona?</h3>
+          <ol class="text-gray-300 space-y-2">
+            <li><strong>Entrenamiento:</strong> El modelo aprende patrones de grandes cantidades de datos</li>
+            <li><strong>Comprensión:</strong> Identifica estructuras y relaciones en los datos</li>
+            <li><strong>Generación:</strong> Crea nuevo contenido basado en los patrones aprendidos</li>
+            <li><strong>Refinamiento:</strong> Mejora la calidad del contenido generado</li>
+          </ol>
+        </div>
+        <div class="bg-gray-700 p-6 rounded-lg border border-gray-600">
+          <h3 class="text-xl font-semibold text-white mb-3">Aplicaciones</h3>
+          <ul class="text-gray-300 space-y-2">
+            <li>• Generación de texto y contenido</li>
+            <li>• Creación de imágenes y arte</li>
+            <li>• Composición musical</li>
+            <li>• Desarrollo de código</li>
+            <li>• Diseño de productos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
   
-  <h3 class="text-xl font-semibold mt-8 mb-2 text-blue-700">¿Por qué es importante?</h3>
-  <p class="mb-4 text-lg">
-    La IA generativa está transformando industrias como el arte, la educación, la medicina y el desarrollo de software, permitiendo automatizar tareas creativas y abrir nuevas posibilidades para la innovación.
-  </p>
+  <!-- Historia y evolución -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">📈 Historia y evolución</h2>
+    <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 text-white">
+      <div class="grid gap-4 md:grid-cols-2">
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-3">Evolución histórica</h3>
+          <ul class="text-gray-300 space-y-2">
+            <li><strong>1950s-1980s:</strong> Primeros algoritmos de IA, reglas y lógica simbólica.</li>
+            <li><strong>2014:</strong> Nacen las <span class="font-semibold text-blue-300">Redes Generativas Adversariales (GANs)</span>.</li>
+            <li><strong>2018-2020:</strong> Modelos de lenguaje como <span class="font-semibold text-green-300">GPT</span> y <span class="font-semibold text-green-300">BERT</span>.</li>
+            <li><strong>2022-2023:</strong> Modelos multimodales y herramientas como <span class="font-semibold text-purple-300">DALL-E</span>, <span class="font-semibold text-purple-300">Stable Diffusion</span> y <span class="font-semibold text-purple-300">ChatGPT</span>.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-3">Tipos de IA generativa</h3>
+          <ul class="text-gray-300 space-y-2">
+            <li><strong>Modelos de texto:</strong> GPT, LLaMA, PaLM, Claude.</li>
+            <li><strong>Modelos de imagen:</strong> DALL-E, Stable Diffusion, Midjourney.</li>
+            <li><strong>Modelos de audio/música:</strong> Jukebox, MusicLM.</li>
+            <li><strong>Modelos de video:</strong> Imagen Video, Make-A-Video.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Ejemplos visuales -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">💡 Ejemplos visuales</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 text-white">
+        <h3 class="text-xl font-semibold text-white mb-4">Texto generado</h3>
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <p class="italic text-gray-300">"En un futuro cercano, la IA colaborará con los humanos para resolver problemas complejos y crear nuevas formas de arte."</p>
+        </div>
+      </div>
+      <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 text-white">
+        <h3 class="text-xl font-semibold text-white mb-4">Imagen generada</h3>
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <p class="italic text-gray-300 mb-3">Prompt: "Un robot pintando un cuadro en un museo futurista"</p>
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Ilustración: robot pintando un cuadro en un museo futurista, generada por IA" class="rounded w-full" role="img" />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Importancia -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">🎯 ¿Por qué es importante?</h2>
+    <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-8 border border-gray-700">
+      <p class="mb-6 text-lg text-gray-300">
+        La IA generativa está transformando industrias como el arte, la educación, la medicina y el desarrollo de software, permitiendo automatizar tareas creativas y abrir nuevas posibilidades para la innovación. Sin embargo, es importante recordar que es una herramienta que complementa la creatividad humana, no la reemplaza.
+      </p>
+      
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <h4 class="font-semibold text-blue-300 mb-2">🚀 Innovación</h4>
+          <p class="text-gray-300 text-sm">Acelera el proceso de creación y desarrollo de nuevas ideas y productos.</p>
+        </div>
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <h4 class="font-semibold text-green-300 mb-2">💼 Productividad</h4>
+          <p class="text-gray-300 text-sm">Automatiza tareas repetitivas y libera tiempo para trabajos más creativos.</p>
+        </div>
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <h4 class="font-semibold text-purple-300 mb-2">🎨 Creatividad</h4>
+          <p class="text-gray-300 text-sm">Amplifica las capacidades creativas humanas con nuevas herramientas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Navegación entre secciones -->
-  <div class="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6">
-    <h3 class="text-xl font-bold text-gray-900 mb-4">🚀 ¿Qué sigue en tu aprendizaje?</h3>
-    <div class="grid gap-4 md:grid-cols-2">
-      <div class="bg-white rounded-lg p-4 shadow">
-        <h4 class="font-semibold text-gray-900 mb-2">📝 Prompt Engineering</h4>
-        <p class="text-sm text-gray-600 mb-3">Aprende a escribir mejores instrucciones para obtener respuestas más útiles de la IA.</p>
+  <section class="mt-12 bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-8 border border-gray-700">
+    <h3 class="text-xl font-bold text-white mb-6 text-center">🚀 ¿Qué sigue en tu aprendizaje?</h3>
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="bg-gray-700 rounded-lg p-6 shadow border border-gray-600">
+        <h4 class="font-semibold text-white mb-3">📝 Prompt Engineering</h4>
+        <p class="text-gray-300 mb-4">Aprende a escribir mejores instrucciones para obtener respuestas más útiles de la IA.</p>
         <a routerLink="prompt-engineering" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
           Continuar →
         </a>
       </div>
-      <div class="bg-white rounded-lg p-4 shadow">
-        <h4 class="font-semibold text-gray-900 mb-2">🛠️ Herramientas de IA</h4>
-        <p class="text-sm text-gray-600 mb-3">Descubre las mejores herramientas para potenciar tu trabajo con IA.</p>
+      <div class="bg-gray-700 rounded-lg p-6 shadow border border-gray-600">
+        <h4 class="font-semibold text-white mb-3">🛠️ Herramientas de IA</h4>
+        <p class="text-gray-300 mb-4">Descubre las mejores herramientas para potenciar tu trabajo con IA.</p>
         <a routerLink="tools" class="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
           Explorar →
         </a>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Botones de navegación -->
   <div class="flex justify-between mt-8">
-    <a routerLink="/" class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
+    <a routerLink="/" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
       <span>←</span>
       <span>Volver al inicio</span>
     </a>
@@ -76,4 +213,4 @@
       <span>→</span>
     </a>
   </div>
-</section> 
+</div> 
