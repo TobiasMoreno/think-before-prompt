@@ -1,13 +1,15 @@
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 export interface ProgressStep {
   label: string;
   completed?: boolean;
+  routerLink?: string;
 }
 
 @Component({
   selector: 'app-progress-bar',
-  imports: [],
+  imports: [RouterLink],
   template: `
     <div class="mb-8">
       <div class="flex items-center justify-between mb-4">
@@ -19,7 +21,7 @@ export interface ProgressStep {
       </div>
       <div class="flex justify-between text-xs text-gray-500 mt-2">
         @for (step of steps(); track step.label) {
-          <span>{{ step.label }}</span>
+          <a routerLink="/app/ia{{ step.routerLink }}">{{ step.label }}</a>
         }
       </div>
     </div>
@@ -28,15 +30,15 @@ export interface ProgressStep {
 })
 export class ProgressBarComponent {
   currentStep = input<number>(1);
-  totalSteps = input<number>(7);
+  totalSteps = input<number>(8);
   steps = input<ProgressStep[]>([
-    { label: 'Inicio' },
-    { label: '¿Qué es la IA?' },
-    { label: 'Prompt Engineering' },
-    { label: 'Herramientas' },
-    { label: 'LLMs' },
-    { label: 'MCPs' },
-    { label: 'Casos de uso' }
+    { label: 'Inicio', routerLink: '/' },
+    { label: '¿Qué es la IA?', routerLink: '/what-is-ia' },
+    { label: 'Delimitadores', routerLink: '/delimiters' },
+    { label: 'Prompt Engineering', routerLink: '/prompt-engineering' },
+    { label: 'Herramientas', routerLink: '/tools' },
+    { label: 'LLMs', routerLink: '/llms' },
+    { label: 'MCPs', routerLink: '/mcps' },
   ]);
 
   get progressPercentage(): number {

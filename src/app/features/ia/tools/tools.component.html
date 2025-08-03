@@ -1,6 +1,6 @@
 <div class="max-w-7xl mx-auto px-4 py-8">
   <!-- Indicador de progreso -->
-  <app-progress-bar [currentStep]="3" [totalSteps]="7"></app-progress-bar>
+  <app-progress-bar [currentStep]="6"></app-progress-bar>
 
   <!-- Breadcrumb -->
   <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
@@ -10,8 +10,7 @@
     [sections]="sections"
     [activeColor]="'bg-green-600'"
     [hoverColor]="'hover:bg-gray-300'"
-    (sectionClick)="onSectionClick($event)"
-    (sectionChange)="onSectionChange($event)">
+    (sectionClick)="onSectionClick($event)">
   </app-section-navigation>
 
   <!-- Header -->

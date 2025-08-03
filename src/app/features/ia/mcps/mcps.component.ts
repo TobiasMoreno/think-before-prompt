@@ -1,18 +1,6 @@
 import { Component } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { ProgressBarComponent } from '../../../ui/progress-bar/progress-bar.component';
 import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/breadcrumb.component';
-
-export interface LearningStep {
-  id: number;
-  title: string;
-  description: string;
-  action: string;
-  estimatedTime: string;
-  icon: string;
-  status: 'completed' | 'current' | 'pending';
-}
 
 export interface MCPTechnique {
   name: string;
@@ -23,100 +11,34 @@ export interface MCPTechnique {
   benefits: string[];
 }
 
-export interface MCPExample {
+export interface RealUseCase {
   title: string;
-  category: string;
+  scenario: string;
+  problem: string;
+  solution: string;
   prompt: string;
-  response: string;
-  explanation: string;
+  category: string;
+  benefits: string[];
 }
 
 @Component({
   selector: 'app-mcps',
-  imports: [DecimalPipe, RouterLink, ProgressBarComponent, BreadcrumbComponent],
+  imports: [ProgressBarComponent, BreadcrumbComponent],
   templateUrl: './mcps.component.html',
   styleUrl: './mcps.component.css'
 })
 export class McpsComponent {
   breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', path: '/' },
-    { label: '¿Qué es la IA?', path: '/que-es-ia' },
+    { label: '¿Qué es la IA?', path: '/what-is-ia' },
+    { label: 'Delimitadores', path: '/delimiters' },
     { label: 'Prompt Engineering', path: '/prompt-engineering' },
-    { label: 'Herramientas', path: '/herramientas' },
+    { label: 'Herramientas', path: '/tools' },
     { label: 'LLMs y Angular 20', path: '/llms' },
     { label: 'MCPs' }
   ];
 
-  currentStep = 1;
-  totalSteps = 6;
-  showProgress = false;
-
-  get progressPercentage(): number {
-    return (this.currentStep / this.totalSteps) * 100;
-  }
-
-  get currentLearningStep(): LearningStep {
-    return this.learningSteps.find(step => step.id === this.currentStep) || this.learningSteps[0];
-  }
-
-  learningSteps: LearningStep[] = [
-    {
-      id: 1,
-      title: 'Introducción a MCPs',
-      description: 'Entiende qué son y por qué son importantes',
-      action: 'Leer y comprender',
-      estimatedTime: '10 min',
-      icon: '🎯',
-      status: 'completed'
-    },
-    {
-      id: 2,
-      title: 'Prompt Engineering',
-      description: 'Fundamentos de escritura de prompts efectivos',
-      action: 'Practicar prompts',
-      estimatedTime: '15 min',
-      icon: '✍️',
-      status: 'completed'
-    },
-    {
-      id: 3,
-      title: 'Técnicas de Control',
-      description: 'Aprende técnicas específicas de MCPs',
-      action: 'Experimentar técnicas',
-      estimatedTime: '20 min',
-      icon: '🎛️',
-      status: 'current'
-    },
-    {
-      id: 4,
-      title: 'Ejemplos Prácticos',
-      description: 'Ve ejemplos reales de MCPs en acción',
-      action: 'Analizar ejemplos',
-      estimatedTime: '15 min',
-      icon: '💡',
-      status: 'pending'
-    },
-    {
-      id: 5,
-      title: 'Casos de Uso',
-      description: 'Aplica MCPs a situaciones reales',
-      action: 'Resolver casos',
-      estimatedTime: '25 min',
-      icon: '🚀',
-      status: 'pending'
-    },
-    {
-      id: 6,
-      title: 'Mejores Prácticas',
-      description: 'Consolida tu conocimiento con mejores prácticas',
-      action: 'Revisar y practicar',
-      estimatedTime: '15 min',
-      icon: '✅',
-      status: 'pending'
-    }
-  ];
-
-  availableTechniques: MCPTechnique[] = [
+  mcpTechniques: MCPTechnique[] = [
     {
       name: 'Few-Shot Learning',
       description: 'Proporciona ejemplos específicos para guiar la respuesta del modelo',
@@ -191,10 +113,12 @@ export class McpsComponent {
     }
   ];
 
-  availableExamples: MCPExample[] = [
+  realUseCases: RealUseCase[] = [
     {
       title: 'Generación de Código Seguro',
-      category: 'Desarrollo',
+      scenario: 'Necesitas generar código JavaScript que valide entradas de usuario',
+      problem: 'El modelo genera código vulnerable o no sigue las mejores prácticas de seguridad',
+      solution: 'Usar role prompting con especificaciones de seguridad y formato de salida',
       prompt: `Actúa como un desarrollador senior experto en seguridad. 
 Genera una función en JavaScript que valide un email, siguiendo estas reglas:
 - Debe contener @ y un dominio válido
@@ -203,23 +127,19 @@ Genera una función en JavaScript que valide un email, siguiendo estas reglas:
 - Incluye comentarios explicativos
 
 Responde solo con el código, sin explicaciones adicionales.`,
-      response: `function validateEmail(email) {
-  // Verificar que contenga @
-  if (!email.includes('@')) return false;
-  
-  // Verificar que no contenga caracteres peligrosos
-  const dangerousChars = /[<>\"'&]/;
-  if (dangerousChars.test(email)) return false;
-  
-  // Verificar formato básico de email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}`,
-      explanation: 'El prompt usa role prompting (desarrollador senior), especifica reglas claras, pide formato específico (solo código) y establece criterios de seguridad.'
+      category: 'Desarrollo',
+      benefits: [
+        'Código más seguro y robusto',
+        'Sigue mejores prácticas de seguridad',
+        'Formato consistente para integración',
+        'Reducción de vulnerabilidades'
+      ]
     },
     {
-      title: 'Análisis de Sentimientos',
-      category: 'Análisis',
+      title: 'Análisis de Datos Estructurado',
+      scenario: 'Necesitas analizar sentimientos de texto de manera consistente',
+      problem: 'Las respuestas son inconsistentes y difíciles de procesar programáticamente',
+      solution: 'Usar output formatting específico con few-shot learning',
       prompt: `Analiza el sentimiento del siguiente texto. 
 Responde en formato JSON con estos campos:
 - sentimiento: "positivo", "negativo" o "neutral"
@@ -227,16 +147,19 @@ Responde en formato JSON con estos campos:
 - palabras_clave: array de palabras que influyen en el sentimiento
 
 Texto: "Este producto es increíble, me encanta cómo funciona aunque es un poco caro."`,
-      response: `{
-  "sentimiento": "positivo",
-  "confianza": 0.85,
-  "palabras_clave": ["increíble", "encanta", "caro"]
-}`,
-      explanation: 'Usa output formatting específico (JSON), few-shot learning implícito con la estructura, y especifica campos exactos para la respuesta.'
+      category: 'Análisis',
+      benefits: [
+        'Formato consistente para procesamiento',
+        'Datos estructurados fáciles de usar',
+        'Análisis más preciso y confiable',
+        'Integración directa con APIs'
+      ]
     },
     {
-      title: 'Resolución de Problemas',
-      category: 'Lógica',
+      title: 'Resolución de Problemas Complejos',
+      scenario: 'Debes resolver un problema matemático o lógico complejo',
+      problem: 'El modelo da respuestas incorrectas sin mostrar el proceso de razonamiento',
+      solution: 'Usar chain of thought con formato de salida específico',
       prompt: `Resuelve este problema paso a paso:
 
 Problema: Un cliente tiene 3 productos en su carrito. El primero cuesta $10, el segundo $15, y el tercero $20. Hay un descuento del 10% en compras superiores a $40.
@@ -247,57 +170,37 @@ Paso 3: Calcula el precio final
 Paso 4: Proporciona la respuesta final
 
 Responde solo con números, sin texto adicional.`,
-      response: `Paso 1: 10 + 15 + 20 = 45
-Paso 2: 45 > 40, sí aplica descuento
-Paso 3: 45 * 0.9 = 40.5
-Paso 4: 40.5`,
-      explanation: 'Implementa chain of thought (paso a paso), especifica formato de salida (solo números) y establece criterios claros para cada paso.'
+      category: 'Lógica',
+      benefits: [
+        'Razonamiento paso a paso transparente',
+        'Reducción de errores de cálculo',
+        'Proceso verificable y auditable',
+        'Respuestas más confiables'
+      ]
+    },
+    {
+      title: 'Generación de Contenido Especializado',
+      scenario: 'Necesitas contenido técnico para documentación o blogs',
+      problem: 'El contenido es genérico y no se adapta al nivel técnico del público objetivo',
+      solution: 'Usar role prompting con especificaciones de formato y nivel técnico',
+      prompt: `Actúa como un experto en Angular 20 con 10 años de experiencia.
+
+Escribe una guía paso a paso sobre "Cómo implementar lazy loading en Angular 20" para desarrolladores intermedios.
+
+Formato requerido:
+- Título principal
+- Introducción (2-3 párrafos)
+- Pasos numerados con código de ejemplo
+- Conclusión con mejores prácticas
+
+Incluye ejemplos de código reales y explicaciones claras.`,
+      category: 'Contenido',
+      benefits: [
+        'Contenido adaptado al público objetivo',
+        'Información técnica precisa y actualizada',
+        'Formato consistente y profesional',
+        'Mayor credibilidad y autoridad'
+      ]
     }
   ];
-
-  selectedTechnique: MCPTechnique | null = null;
-  selectedExample: MCPExample | null = null;
-
-  toggleProgress() {
-    this.showProgress = !this.showProgress;
-  }
-
-  goToStep(stepId: number) {
-    this.currentStep = stepId;
-    this.updateStepStatus();
-  }
-
-  nextStep() {
-    if (this.currentStep < this.totalSteps) {
-      this.currentStep++;
-      this.updateStepStatus();
-    }
-  }
-
-  previousStep() {
-    if (this.currentStep > 1) {
-      this.currentStep--;
-      this.updateStepStatus();
-    }
-  }
-
-  updateStepStatus() {
-    this.learningSteps.forEach(step => {
-      if (step.id < this.currentStep) {
-        step.status = 'completed';
-      } else if (step.id === this.currentStep) {
-        step.status = 'current';
-      } else {
-        step.status = 'pending';
-      }
-    });
-  }
-
-  selectTechnique(technique: MCPTechnique) {
-    this.selectedTechnique = technique;
-  }
-
-  selectExample(example: MCPExample) {
-    this.selectedExample = example;
-  }
 }

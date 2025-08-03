@@ -13,6 +13,7 @@ export const routes: Routes = [
       { path: 'ia/what-is-ia', loadComponent: () => import('./features/ia/generative-ai/generative-ai.component').then(m => m.GenerativeAiComponent) },
       { path: 'ia/advantages', loadComponent: () => import('./features/ia/advantages/advantages.component').then(m => m.AdvantagesComponent) },
       { path: 'ia/prompt-engineering', loadComponent: () => import('./features/ia/prompt-engineering/prompt-engineering.component').then(m => m.PromptEngineeringComponent) },
+      { path: 'ia/delimiters', loadComponent: () => import('./features/ia/delimiters/delimiters.component').then(m => m.DelimitersComponent) },
       { path: 'ia/tools', loadComponent: () => import('./features/ia/tools/tools.component').then(m => m.ToolsComponent) },
       { path: 'ia/llms', loadComponent: () => import('./features/ia/llms/llms.component').then(m => m.LLMsComponent) },
       { path: 'ia/ia-web', loadComponent: () => import('./features/ia/web-dev-cases/web-dev-cases.component').then(m => m.WebDevCasesComponent) },

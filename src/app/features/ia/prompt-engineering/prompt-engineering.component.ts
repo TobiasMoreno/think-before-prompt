@@ -38,7 +38,8 @@ export class PromptEngineeringComponent {
 
   breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', path: '/' },
-    { label: '¿Qué es la IA?', path: 'ia/what-is-ia' },
+    { label: '¿Qué es la IA?', path: '/what-is-ia' },
+    { label: 'Delimitadores', path: '/delimiters' },
     { label: 'Prompt Engineering' }
   ];
 
@@ -123,12 +124,7 @@ export class PromptEngineeringComponent {
 
   // Métodos para el componente de navegación
   onSectionClick(sectionId: string) {
-    console.log(`Sección clickeada: ${sectionId}`);
     this.scrollToSection(sectionId);
-  }
-
-  onSectionChange(sectionId: string) {
-    console.log(`Sección cambiada: ${sectionId}`);
   }
 
   scrollToSection(sectionId: string) {

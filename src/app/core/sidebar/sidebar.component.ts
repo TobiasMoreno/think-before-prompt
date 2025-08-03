@@ -49,6 +49,12 @@ export class SidebarComponent {
           expanded: false
         },
         {
+          label: 'Delimitadores',
+          path: '/app/ia/delimiters',
+          icon: '🎯',
+          expanded: false
+        },
+        {
           label: 'Herramientas',
           path: '/app/ia/tools',
           icon: '🛠️',

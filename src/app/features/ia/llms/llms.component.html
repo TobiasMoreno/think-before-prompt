@@ -1,17 +1,16 @@
 <div class="max-w-7xl mx-auto px-4 py-8">
   <!-- Indicador de progreso -->
-  <app-progress-bar [currentStep]="4" [totalSteps]="7"></app-progress-bar>
+  <app-progress-bar [currentStep]="7"/>
 
   <!-- Breadcrumb -->
-  <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+  <app-breadcrumb [items]="breadcrumbItems"/>
 
   <!-- Barra de navegación reutilizable -->
   <app-section-navigation
-    [sections]="sections"
-    [activeColor]="'bg-purple-600'"
-    [hoverColor]="'hover:bg-gray-300'"
-    (sectionClick)="onSectionClick($event)"
-    (sectionChange)="onSectionChange($event)">
+  [sections]="sections"
+  [activeColor]="'bg-purple-600'"
+  [hoverColor]="'hover:bg-gray-300'"
+  (sectionClick)="onSectionClick($event)">
   </app-section-navigation>
 
   <!-- Header principal -->

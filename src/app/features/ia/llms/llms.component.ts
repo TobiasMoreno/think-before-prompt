@@ -49,9 +49,10 @@ export class LLMsComponent {
 
   breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', path: '/' },
-    { label: '¿Qué es la IA?', path: '/que-es-ia' },
+    { label: '¿Qué es la IA?', path: '/what-is-ia' },
+    { label: 'Delimitadores', path: '/delimiters' },
     { label: 'Prompt Engineering', path: '/prompt-engineering' },
-    { label: 'Herramientas', path: '/herramientas' },
+    { label: 'Herramientas', path: '/tools' },
     { label: 'LLMs y Angular 20' }
   ];
 
@@ -386,12 +387,7 @@ describe('ProductCardComponent', () => {
 
   // Métodos para el componente de navegación
   onSectionClick(sectionId: string) {
-    console.log(`Sección clickeada: ${sectionId}`);
     this.scrollToSection(sectionId);
-  }
-
-  onSectionChange(sectionId: string) {
-    console.log(`Sección cambiada: ${sectionId}`);
   }
 
   scrollToSection(sectionId: string) {
