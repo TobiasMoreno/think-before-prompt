@@ -3,6 +3,7 @@ import { ProgressBarComponent } from '../../../ui/progress-bar/progress-bar.comp
 import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/breadcrumb.component';
 import { FormsModule } from '@angular/forms';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
+import { IaHeadersComponent } from '../../../ui/ia-headers/ia-headers.component';
 
 export interface PromptExample {
   title: string;
@@ -22,7 +23,7 @@ export interface PromptTemplate {
 @Component({
   selector: 'app-prompt-engineering',
   standalone: true,
-  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, SectionNavigationComponent],
+  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, SectionNavigationComponent,IaHeadersComponent],
   templateUrl: './prompt-engineering.component.html',
   styleUrls: ['./prompt-engineering.component.css']
 })
