@@ -8,6 +8,8 @@ import { Component, Input } from '@angular/core';
   styleUrl: './example-card.component.css'
 })
 export class ExampleCardComponent {
-  @Input() example: any
-  @Input() tool: any
+  @Input() delimiterExample: any
+  @Input() toolExample: any
+  @Input() promptExample: any
+  @Input() llmsExample: any
 }

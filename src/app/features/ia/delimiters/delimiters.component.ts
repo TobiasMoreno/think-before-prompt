@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
 import { ExampleCardComponent } from '../../../ui/example-card/example-card.component';
 import { TemplateCardComponent } from '../../../ui/template-card/template-card.component';
+import { UseCaseCardComponent } from '../../../ui/use-case-card/use-case-card.component';
 
 export interface DelimiterExample {
   title: string;
@@ -34,7 +35,7 @@ export interface RealUseCase {
 @Component({
   selector: 'app-delimiters',
   standalone: true,
-  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, SectionNavigationComponent, ExampleCardComponent, TemplateCardComponent],
+  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, SectionNavigationComponent, ExampleCardComponent, TemplateCardComponent, UseCaseCardComponent],
   templateUrl: './delimiters.component.html'
 })
 export class DelimitersComponent {

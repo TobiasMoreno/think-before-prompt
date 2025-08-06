@@ -3,6 +3,8 @@ import { RouterLink } from '@angular/router';
 import { ProgressBarComponent } from '../../../ui/progress-bar/progress-bar.component';
 import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/breadcrumb.component';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
+import { ExampleCardComponent } from '../../../ui/example-card/example-card.component';
+import { ToolCardComponent } from '../../../ui/tool-card/tool-card.component';
 
 export interface LLMExample {
   title: string;
@@ -32,7 +34,7 @@ export interface ImplementationExample {
 
 @Component({
   selector: 'app-llms',
-  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent, SectionNavigationComponent],
+  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent, SectionNavigationComponent, ExampleCardComponent, ToolCardComponent],
   templateUrl: './llms.component.html',
   styleUrls: ['./llms.component.css']
 })

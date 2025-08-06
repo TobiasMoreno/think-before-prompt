@@ -60,7 +60,7 @@
   <!-- Grid de Herramientas -->
   <section id="herramientas" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
     @for (tool of filteredTools; track tool.name) {
-      <app-example-card [tool]="tool"></app-example-card>
+      <app-example-card [toolExample]="tool"></app-example-card>
     }
   </section>
 

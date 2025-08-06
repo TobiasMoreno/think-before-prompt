@@ -46,31 +46,7 @@
     <h2 class="text-3xl font-bold text-white mb-8 text-center">💻 Ejemplos Prácticos de Implementación</h2>
     <div class="grid gap-8 md:grid-cols-2">
       @for (example of implementationExamples; track example.title) {
-        <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
-          <!-- Header de la card -->
-          <div class="bg-gradient-to-r from-green-500 to-blue-500 p-6 text-white">
-            <div class="flex items-center gap-3">
-              <span class="text-3xl">{{ example.icon }}</span>
-              <h3 class="text-xl font-bold">{{ example.title }}</h3>
-            </div>
-          </div>
-
-          <!-- Contenido -->
-          <div class="p-6">
-            <p class="text-gray-700 mb-4">{{ example.description }}</p>
-            
-            <!-- Código de ejemplo -->
-            <div class="bg-gray-900 rounded-lg p-4 mb-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code>{{ example.code }}</code></pre>
-            </div>
-
-            <!-- Resultado -->
-            <div class="bg-green-50 rounded-lg p-4">
-              <h4 class="font-semibold text-green-800 mb-2">✅ Resultado:</h4>
-              <p class="text-sm text-green-700">{{ example.result }}</p>
-            </div>
-          </div>
-        </div>
+        <app-example-card [llmsExample]="example"></app-example-card>
       }
     </div>
   </section>
@@ -80,49 +56,7 @@
     <h2 class="text-3xl font-bold text-white mb-8 text-center">🛠️ Herramientas Oficiales de Angular 20 para IA</h2>
     <div class="grid gap-8 md:grid-cols-2">
       @for (tool of angularAITools; track tool.name) {
-        <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
-          <!-- Header de la herramienta -->
-          <div class="bg-gradient-to-r from-blue-500 to-purple-500 p-6 text-white">
-            <div class="flex items-center gap-3">
-              <span class="text-3xl">{{ tool.icon }}</span>
-              <h3 class="text-xl font-bold">{{ tool.name }}</h3>
-            </div>
-          </div>
-
-          <!-- Contenido -->
-          <div class="p-6">
-            <p class="text-gray-700 mb-4">{{ tool.description }}</p>
-            
-            <!-- Características -->
-            <div class="mb-4">
-              <h4 class="font-semibold text-gray-900 mb-2">✨ Características:</h4>
-              <ul class="text-sm text-gray-600 space-y-1">
-                @for (feature of tool.features; track feature) {
-                  <li class="flex items-center gap-2">
-                    <span class="text-blue-500">•</span>
-                    {{ feature }}
-                  </li>
-                }
-              </ul>
-            </div>
-
-            <!-- Configuración -->
-            <div class="mb-4">
-              <h4 class="font-semibold text-gray-900 mb-2">🔧 Configuración:</h4>
-              <p class="text-sm text-gray-600">{{ tool.setup }}</p>
-            </div>
-
-            <!-- Enlace -->
-            <a 
-              [href]="tool.link" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors duration-200"
-            >
-              Ver Documentación →
-            </a>
-          </div>
-        </div>
+        <app-tool-card [llmsTool]="tool"></app-tool-card>
       }
     </div>
   </section>
