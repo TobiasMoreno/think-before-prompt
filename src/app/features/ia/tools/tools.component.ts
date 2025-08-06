@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { ProgressBarComponent } from '../../../ui/progress-bar/progress-bar.component';
 import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/breadcrumb.component';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
+import { ExampleCardComponent } from '../../../ui/example-card/example-card.component';
 
 export interface Tool {
   name: string;
@@ -16,7 +17,7 @@ export interface Tool {
 
 @Component({
   selector: 'app-tools',
-  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent, SectionNavigationComponent],
+  imports: [RouterLink, ProgressBarComponent, BreadcrumbComponent, SectionNavigationComponent, ExampleCardComponent],
   templateUrl: './tools.component.html',
   styleUrls: ['./tools.component.css']
 })

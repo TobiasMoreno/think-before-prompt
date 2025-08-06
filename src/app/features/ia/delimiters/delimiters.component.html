@@ -1,16 +1,13 @@
 <div class="max-w-7xl mx-auto px-4 py-8">
   <!-- Indicador de progreso -->
-  <app-progress-bar [currentStep]="3"/>
+  <app-progress-bar [currentStep]="3" />
 
   <!-- Breadcrumb -->
-  <app-breadcrumb [items]="breadcrumbItems"/>
+  <app-breadcrumb [items]="breadcrumbItems" />
 
   <!-- Barra de navegación reutilizable -->
-  <app-section-navigation
-  [sections]="sections"
-  [activeColor]="'bg-blue-600'"
-  [hoverColor]="'hover:bg-gray-300'"
-  (sectionClick)="onSectionClick($event)"/>
+  <app-section-navigation [sections]="sections" [activeColor]="'bg-blue-600'" [hoverColor]="'hover:bg-gray-300'"
+    (sectionClick)="onSectionClick($event)" />
 
   <!-- Header -->
   <section id="introduccion" class="text-center mb-12">
@@ -27,11 +24,13 @@
       <div class="bg-white p-6 rounded-lg shadow">
         <h3 class="text-xl font-semibold text-gray-900 mb-3">Definición</h3>
         <p class="text-gray-700 mb-4">
-          Los delimitadores son símbolos o caracteres especiales que ayudan a la IA a identificar y separar diferentes tipos de contenido en tus prompts.
+          Los delimitadores son símbolos o caracteres especiales que ayudan a la IA a identificar y separar diferentes
+          tipos de contenido en tus prompts.
         </p>
         <div class="bg-yellow-50 p-4 rounded-lg">
           <p class="text-sm text-yellow-800">
-            <strong>💡 Importante:</strong> Los delimitadores mejoran la precisión y estructura de las respuestas de la IA.
+            <strong>💡 Importante:</strong> Los delimitadores mejoran la precisión y estructura de las respuestas de la
+            IA.
           </p>
         </div>
       </div>
@@ -52,18 +51,14 @@
   <div class="mb-8">
     <div class="flex flex-wrap gap-2 justify-center">
       @for (category of categories; track category) {
-        <button 
-          (click)="selectedCategory = category"
-          class="px-4 py-2 rounded-lg font-medium transition-colors duration-200"
-          [class.bg-blue-600]="selectedCategory === category"
-          [class.text-white]="selectedCategory === category"
-          [class.bg-gray-200]="selectedCategory !== category"
-          [class.text-gray-700]="selectedCategory !== category"
-          [class.hover:bg-blue-700]="selectedCategory === category"
-          [class.hover:bg-gray-300]="selectedCategory !== category"
-        >
-          {{ category === 'todos' ? 'Todos' : category }}
-        </button>
+      <button (click)="selectedCategory = category"
+        class="px-4 py-2 rounded-lg font-medium transition-colors duration-200"
+        [class.bg-blue-600]="selectedCategory === category" [class.text-white]="selectedCategory === category"
+        [class.bg-gray-200]="selectedCategory !== category" [class.text-gray-700]="selectedCategory !== category"
+        [class.hover:bg-blue-700]="selectedCategory === category"
+        [class.hover:bg-gray-300]="selectedCategory !== category">
+        {{ category === 'todos' ? 'Todos' : category }}
+      </button>
       }
     </div>
   </div>
@@ -73,29 +68,8 @@
     <h2 class="text-2xl font-bold text-white mb-6 text-center">💡 Ejemplos Prácticos</h2>
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
       @for (example of filteredExamples; track example.title) {
-        <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 text-white">
-          <h3 class="text-xl font-semibold text-white mb-4">{{ example.title }}</h3>
-          
-          <div class="mb-4">
-            <h4 class="font-semibold text-white mb-2">📝 Descripción:</h4>
-            <p class="text-gray-400">{{ example.description }}</p>
-          </div>
-
-          <div class="mb-4">
-            <h4 class="font-semibold text-white mb-2">🎯 Delimitador:</h4>
-            <span class="bg-gray-600 text-white px-2 py-1 rounded font-bold font-mono text-sm">{{ example.delimiter }}</span>
-          </div>
-
-          <div class="mb-4">
-            <h4 class="font-semibold text-white mb-2">📋 Ejemplo:</h4>
-            <pre class="bg-gray-400 text-black rounded-lg p-4 font-mono text-sm whitespace-pre-wrap overflow-x-auto">{{ example.example }}</pre>
-          </div>
-
-          <div class="bg-gray-700 p-4 rounded-lg">
-            <h5 class="font-semibold text-white mb-2">🎯 Casos de uso:</h5>
-            <p class="text-sm text-white">{{ example.useCase }}</p>
-          </div>
-        </div>
+      <app-example-card [example]="example">
+      </app-example-card>
       }
     </div>
   </section>
@@ -105,20 +79,7 @@
     <h2 class="text-2xl font-bold text-white mb-6 text-center">📝 Templates con Delimitadores</h2>
     <div class="grid gap-6 md:grid-cols-2">
       @for (template of delimiterTemplates; track template.name) {
-        <div class="bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 text-white">
-          <h3 class="text-xl font-semibold text-white mb-2">{{ template.name }}</h3>
-          <p class="text-gray-400 mb-3">{{ template.description }}</p>
-          
-          <div class="mb-4">
-            <h4 class="font-semibold text-white mb-2">📝 Template:</h4>
-            <pre class="bg-gray-400 p-4 rounded-lg text-sm overflow-x-auto font-mono text-black">{{ template.template }}</pre>
-          </div>
-          
-          <div class="bg-gray-700 p-3 rounded-lg">
-            <h4 class="font-semibold text-white mb-1">🎯 Casos de uso:</h4>
-            <p class="text-sm text-white">{{ template.useCase }}</p>
-          </div>
-        </div>
+      <app-template-card [templateDelimiters]="template"></app-template-card>
       }
     </div>
   </section>
@@ -129,70 +90,71 @@
     <p class="text-center text-gray-400 mb-8 max-w-3xl mx-auto">
       Situaciones reales donde los delimitadores marcan la diferencia en el desarrollo profesional
     </p>
-    
+
     <!-- Filtros para Casos Reales -->
     <div class="mb-8">
       <h3 class="text-lg font-semibold text-white mb-4 text-center">Filtrar por categoría:</h3>
       <div class="flex flex-wrap gap-2 justify-center">
         @for (category of realUseCaseCategories; track category) {
-          <button 
-            (click)="selectedRealUseCaseCategory = category"
-            class="px-4 py-2 rounded-lg font-medium transition-colors duration-200"
-            [class.bg-blue-600]="selectedRealUseCaseCategory === category"
-            [class.text-white]="selectedRealUseCaseCategory === category"
-            [class.bg-gray-200]="selectedRealUseCaseCategory !== category"
-            [class.text-gray-700]="selectedRealUseCaseCategory !== category"
-            [class.hover:bg-blue-700]="selectedRealUseCaseCategory === category"
-            [class.hover:bg-gray-300]="selectedRealUseCaseCategory !== category"
-          >
-            {{ category === 'todos' ? 'Todos los casos' : category }}
-          </button>
+        <button (click)="selectedRealUseCaseCategory = category"
+          class="px-4 py-2 rounded-lg font-medium transition-colors duration-200"
+          [class.bg-blue-600]="selectedRealUseCaseCategory === category"
+          [class.text-white]="selectedRealUseCaseCategory === category"
+          [class.bg-gray-200]="selectedRealUseCaseCategory !== category"
+          [class.text-gray-700]="selectedRealUseCaseCategory !== category"
+          [class.hover:bg-blue-700]="selectedRealUseCaseCategory === category"
+          [class.hover:bg-gray-300]="selectedRealUseCaseCategory !== category">
+          {{ category === 'todos' ? 'Todos los casos' : category }}
+        </button>
         }
       </div>
     </div>
-    
+
     <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-1">
       @for (useCase of filteredRealUseCases; track useCase.title) {
-        <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl shadow-2xl p-8 border border-gray-700 transition-all duration-300 ease-in-out hover:transform hover:-translate-y-1 hover:shadow-3xl">
-          <div class="flex items-center mb-6">
-            <div>
-              <h3 class="text-2xl font-bold text-white mb-2">{{ useCase.title }}</h3>
-              <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm font-medium">{{ useCase.category }}</span>
-            </div>
-          </div>
-
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-6">
-            <div class="bg-gray-700 p-4 rounded-lg">
-              <h4 class="font-semibold text-blue-300 mb-2">📋 Escenario</h4>
-              <p class="text-gray-300 text-sm">{{ useCase.scenario }}</p>
-            </div>
-            <div class="bg-gray-700 p-4 rounded-lg">
-              <h4 class="font-semibold text-red-300 mb-2">⚠️ Problema</h4>
-              <p class="text-gray-300 text-sm">{{ useCase.problem }}</p>
-            </div>
-            <div class="bg-gray-700 p-4 rounded-lg">
-              <h4 class="font-semibold text-green-300 mb-2">💡 Solución</h4>
-              <p class="text-gray-300 text-sm">{{ useCase.solution }}</p>
-            </div>
-          </div>
-
-          <div class="bg-gray-800 p-6 rounded-lg border border-gray-600">
-            <h4 class="font-semibold text-yellow-300 mb-3">🚀 Prompt con Delimitadores:</h4>
-            <pre class="bg-gray-900 text-gray-100 rounded-lg p-4 font-mono text-sm whitespace-pre-wrap overflow-x-auto border border-gray-600">{{ useCase.prompt }}</pre>
-          </div>
-
-          <div class="mt-6 bg-gradient-to-r from-gray-700 to-gray-800 p-4 rounded-lg">
-            <h5 class="font-semibold text-white mb-2">💡 Beneficios de usar delimitadores en este caso:</h5>
-            <ul class="text-white text-sm space-y-1">
-              <li>• Estructura clara del problema y contexto</li>
-              <li>• Separación de código, datos y instrucciones</li>
-              <li>• Facilita el análisis sistemático por la IA</li>
-              <li>• Mejora la precisión de las respuestas</li>
-              <li>• Permite reutilización del prompt</li>
-            </ul>
+      <div
+        class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl shadow-2xl p-8 border border-gray-700 transition-all duration-300 ease-in-out hover:transform hover:-translate-y-1 hover:shadow-3xl">
+        <div class="flex items-center mb-6">
+          <div>
+            <h3 class="text-2xl font-bold text-white mb-2">{{ useCase.title }}</h3>
+            <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm font-medium">{{ useCase.category
+              }}</span>
           </div>
         </div>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-6">
+          <div class="bg-gray-700 p-4 rounded-lg">
+            <h4 class="font-semibold text-blue-300 mb-2">📋 Escenario</h4>
+            <p class="text-gray-300 text-sm">{{ useCase.scenario }}</p>
+          </div>
+          <div class="bg-gray-700 p-4 rounded-lg">
+            <h4 class="font-semibold text-red-300 mb-2">⚠️ Problema</h4>
+            <p class="text-gray-300 text-sm">{{ useCase.problem }}</p>
+          </div>
+          <div class="bg-gray-700 p-4 rounded-lg">
+            <h4 class="font-semibold text-green-300 mb-2">💡 Solución</h4>
+            <p class="text-gray-300 text-sm">{{ useCase.solution }}</p>
+          </div>
+        </div>
+
+        <div class="bg-gray-800 p-6 rounded-lg border border-gray-600">
+          <h4 class="font-semibold text-yellow-300 mb-3">🚀 Prompt con Delimitadores:</h4>
+          <pre
+            class="bg-gray-900 text-gray-100 rounded-lg p-4 font-mono text-sm whitespace-pre-wrap overflow-x-auto border border-gray-600">{{ useCase.prompt }}</pre>
+        </div>
+
+        <div class="mt-6 bg-gradient-to-r from-gray-700 to-gray-800 p-4 rounded-lg">
+          <h5 class="font-semibold text-white mb-2">💡 Beneficios de usar delimitadores en este caso:</h5>
+          <ul class="text-white text-sm space-y-1">
+            <li>• Estructura clara del problema y contexto</li>
+            <li>• Separación de código, datos y instrucciones</li>
+            <li>• Facilita el análisis sistemático por la IA</li>
+            <li>• Mejora la precisión de las respuestas</li>
+            <li>• Permite reutilización del prompt</li>
+          </ul>
+        </div>
+      </div>
       }
     </div>
   </section>
-</div> 
+</div>

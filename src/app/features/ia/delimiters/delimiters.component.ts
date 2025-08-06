@@ -3,6 +3,8 @@ import { ProgressBarComponent } from '../../../ui/progress-bar/progress-bar.comp
 import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/breadcrumb.component';
 import { FormsModule } from '@angular/forms';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
+import { ExampleCardComponent } from '../../../ui/example-card/example-card.component';
+import { TemplateCardComponent } from '../../../ui/template-card/template-card.component';
 
 export interface DelimiterExample {
   title: string;
@@ -32,7 +34,7 @@ export interface RealUseCase {
 @Component({
   selector: 'app-delimiters',
   standalone: true,
-  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, SectionNavigationComponent],
+  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, SectionNavigationComponent, ExampleCardComponent, TemplateCardComponent],
   templateUrl: './delimiters.component.html'
 })
 export class DelimitersComponent {

@@ -4,6 +4,7 @@ import { BreadcrumbComponent, BreadcrumbItem } from '../../../ui/breadcrumb/brea
 import { FormsModule } from '@angular/forms';
 import { SectionNavigationComponent, NavigationSection } from '../../../ui/section-navigation/section-navigation.component';
 import { IaHeadersComponent } from '../../../ui/ia-headers/ia-headers.component';
+import { TemplateCardComponent } from '../../../ui/template-card/template-card.component';
 
 export interface PromptExample {
   title: string;
@@ -23,7 +24,7 @@ export interface PromptTemplate {
 @Component({
   selector: 'app-prompt-engineering',
   standalone: true,
-  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, SectionNavigationComponent,IaHeadersComponent],
+  imports: [FormsModule, BreadcrumbComponent, ProgressBarComponent, SectionNavigationComponent,IaHeadersComponent, TemplateCardComponent],
   templateUrl: './prompt-engineering.component.html',
   styleUrls: ['./prompt-engineering.component.css']
 })
